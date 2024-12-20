@@ -66,13 +66,12 @@ export default function Services() {
                 <p className="text-muted-foreground dark:text-gray-400">
                   {service.description}
                 </p>
-                <Button
-                  as="a"
+                <a
                   href={service.link}
-                  className="bg-[#9333EA] text-white hover:bg-[#9333EA]/90 text-base w-full mt-4 transform transition-all hover:scale-105"
+                  className="bg-[#9333EA] text-white hover:bg-[#9333EA]/90 text-base w-full mt-4 transform transition-all hover:scale-105 text-center py-2 px-4 rounded-lg"
                 >
                   Learn More
-                </Button>
+                </a>
               </div>
             </div>
           ))}

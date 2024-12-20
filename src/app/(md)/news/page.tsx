@@ -47,13 +47,12 @@ export default function News() {
               <div className="p-6 space-y-4">
                 <h3 className="text-2xl font-bold text-foreground dark:text-black">{article.title}</h3>
                 <p className="text-muted-foreground dark:text-gray-400">{article.description}</p>
-                <Button
-                  as="a"
+                <a
                   href={article.link}
-                  className="text-[#9333EA] hover:bg-[#9333EA]/90 text-base w-full mt-4"
+                  className="text-[#9333EA] hover:bg-[#9333EA]/90 text-base w-full mt-4 inline-flex items-center justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                 >
                   Read More <ArrowRight className="ml-2" />
-                </Button>
+                </a>
               </div>
             </div>
           ))}
