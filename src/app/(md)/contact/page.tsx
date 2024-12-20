@@ -20,7 +20,7 @@ export default function Contact() {
         {/* Contact Form Section */}
         <section>
           <h2 className="text-4xl font-extrabold tracking-tight mb-8 text-center text-foreground">
-            We'd Love to Hear from You!
+            We&apos;d Love to Hear from You!
           </h2>
           <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
             {/* Contact Form */}

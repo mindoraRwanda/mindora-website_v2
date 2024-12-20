@@ -1,7 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
-import { cn } from "@/lib/utils";
+
 
 interface TopSectionProps {
   backgroundImage: string;

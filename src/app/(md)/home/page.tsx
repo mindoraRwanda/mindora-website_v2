@@ -77,14 +77,14 @@ export default function Home() {
         <div className="flex justify-center gap-6 animate__animated animate__fadeIn animate__delay-2s">
           <Button
             className="bg-black text-white hover:bg-gray-800 text-lg py-4 px-6 rounded-full transition-transform transform hover:scale-105"
-            leftIcon={<LucidePhone className="text-2xl" />}
           >
+            <LucidePhone className="text-2xl mr-2" />
             Download on the App Store
           </Button>
           <Button
             className="bg-green-500 text-white hover:bg-green-400 text-lg py-4 px-6 rounded-full transition-transform transform hover:scale-105"
-            leftIcon={<LucidePhone className="text-2xl" />}
           >
+            <LucidePhone className="text-2xl mr-2" />
             Get it on Google Play
           </Button>
         </div>
