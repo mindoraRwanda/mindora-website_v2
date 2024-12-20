@@ -1,7 +1,15 @@
 import React from 'react'
+import TopSection from "@/components/TopSection";
 
 export default function News() {
   return (
-    <div> News page</div>
+    <>
+    <TopSection
+        backgroundImage="/images/newsbg.jpg"
+        title="News and article About mindora"
+        description="Explore the cutting-edge solutions we offer to empower your business."
+      />
+    news
+    </>
   )
 }
