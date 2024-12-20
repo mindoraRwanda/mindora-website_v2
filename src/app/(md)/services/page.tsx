@@ -1,7 +1,16 @@
 import React from 'react'
+import TopSection from "@/components/TopSection";
 
 export default function Services() {
   return (
-    <div>Services </div>
+    <>
+    <TopSection
+        backgroundImage="/images/servicbg.jpg"
+        title="Our Services"
+        description="Explore the cutting-edge solutions we offer to empower your business."
+      />
+
+
+    Service </>
   )
 }
