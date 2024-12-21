@@ -100,7 +100,7 @@ export default function Contact() {
               <MessageCircle className="w-12 h-12 text-purple-500 mx-auto mb-4" />
               <h2 className="text-4xl font-bold mb-4">Send Us a Message</h2>
               <p className="text-lg text-muted-foreground">
-                We're here to help and answer any questions you might have
+                We&apos;re here to help and answer any questions you might have
               </p>
             </div>
             
