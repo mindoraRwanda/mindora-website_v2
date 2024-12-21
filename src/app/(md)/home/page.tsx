@@ -1,12 +1,14 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { LucideChevronRight, LucideDownload, LucidePhone, LucideGlobe } from 'lucide-react'; // Alternative icons
+import HeroCarousel from '@/components/HeroCarousel';
+import PartnersSection from '@/components/PartnersSection';
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <div className="relative bg-cover bg-center" style={{ backgroundImage: 'url("/images/hero-bg.jpg")' }}>
+      {/* <div className="relative bg-cover bg-center" style={{ backgroundImage: 'url("/images/hero-bg.jpg")' }}>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="container mx-auto px-6 py-20 text-center relative z-10">
           <h1 className="text-5xl font-extrabold text-white mb-4 animate__animated animate__fadeIn">
@@ -19,7 +21,8 @@ export default function Home() {
             Learn More
           </Button>
         </div>
-      </div>
+      </div> */}
+      <HeroCarousel />
 
       {/* Features Section */}
       <div className="container mx-auto px-6 py-12 text-center">
@@ -52,17 +55,20 @@ export default function Home() {
       </div>
 
       {/* Partners Section */}
-      <div className="bg-gray-100 py-12">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-extrabold text-foreground mb-6 animate__animated animate__fadeIn">
-            Our Partners
+      <PartnersSection />
+       
+        {/* Call to Action Section */}
+       <div className="bg-[#9333EA] text-white py-12">
+        <div className="container mx-auto text-center">
+          <h2 className="text-4xl font-extrabold mb-6 animate__animated animate__fadeIn">
+            Ready to Take Control of Your Mental Well-being?
           </h2>
-          <div className="flex justify-center gap-8 animate__animated animate__fadeIn animate__delay-1s">
-            <img src="/images/partner1.png" alt="Partner 1" className="h-16 object-contain transition-transform transform hover:scale-105" />
-            <img src="/images/partner2.png" alt="Partner 2" className="h-16 object-contain transition-transform transform hover:scale-105" />
-            <img src="/images/partner3.png" alt="Partner 3" className="h-16 object-contain transition-transform transform hover:scale-105" />
-            <img src="/images/partner4.png" alt="Partner 4" className="h-16 object-contain transition-transform transform hover:scale-105" />
-          </div>
+          <p className="text-lg mb-8 animate__animated animate__fadeIn animate__delay-1s">
+            Start your journey with Mindora Africa and access personalized mental health support.
+          </p>
+          <Button className="bg-white text-[#9333EA] hover:bg-[#9333EA]/90 text-lg py-4 px-10">
+            Get Started
+          </Button>
         </div>
       </div>
 
@@ -90,20 +96,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Call to Action Section */}
-      <div className="bg-[#9333EA] text-white py-12">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-extrabold mb-6 animate__animated animate__fadeIn">
-            Ready to Take Control of Your Mental Well-being?
-          </h2>
-          <p className="text-lg mb-8 animate__animated animate__fadeIn animate__delay-1s">
-            Start your journey with Mindora Africa and access personalized mental health support.
-          </p>
-          <Button className="bg-white text-[#9333EA] hover:bg-[#9333EA]/90 text-lg py-4 px-10">
-            Get Started
-          </Button>
-        </div>
-      </div>
+     
+     
     </>
   );
 }
