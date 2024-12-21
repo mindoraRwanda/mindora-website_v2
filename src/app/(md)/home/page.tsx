@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { LucideChevronRight, LucideDownload, LucidePhone, LucideGlobe } from 'lucide-react'; // Alternative icons
+import { LucideChevronRight, LucideDownload, LucideGlobe } from 'lucide-react'; 
 import HeroCarousel from '@/components/HeroCarousel';
 import PartnersSection from '@/components/PartnersSection';
 import DownloadSection from '@/components/DownloadSection';
