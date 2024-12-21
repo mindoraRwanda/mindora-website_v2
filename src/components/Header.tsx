@@ -4,12 +4,14 @@ import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu";
-import { JSX, SVGProps } from "react";
+import { useState, useEffect } from "react";
 import { ModeToggle } from "@/components/ModeToggle";
-import { useEffect, useState } from "react";
+import { Menu, X, Download, ChevronDown, Star, Sparkles } from 'lucide-react';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeLink, setActiveLink] = useState("");
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,114 +23,162 @@ export default function Header() {
     };
   }, []);
 
+  const navigationItems = [
+    { href: "/home", label: "Home" },
+    { href: "/about", label: "About us" },
+    { href: "/services", label: "Services" },
+    { href: "/news", label: "Community & Events" },
+    { href: "/contact", label: "Contact us" }
+  ];
+
   return (
     <header
-      className={`sticky top-0 z-50 flex h-20 w-full items-center px-4 md:px-6 transition-colors ${
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "bg-[#9333EA] text-white shadow-md dark:bg-[#5B21B6]"
-          : "bg-transparent text-black dark:text-white"
+          ? "backdrop-blur-lg bg-white/70 dark:bg-gray-900/70 shadow-lg h-16"
+          : "bg-transparent h-20"
       }`}
     >
-      {/* Mobile Navigation */}
-      <Sheet>
-        <SheetTrigger asChild>
+      <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
+        {/* Mobile Menu */}
+        <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden relative"
+            >
+              {isMobileOpen ? (
+                <X className="h-6 w-6 transition-transform duration-200" />
+              ) : (
+                <Menu className="h-6 w-6 transition-transform duration-200" />
+              )}
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-80">
+            <div className="mt-8 flex flex-col space-y-6">
+              {navigationItems.map((item) => (
+                <MobileNavLink
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMobileOpen(false)}
+                >
+                  {item.label}
+                </MobileNavLink>
+              ))}
+              <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+                <Download className="mr-2 h-4 w-4" />
+                Download App
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
+
+        {/* Logo */}
+        <Link href="/" className="flex items-center space-x-2">
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
+            <div className="relative font-bold text-2xl bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
+              MINDORA
+              <span className="absolute -top-1 -right-1">
+                <Sparkles className="h-4 w-4 text-yellow-400 animate-pulse" />
+              </span>
+            </div>
+          </div>
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Africa</span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <NavigationMenu className="hidden lg:flex">
+          <NavigationMenuList className="flex space-x-1">
+            {navigationItems.map((item) => (
+              <DesktopNavLink
+                key={item.href}
+                href={item.href}
+                isActive={activeLink === item.href}
+                onMouseEnter={() => setActiveLink(item.href)}
+                onMouseLeave={() => setActiveLink("")}
+              >
+                {item.label}
+              </DesktopNavLink>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        {/* Actions */}
+        <div className="flex items-center space-x-4">
           <Button
-            variant="outline"
-            size="icon"
-            className={`lg:hidden ${
-              isScrolled ? "text-white" : "text-black dark:text-white"
+            variant="default"
+            className={`hidden md:inline-flex bg-gradient-to-r from-purple-600 to-pink-600 
+              hover:from-purple-700 hover:to-pink-700 text-white transform transition-all 
+              duration-300 hover:scale-105 shadow-lg hover:shadow-xl ${
+              isScrolled ? "py-2" : "py-3"
             }`}
           >
-            <MenuIcon className="h-6 w-6" />
-            <span className="sr-only">Toggle navigation menu</span>
+            <Download className="mr-2 h-4 w-4" />
+            Download App
+            <Star className="ml-2 h-4 w-4 animate-spin-slow" />
           </Button>
-        </SheetTrigger>
-        <SheetContent side="left">
-          <div className="flex flex-col space-y-4 py-6">
-            <MobileNavLink href="/home">Home</MobileNavLink>
-            <MobileNavLink href="/about">About us</MobileNavLink>
-            <MobileNavLink href="/services">Services</MobileNavLink>
-            <MobileNavLink href="/news">News and Articles</MobileNavLink>
-            <MobileNavLink href="/contact">Contact us</MobileNavLink>
-          </div>
-        </SheetContent>
-      </Sheet>
-
-      {/* Logo */}
-      <Link href="/" className="mr-6 font-bold text-xl">
-        <div>MINDORA</div> Africa
-      </Link>
-
-      {/* Desktop Navigation */}
-      <NavigationMenu className="hidden lg:flex">
-        <NavigationMenuList>
-          <DesktopNavLink href="/home">Home</DesktopNavLink>
-          <DesktopNavLink href="/about">About us</DesktopNavLink>
-          <DesktopNavLink href="/services">Services</DesktopNavLink>
-          <DesktopNavLink href="/news">News and Articles</DesktopNavLink>
-          <DesktopNavLink href="/contact">Contact us</DesktopNavLink>
-        </NavigationMenuList>
-      </NavigationMenu>
-
-      {/* Actions */}
-      <div className="ml-auto flex gap-2">
-        <Button
-          variant="outline"
-          className={`${
-            isScrolled ? "text-white border-white" : "text-black border-black dark:text-white dark:border-white"
-          }`}
-        >
-          Download App
-        </Button>
-        <ModeToggle />
+          <ModeToggle />
+        </div>
       </div>
     </header>
   );
 }
 
-// Helper components for links
-function MobileNavLink({ href, children }: { href: string; children: React.ReactNode }) {
+function MobileNavLink({ href, children, onClick }: { 
+  href: string; 
+  children: React.ReactNode;
+  onClick: () => void;
+}) {
   return (
     <Link
       href={href}
-      className="text-lg font-semibold text-gray-800 dark:text-gray-200 hover:underline"
+      onClick={onClick}
+      className="flex items-center space-x-2 text-lg font-medium text-gray-700 dark:text-gray-200 
+        hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 
+        group relative py-2"
     >
+      <span className="absolute left-0 w-0 h-0.5 bg-purple-600 group-hover:w-full transition-all duration-300" />
       {children}
+      <ChevronDown className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 
+        group-hover:translate-x-0 transition-all duration-300" />
     </Link>
   );
 }
 
-function DesktopNavLink({ href, children }: { href: string; children: React.ReactNode }) {
+function DesktopNavLink({ 
+  href, 
+  children, 
+  isActive,
+  onMouseEnter,
+  onMouseLeave 
+}: { 
+  href: string; 
+  children: React.ReactNode;
+  isActive: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}) {
   return (
     <NavigationMenuLink asChild>
       <Link
         href={href}
-        className="group inline-flex h-9 items-center justify-center px-4 text-sm font-medium transition-colors hover:text-gray-900 focus:text-gray-900 dark:hover:text-gray-100 dark:focus:text-gray-100"
+        className={`relative group px-4 py-2 rounded-full transition-all duration-300
+          ${isActive 
+            ? 'text-purple-600 dark:text-purple-400' 
+            : 'text-gray-700 dark:text-gray-200'
+          }`}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
-        {children}
+        <span className="relative z-10">{children}</span>
+        <span className={`absolute inset-0 bg-purple-100 dark:bg-purple-900/40 
+          rounded-full scale-0 group-hover:scale-100 transition-transform 
+          duration-300 ease-out ${isActive ? 'scale-100' : ''}`} 
+        />
       </Link>
     </NavigationMenuLink>
   );
 }
 
-// Icons
-function MenuIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="4" x2="20" y1="12" y2="12" />
-      <line x1="4" x2="20" y1="6" y2="6" />
-      <line x1="4" x2="20" y1="18" y2="18" />
-    </svg>
-  );
-}

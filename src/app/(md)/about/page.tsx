@@ -1,24 +1,60 @@
-import React from 'react';
-import TopSection from "@/components/TopSection";
-import { Button } from '@/components/ui/button';
+import React from 'react'
+import { Button } from '@/components/ui/button'
+import TopSection from "@/components/TopSection"
+import TeamSection from '@/components/TeamSection'
+import { ArrowRight, Heart, Lightbulb, Users, Star, ChevronRight, MessageCircle } from 'lucide-react'
+
+interface Value {
+  icon: React.ReactNode
+  title: string
+  description: string
+}
+
+interface Milestone {
+  year: string
+  title: string
+  description: string
+}
 
 export default function About() {
-  const teamMembers = [
-    { name: 'John Doe', role: 'CEO & Founder', image: '/images/team.jpg', bio: 'John is the visionary behind Mindora Africa.' },
-    { name: 'Jane Smith', role: 'CTO', image: '/images/team.jpg', bio: 'Jane leads the technology team at Mindora.' },
-    { name: 'Michael Johnson', role: 'Lead Psychologist', image: '/images/team.jpg', bio: 'Michael brings psychological expertise to our platform.' },
-    { name: 'Sarah Lee', role: 'Product Manager', image: '/images/team.jpg', bio: 'Sarah oversees product development and user experience.' },
-    { name: 'David Brown', role: 'Lead Developer', image: '/images/team.jpg', bio: 'David leads the development of our AI tools.' },
-    { name: 'Emily Davis', role: 'UI/UX Designer', image: '/images/team.jpg', bio: 'Emily creates intuitive and user-friendly interfaces.' },
-    { name: 'James Wilson', role: 'Marketing Director', image: '/images/team.jpg', bio: 'James handles the marketing and outreach efforts for Mindora.' },
-    { name: 'Alice Green', role: 'Customer Support Lead', image: '/images/team.jpg', bio: 'Alice ensures our customers have the best experience with Mindora.' },
-    { name: 'Tom Harris', role: 'Data Scientist', image: '/images/team.jpg', bio: 'Tom analyzes data to improve our AI predictions.' },
-    { name: 'Sophia Lewis', role: 'Operations Manager', image: '/images/team.jpg', bio: 'Sophia streamlines operations to ensure smooth workflows.' },
-  ];
+  const values: Value[] = [
+    {
+      icon: <Lightbulb className="w-8 h-8 text-purple-500" />,
+      title: "Innovation",
+      description: "Pushing boundaries with AI-powered solutions for mental health support."
+    },
+    {
+      icon: <Heart className="w-8 h-8 text-purple-500" />,
+      title: "Empathy",
+      description: "Understanding and supporting each individual's unique mental health journey."
+    },
+    {
+      icon: <Users className="w-8 h-8 text-purple-500" />,
+      title: "Collaboration",
+      description: "Working together with experts and communities to create impactful solutions."
+    }
+  ]
+
+  const milestones: Milestone[] = [
+    {
+      year: "2015",
+      title: "Foundation",
+      description: "Mindora Africa was established with a vision to transform mental health support."
+    },
+    {
+      year: "2018",
+      title: "AI Integration",
+      description: "Launched our first AI-powered mental health assessment platform."
+    },
+    {
+      year: "2023",
+      title: "Global Expansion",
+      description: "Reached over 100,000 users across multiple African countries."
+    }
+  ]
 
   return (
-    <>
-      {/* Hero Section */}
+    <div className="min-h-screen bg-background">
       <TopSection
         backgroundImage="/images/aboutbg.jpg"
         title="About Us"
@@ -26,109 +62,112 @@ export default function About() {
       />
 
       {/* Our Story Section */}
-      <div className="container mx-auto px-6 py-12 text-center">
-        <h2 className="text-4xl font-extrabold text-foreground mb-6">
-          Our Story
-        </h2>
-        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          At Mindora, we believe that mental health is a key part of living a fulfilled life. We are driven by the mission to
-          provide accessible, AI-powered solutions that help individuals take control of their mental well-being before challenges arise.
-          Our team is passionate about innovation, empathy, and bringing the best of technology to the world of mental health.
-        </p>
-      </div>
+      <section className="relative py-20">
+        <div className="container mx-auto px-4">
+          <div className="relative z-10 bg-background dark:bg-gray-800 rounded-2xl p-8 md:p-12 shadow-lg">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
+                Our Story
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                At Mindora, we believe that mental health is a key part of living a fulfilled life. 
+                We are driven by the mission to provide accessible, AI-powered solutions that help 
+                individuals take control of their mental well-being before challenges arise.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* Meet Our Team Section */}
-      <div className="bg-gray-100 py-12">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-extrabold text-foreground mb-12">Meet Our Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-12">
-            {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105"
+      <TeamSection />
+
+      {/* Values Section */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Our Core Values</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {values.map((value) => (
+              <div key={value.title} 
+                className="group bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg 
+                  transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
               >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-40 h-40 mx-auto rounded-full object-cover mb-4"
-                />
-                <h3 className="text-xl font-semibold text-foreground">{member.name}</h3>
-                <p className="text-md text-muted-foreground">{member.role}</p>
-                <p className="text-sm text-muted-foreground mt-2">{member.bio}</p>
+                <div className="mb-6 transform transition-transform duration-300 group-hover:scale-110">
+                  {value.icon}
+                </div>
+                <h3 className="text-2xl font-semibold mb-4">{value.title}</h3>
+                <p className="text-muted-foreground">{value.description}</p>
               </div>
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Our Values Section */}
-      <div className="container mx-auto px-6 py-12 text-center">
-        <h2 className="text-4xl font-extrabold text-foreground mb-6">Our Core Values</h2>
-        <div className="flex flex-wrap justify-center gap-8">
-          <div className="w-60">
-            <h3 className="text-2xl font-semibold text-foreground">Innovation</h3>
-            <p className="text-md text-muted-foreground">
-              We strive to constantly push boundaries and bring new solutions to mental health.
-            </p>
-          </div>
-          <div className="w-60">
-            <h3 className="text-2xl font-semibold text-foreground">Empathy</h3>
-            <p className="text-md text-muted-foreground">
-              We understand the importance of compassion and empathy in every solution we offer.
-            </p>
-          </div>
-          <div className="w-60">
-            <h3 className="text-2xl font-semibold text-foreground">Collaboration</h3>
-            <p className="text-md text-muted-foreground">
-              We work together as a team to achieve our common goal: improving mental well-being for everyone.
-            </p>
-          </div>
-        </div>
-      </div>
+      </section>
 
       {/* Milestones Section */}
-      <div className="bg-gray-100 py-12">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-extrabold text-foreground mb-6">Milestones</h2>
-          <div className="flex flex-wrap justify-center gap-8">
-            <div className="w-60">
-              <h3 className="text-2xl font-semibold text-foreground">2015</h3>
-              <p className="text-md text-muted-foreground">Founded with a vision to transform mental health care using AI.</p>
-            </div>
-            <div className="w-60">
-              <h3 className="text-2xl font-semibold text-foreground">2018</h3>
-              <p className="text-md text-muted-foreground">Launched our first mental health prediction tool.</p>
-            </div>
-            <div className="w-60">
-              <h3 className="text-2xl font-semibold text-foreground">2023</h3>
-              <p className="text-md text-muted-foreground">Expanded to serve thousands of users across Africa.</p>
-            </div>
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Our Journey</h2>
+          <div className="max-w-4xl mx-auto">
+            {milestones.map((milestone) => (
+              <div key={milestone.year} className="relative flex items-start mb-12 last:mb-0">
+                <div className="absolute top-0 left-8 h-full w-0.5 bg-purple-200 dark:bg-purple-800" />
+                <div className="flex-shrink-0 w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full 
+                  flex items-center justify-center z-10">
+                  <span className="text-purple-600 dark:text-purple-400 font-bold">{milestone.year}</span>
+                </div>
+                <div className="ml-8 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg flex-grow">
+                  <h3 className="text-xl font-semibold mb-2">{milestone.title}</h3>
+                  <p className="text-muted-foreground">{milestone.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Our Vision Section */}
-      <div className="container mx-auto px-6 py-12 text-center">
-        <h2 className="text-4xl font-extrabold text-foreground mb-6">Our Vision</h2>
-        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          We envision a world where mental health support is as accessible and intuitive as possible. Through innovation, empathy, and advanced AI
-          technologies, Mindora Africa strives to help individuals manage their mental well-being and build emotional resilience for the future.
-        </p>
-        <Button className="bg-[#9333EA] text-white hover:bg-[#9333EA]/90 text-lg py-4 px-10 mt-6">
-          Join Us on Our Journey
-        </Button>
-      </div>
+      {/* Vision Section */}
+      <section className="py-20 bg-purple-600 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <Star className="w-12 h-12 mx-auto mb-6 opacity-75" />
+            <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Vision</h2>
+            <p className="text-xl mb-12 text-purple-100">
+              We envision a world where mental health support is as accessible and intuitive as possible. 
+              Through innovation, empathy, and advanced AI technologies, Mindora Africa strives to help 
+              individuals manage their mental well-being.
+            </p>
+            <Button 
+              className="bg-white text-purple-600 hover:bg-purple-50 text-lg 
+                py-6 px-8 rounded-xl transform transition-transform hover:scale-105"
+            >
+              Join Us on Our Journey
+              <ChevronRight className="ml-2 w-5 h-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
 
       {/* Contact CTA Section */}
-      <div className="bg-[#9333EA] text-white py-12">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-extrabold mb-6">Want to Learn More?</h2>
-          <p className="text-lg mb-8">Get in touch with us today and discover how we can help you take charge of your mental well-being.</p>
-          <Button className="bg-white text-[#9333EA] hover:bg-[#9333EA]/90 text-lg py-4 px-10">
-            Contact Us
-          </Button>
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto bg-gradient-to-br from-purple-600 to-pink-600 
+            rounded-2xl p-12 text-center text-white shadow-xl">
+            <MessageCircle className="w-12 h-12 mx-auto mb-6 opacity-75" />
+            <h2 className="text-4xl font-bold mb-6">Want to Learn More?</h2>
+            <p className="text-xl mb-8">
+              Get in touch with us today and discover how we can help you take charge of your mental well-being.
+            </p>
+            <Button 
+              className="bg-white text-purple-600 hover:bg-purple-50 text-lg 
+                py-6 px-8 rounded-xl transform transition-transform hover:scale-105"
+            >
+              Contact Us
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </section>
+    </div>
+  )
 }
