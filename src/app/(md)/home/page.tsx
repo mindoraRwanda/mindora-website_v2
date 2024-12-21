@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { LucideChevronRight, LucideDownload, LucidePhone, LucideGlobe } from 'lucide-react'; // Alternative icons
 import HeroCarousel from '@/components/HeroCarousel';
 import PartnersSection from '@/components/PartnersSection';
+import DownloadSection from '@/components/DownloadSection';
 
 export default function Home() {
   return (
@@ -73,28 +74,8 @@ export default function Home() {
       </div>
 
       {/* App Download Section */}
-      <div className="container mx-auto px-6 py-12 text-center">
-        <h2 className="text-4xl font-extrabold text-foreground mb-6 animate__animated animate__fadeIn">
-          Download Our App
-        </h2>
-        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto animate__animated animate__fadeIn animate__delay-1s">
-          Get the Mindora Africa app for your device and start improving your mental well-being today.
-        </p>
-        <div className="flex justify-center gap-6 animate__animated animate__fadeIn animate__delay-2s">
-          <Button
-            className="bg-black text-white hover:bg-gray-800 text-lg py-4 px-6 rounded-full transition-transform transform hover:scale-105"
-          >
-            <LucidePhone className="text-2xl mr-2" />
-            Download on the App Store
-          </Button>
-          <Button
-            className="bg-green-500 text-white hover:bg-green-400 text-lg py-4 px-6 rounded-full transition-transform transform hover:scale-105"
-          >
-            <LucidePhone className="text-2xl mr-2" />
-            Get it on Google Play
-          </Button>
-        </div>
-      </div>
+      <DownloadSection />
+
 
      
      
