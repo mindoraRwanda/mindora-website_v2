@@ -65,7 +65,7 @@ export default function Home() {
             Ready to Take Control of Your Mental Well-being?
           </h2>
           <p className="text-lg mb-8 animate__animated animate__fadeIn animate__delay-1s">
-            Start your journey with Mindora Africa and access personalized mental health support.
+            Start your journey with Mindora Health and access personalized mental health support.
           </p>
           <Button className="bg-white text-[#9333EA] hover:bg-[#9333EA]/90 text-lg py-4 px-10">
             Get Started

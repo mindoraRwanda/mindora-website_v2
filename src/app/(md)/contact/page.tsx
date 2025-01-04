@@ -48,20 +48,20 @@ export default function Contact() {
     {
       icon: <Phone className="w-6 h-6 text-purple-500" />,
       title: "Phone",
-      details: "+254 (700) 123-4567",
-      subtext: "Monday to Friday, 9am to 6pm"
+      details: "+250 783 974-066",
+      subtext: "Monday to Friday, 9am to 5pm"
     },
     {
       icon: <Mail className="w-6 h-6 text-purple-500" />,
       title: "Email",
-      details: "support@mindora.africa",
+      details: "info@mindora.rw",
       subtext: "We'll respond within 24 hours"
     },
     {
       icon: <MapPin className="w-6 h-6 text-purple-500" />,
       title: "Office",
-      details: "123 Innovation Hub, Westlands",
-      subtext: "Nairobi, Kenya"
+      details: "123 Innovation Hub, Nyarugenge",
+      subtext: "Kigali, RWanda"
     }
   ];
 
@@ -194,21 +194,21 @@ export default function Contact() {
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold mb-4">Visit Our Office</h2>
               <p className="text-lg text-muted-foreground">
-                Come see us in person at our Nairobi headquarters
+                Come see us in person at our Kigali headquarters
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
               <div className="md:col-span-2">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317715.9430479296!2d-0.3817843360992481!3d51.528735199999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760fdc7c4d13eb%3A0xd308ae9eb64d7e0!2sLondon%2C%20UK!5e0!3m2!1sen!2s!4v1698054728298!5m2!1sen!2s"
-                  width="100%"
-                  height="450"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  className="rounded-xl shadow-lg"
-                ></iframe>
+               <iframe
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d255281.19036273116!2d30.03177575829067!3d-1.944165344744954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca4258ed8e797%3A0xf32b36a5411d0bc8!2sKigali%2C%20Rwanda!5e0!3m2!1sen!2s!4v1704391273713!5m2!1sen!2s"
+               width="100%"
+               height="450"
+               style={{ border: 0 }}
+               allowFullScreen
+               loading="lazy"
+               className="rounded-xl shadow-lg"
+               ></iframe>
               </div>
               <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
                 <div className="space-y-6">
@@ -216,8 +216,8 @@ export default function Contact() {
                     <MapPin className="w-6 h-6 text-purple-500" />
                     <div>
                       <h3 className="font-medium">Address</h3>
-                      <p className="text-muted-foreground">123 Innovation Hub, Westlands</p>
-                      <p className="text-muted-foreground">Nairobi, Kenya</p>
+                      <p className="text-muted-foreground">123 Innovation Hub, Nyarugenge</p>
+                      <p className="text-muted-foreground">Kigali, Rwanda</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
@@ -225,7 +225,7 @@ export default function Contact() {
                     <div>
                       <h3 className="font-medium">Business Hours</h3>
                       <p className="text-muted-foreground">Monday - Friday</p>
-                      <p className="text-muted-foreground">9:00 AM - 6:00 PM EAT</p>
+                      <p className="text-muted-foreground">9:00 AM - 5:00 PM EAT</p>
                     </div>
                   </div>
                 </div>

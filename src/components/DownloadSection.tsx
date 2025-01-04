@@ -31,7 +31,7 @@ export default function DownloadSection() {
               Transform Your Mental Health Journey
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              Get the Mindora Africa app for your device and start your path to better mental well-being today. Join thousands of users already benefiting from our innovative solutions.
+              Get the Mindora app for your device and start your path to better mental well-being today. Join thousands of users already benefiting from our innovative solutions.
             </p>
           </div>
 

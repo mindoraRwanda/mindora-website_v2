@@ -21,10 +21,9 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Logo and Description */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-[#9333EA]">MINDORA Africa</h2>
+          <h2 className="text-2xl font-bold text-[#9333EA]">MINDORA Health</h2>
           <p className="text-sm">
-            Building solutions for a brighter future. Stay connected and explore
-            our world of innovation and creativity.
+            At Mindora, we believe that mental health is a key part of living a fulfilled life. We are driven by the mission to provide accessible, AI-powered solutions that help individuals take control of their mental well-being before challenges arise.
           </p>
         </div>
 
