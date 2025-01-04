@@ -161,32 +161,38 @@ export default function TeamSection() {
             >
               <CardContent className="p-0">
                 {/* Image Container */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-lg">
-                  {/* Placeholder Background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-100 to-blue-50 dark:from-purple-900 dark:to-blue-900" />
-                  
-                  {/* Image */}
-                  <div className="relative w-full h-full">
+                <div className="relative w-full pt-[75%] overflow-hidden rounded-t-lg bg-gradient-to-br from-purple-100 to-blue-50 dark:from-purple-900 dark:to-blue-900">
+                  <div className="absolute inset-0">
                     <Image
                       src={`/images/${member.image}`}
                       alt={member.name}
-                      layout="fill"
-                      className="object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover object-center"
+                      style={{
+                        position: 'absolute',
+                        height: '100%',
+                        width: '100%',
+                        inset: '0px',
+                      }}
                       priority
                     />
-                  </div>
-                  
-                  {/* Overlay Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  
-                  {/* Text Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 z-10">
-                    <h3 className="text-lg font-bold text-white leading-tight">
-                      {member.name}
-                    </h3>
-                    <p className="text-sm font-medium text-purple-200">
-                      {member.role}
-                    </p>
+                    
+                    {/* Enhanced Gradient Overlay */}
+                    <div 
+                      className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+                      style={{ mixBlendMode: 'multiply' }}
+                    />
+                    
+                    {/* Text Overlay with Better Positioning */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 z-10 bg-gradient-to-t from-black/60 to-transparent">
+                      <h3 className="text-lg font-bold text-white leading-tight drop-shadow-sm">
+                        {member.name}
+                      </h3>
+                      <p className="text-sm font-medium text-purple-200 drop-shadow-sm">
+                        {member.role}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
