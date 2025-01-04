@@ -37,17 +37,17 @@ export default function About() {
 
   const milestones: Milestone[] = [
     {
-      year: "2015",
+      year: "2019",
       title: "Foundation",
-      description: "Mindora Africa was established with a vision to transform mental health support."
+      description: "Mindora Health was established with a vision to transform mental health support."
     },
     {
-      year: "2018",
+      year: "2021",
       title: "AI Integration",
       description: "Launched our first AI-powered mental health assessment platform."
     },
     {
-      year: "2023",
+      year: "2024",
       title: "Global Expansion",
       description: "Reached over 100,000 users across multiple African countries."
     }
@@ -134,7 +134,7 @@ export default function About() {
             <h2 className="text-4xl md:text-5xl font-bold mb-8">Our Vision</h2>
             <p className="text-xl mb-12 text-purple-100">
               We envision a world where mental health support is as accessible and intuitive as possible. 
-              Through innovation, empathy, and advanced AI technologies, Mindora Africa strives to help 
+              Through innovation, empathy, and advanced AI technologies, Mindora Health strives to help 
               individuals manage their mental well-being.
             </p>
             <Button 
