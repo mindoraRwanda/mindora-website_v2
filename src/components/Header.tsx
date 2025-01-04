@@ -85,7 +85,7 @@ export default function Header() {
               </span>
             </div>
           </div>
-          <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Africa</span>
+          <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Health</span>
         </Link>
 
         {/* Desktop Navigation */}
