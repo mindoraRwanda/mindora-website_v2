@@ -6,7 +6,7 @@ import Link from "next/link";
 import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { useState, useEffect } from "react";
 import { ModeToggle } from "@/components/ModeToggle";
-import { Menu, X, Download, ChevronDown, Star, Sparkles } from 'lucide-react';
+import { Menu, X, ChevronDown, Sparkles } from 'lucide-react';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,7 +27,7 @@ export default function Header() {
     { href: "/home", label: "Home" },
     { href: "/about", label: "About us" },
     { href: "/services", label: "Services" },
-    { href: "/news", label: "Community & Events" },
+    { href: "/news", label: "Our Impact" },
     { href: "/contact", label: "Contact us" }
   ];
 
@@ -40,7 +40,6 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
-        {/* Mobile Menu */}
         <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
           <SheetTrigger asChild>
             <Button
@@ -67,14 +66,15 @@ export default function Header() {
                 </MobileNavLink>
               ))}
               <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-                <Download className="mr-2 h-4 w-4" />
-                Download App
+                <Link href="/demo">
+                Request Demo
+                </Link>
               </Button>
             </div>
           </SheetContent>
         </Sheet>
 
-        {/* Logo */}
+      
         <Link href="/" className="flex items-center space-x-2">
           <div className="relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
@@ -88,7 +88,7 @@ export default function Header() {
           <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Health</span>
         </Link>
 
-        {/* Desktop Navigation */}
+        
         <NavigationMenu className="hidden lg:flex">
           <NavigationMenuList className="flex space-x-1">
             {navigationItems.map((item) => (
@@ -115,9 +115,9 @@ export default function Header() {
               isScrolled ? "py-2" : "py-3"
             }`}
           >
-            <Download className="mr-2 h-4 w-4" />
-            Download App
-            <Star className="ml-2 h-4 w-4 animate-spin-slow" />
+            <Link href="/demo">
+            Request Demo
+            </Link>
           </Button>
           <ModeToggle />
         </div>
