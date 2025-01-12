@@ -1,16 +1,18 @@
-"use client"
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { 
-  LinkedinIcon, 
-  TwitterIcon, 
+"use client";
+
+import React, { useState } from "react";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  LinkedinIcon,
+  TwitterIcon,
   MailIcon,
   ChevronUpIcon,
-  BookOpenIcon
-} from 'lucide-react';
+  BookOpenIcon,
+  Phone,
+} from "lucide-react";
 
 interface TeamMember {
   name: string;
@@ -22,6 +24,7 @@ interface TeamMember {
   linkedin?: string;
   twitter?: string;
   email?: string;
+  phone?: string;
 }
 
 const teamMembers: TeamMember[] = [
@@ -57,21 +60,23 @@ const teamMembers: TeamMember[] = [
   },
   {
     image: 'team15.png',
-    name: 'Umukundwa Larissa',
+    name: 'Umukundwa Larisse',
     role: 'Co-founder & CPO',
     bio: 'Mental Health Advocate transforming care delivery',
     extendedBio: 'Passionate about making mental health support accessible to all communities through innovative product solutions.',
     expertise: ['Product Strategy', 'Mental Health Education', 'Community Outreach'],
-    twitter: '#'
+    linkedin: 'https://www.linkedin.com/in/umukundwa-larisse-749498244?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
   },
   {
     image: 'team13.jpg',
     name: 'Bizimana Clement',
     role: 'COO of MINDORA',
     bio: 'Business Operations expert streamlining mental healthcare delivery',
-    extendedBio: 'Focuses on operational excellence and scaling mental health services efficiently and effectively.',
+    extendedBio: "Clement Bizimana is the Chief Operating Officer with a Bachelor's degree in Human Nutrition and Dietetics. He specializes in managing operations and projects across various organizations, including Gardens for Health and Remera Medicalized Health Center. Passionate about human health, environmental health as well ada climate change, Clement is dedicated to making a positive impact in these fields.",
     expertise: ['Operations Management', 'Strategy', 'Healthcare Administration'],
-    linkedin: '#'
+    email: 'clementbizimana3@gmail.com',
+    phone: '+250 782 298 879',
+    twitter: 'x.com/clement9732'
   },
   {
     image: 'team12.jpg',
@@ -96,9 +101,9 @@ const teamMembers: TeamMember[] = [
     name: 'Dr. Gahire Hubert',
     role: 'PPO',
     bio: 'Medical Doctor integrating physical and mental healthcare',
-    extendedBio: 'Specializes in the intersection of physical and mental health, promoting holistic healthcare approaches.',
+    extendedBio: 'Gahire is a medical student pursuing an MBBS and a Bachelor of Computer Science, combining his passion for medicine and digital health. He serves as the SRHR Consultant and Director of Programs at iMatter Initiative, PPO of MINDORA, Project Coordinator of YEAMG, and University Lead at Health Innovation Toolbox. With extensive leadership experience, he advocates for menstrual health, gender equity, and youth empowerment. His research focuses on Public health, Mental health , and SRHR. Recognized as an ICPD Young Champion, he engages youth through SRHR-focused talks and impactful innovation initiatives',
     expertise: ['Medical Integration', 'Holistic Health', 'Healthcare Policy'],
-    email: '#'
+    linkedin: 'http://www.linkedin.com/in/hubert-gahire-6a881231a'
   },
   {
     image: 'team14.jpg',
@@ -123,19 +128,23 @@ const teamMembers: TeamMember[] = [
     name: 'Muhire Leon Pierre',
     role: 'Marketing Director',
     bio: 'Business & Market Strategist expanding mental health access',
-    extendedBio: 'Develops strategic marketing initiatives to increase awareness and accessibility of mental health services.',
+    extendedBio: "A Bachelor's holder in Human Nutrition and Dietetics, specialized in Marketing and Communication from working with The New Times, Inyarwanda, GAERG and TECNO Mobile Rwanda. I'm passionate about human health, communication, politics and leadership",
     expertise: ['Marketing Strategy', 'Business Development', 'Brand Management'],
-    twitter: '#',
-    linkedin: '#'
+    email:'leonpierremuhire30@gmail.com',
+    phone: '+250 781 726 737',
+    twitter: 'x.com/LeonPMuhire',
+    linkedin: 'https://www.linkedin.com/in/LeonPierreMuhire/'
   }
 ];
-
 export default function TeamSection() {
   const [expandedMember, setExpandedMember] = useState<string | null>(null);
 
+  const toggleExpanded = (name: string) => {
+    setExpandedMember(expandedMember === name ? null : name);
+  };
+
   return (
     <section className="relative bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16 overflow-hidden">
-      {/* Background Decorations */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-64 h-64 bg-purple-400/10 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-64 h-64 bg-blue-400/10 rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2" />
@@ -148,7 +157,8 @@ export default function TeamSection() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto rounded-full mb-6" />
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Our dedicated team of experts is committed to revolutionizing mental health support through innovation and compassion.
+            Our dedicated team of experts is committed to revolutionizing mental
+            health support through innovation and compassion.
           </p>
         </div>
 
@@ -157,10 +167,13 @@ export default function TeamSection() {
             <Card
               key={member.name}
               className={`group relative overflow-hidden border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl
-                ${expandedMember === member.name ? 'scale-105 z-10' : 'hover:scale-102'}`}
+                ${
+                  expandedMember === member.name
+                    ? "scale-105 z-10"
+                    : "hover:scale-102"
+                }`}
             >
               <CardContent className="p-0">
-                {/* Image Container */}
                 <div className="relative w-full pt-[75%] overflow-hidden rounded-t-lg bg-gradient-to-br from-purple-100 to-blue-50 dark:from-purple-900 dark:to-blue-900">
                   <div className="absolute inset-0">
                     <Image
@@ -170,21 +183,17 @@ export default function TeamSection() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-contain"
                       style={{
-                        position: 'absolute',
-                        height: '100%',
-                        width: '100%',
-                        inset: '0px',
+                        position: "absolute",
+                        height: "100%",
+                        width: "100%",
+                        inset: "0px",
                       }}
                       priority
                     />
-                    
-                    {/* Enhanced Gradient Overlay */}
-                    <div 
+                    <div
                       className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"
-                      style={{ mixBlendMode: 'multiply' }}
+                      style={{ mixBlendMode: "multiply" }}
                     />
-                    
-                    {/* Text Overlay with Better Positioning */}
                     <div className="absolute bottom-0 left-0 right-0 p-4 z-10 bg-gradient-to-t from-black/60 to-transparent">
                       <h3 className="text-lg font-bold text-white leading-tight drop-shadow-sm">
                         {member.name}
@@ -203,6 +212,12 @@ export default function TeamSection() {
                     </p>
                   </div>
 
+                  {expandedMember === member.name && member.extendedBio && (
+                    <div className="mt-4 text-gray-600 dark:text-gray-300 text-sm">
+                      {member.extendedBio}
+                    </div>
+                  )}
+
                   {member.expertise && (
                     <div className="flex flex-wrap gap-2 mt-3">
                       {member.expertise.map((skill) => (
@@ -219,44 +234,62 @@ export default function TeamSection() {
                   <div className="mt-4 flex justify-between items-center">
                     <div className="flex gap-2">
                       {member.linkedin && (
-                        <Button variant="ghost" size="icon" className="h-8 w-8 hover:text-purple-600">
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="h-8 w-8 flex justify-center items-center text-purple-600 hover:text-purple-800"
+                        >
                           <LinkedinIcon className="h-4 w-4" />
-                        </Button>
+                        </a>
                       )}
                       {member.twitter && (
-                        <Button variant="ghost" size="icon" className="h-8 w-8 hover:text-purple-600">
+                        <a
+                          href={member.twitter}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="h-8 w-8 flex justify-center items-center text-blue-400 hover:text-blue-600"
+                        >
                           <TwitterIcon className="h-4 w-4" />
-                        </Button>
+                        </a>
                       )}
                       {member.email && (
-                        <Button variant="ghost" size="icon" className="h-8 w-8 hover:text-purple-600">
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="h-8 w-8 flex justify-center items-center text-red-600 hover:text-red-800"
+                        >
                           <MailIcon className="h-4 w-4" />
-                        </Button>
+                        </a>
+                      )}
+                      {member.phone && (
+                        <a
+                          href={`tel:${member.phone}`}
+                          className="h-8 w-8 flex justify-center items-center text-green-600 hover:text-green-800"
+                        >
+                          <Phone className="h-4 w-4" />
+                        </a>
                       )}
                     </div>
+
                     {member.extendedBio && (
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="text-purple-600 hover:text-purple-700 dark:text-purple-400 p-2"
-                        onClick={() => setExpandedMember(expandedMember === member.name ? null : member.name)}
+                        className="text-xs flex items-center gap-1"
+                        onClick={() => toggleExpanded(member.name)}
                       >
                         {expandedMember === member.name ? (
-                          <ChevronUpIcon className="h-4 w-4" />
+                          <>
+                            Hide <ChevronUpIcon className="h-4 w-4" />
+                          </>
                         ) : (
-                          <BookOpenIcon className="h-4 w-4" />
+                          <>
+                            More <BookOpenIcon className="h-4 w-4" />
+                          </>
                         )}
                       </Button>
                     )}
                   </div>
-
-                  {expandedMember === member.name && (
-                    <div className="mt-4 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg animate-fadeIn">
-                      <p className="text-sm text-gray-700 dark:text-gray-300">
-                        {member.extendedBio}
-                      </p>
-                    </div>
-                  )}
                 </div>
               </CardContent>
             </Card>
@@ -266,3 +299,7 @@ export default function TeamSection() {
     </section>
   );
 }
+
+
+
+

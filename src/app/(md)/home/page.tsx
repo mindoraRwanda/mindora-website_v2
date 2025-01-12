@@ -14,8 +14,7 @@ export default function Home() {
   return (
     <>
       <HeroCarousel />
-      
-      {/* Features Section */}
+
       <div className="container mx-auto px-6 py-16">
         <h2 className="text-4xl font-extrabold text-center mb-12">
           Our Features
@@ -61,11 +60,10 @@ export default function Home() {
       
       <PartnersSection />
       
-      {/* Enhanced Stats and Board Game Section */}
+      
       <div className="bg-gradient-to-b from-background to-background/50 py-24">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* User Stats Card */}
             <Card className="group hover:shadow-xl transition-all duration-300">
               <CardHeader className="text-center pb-4">
                 <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
