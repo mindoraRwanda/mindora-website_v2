@@ -4,7 +4,6 @@ import {
   Brain,
   Shield,
   Heart,
-  CheckCircle,
   Stars,
   Activity,
   Smile,
@@ -108,7 +107,7 @@ export default function Services() {
                 <CardHeader>
                   <div className="flex flex-col items-center text-center gap-4">
                     <div className="p-4 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 group-hover:scale-110 transition-transform duration-500">
-                      {React.cloneElement(service.icon as React.ReactElement, {
+                      {React.cloneElement(service.icon as React.ReactElement<any>, {
                         className: "w-8 h-8 text-primary group-hover:animate-pulse"
                       })}
                     </div>
@@ -193,7 +192,7 @@ export default function Services() {
                 <CardContent className="pt-8">
                   <Quote className="w-12 h-12 text-primary/30 mb-6 group-hover:text-primary/50 transition-colors" />
                   <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
-                    "{testimonial.text}"
+                    `{testimonial.text}`
                   </p>
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 flex items-center justify-center text-primary font-semibold">
