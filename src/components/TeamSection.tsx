@@ -168,7 +168,7 @@ export default function TeamSection() {
                       alt={member.name}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover object-center"
+                      className="object-contain"
                       style={{
                         position: 'absolute',
                         height: '100%',

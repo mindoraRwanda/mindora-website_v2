@@ -15,8 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mindora Africa",
-  description: "Mindora Africa is a mental health platform",
+  title:{
+    template: "%s | Mindora Health",
+    default: "Mindora Health",
+  },
+  description: "Mindora Health is a mental health platform",
+  
 };
 
 export default function RootLayout({

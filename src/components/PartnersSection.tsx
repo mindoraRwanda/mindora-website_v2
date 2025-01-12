@@ -1,9 +1,10 @@
-import React from 'react'
-import Image from 'next/image'
+import React from 'react';
+import Image from 'next/image';
+import { Card } from "@/components/ui/card";
 
 interface Partner {
-  name: string
-  image: string
+  name: string;
+  image: string;
 }
 
 export default function PartnersSection() {
@@ -19,70 +20,88 @@ export default function PartnersSection() {
     { name: "ISR", image: "isr.png" },
     { name: "RBC", image: "rbc.png" },
     { name: "UNFPA", image: "unfpa.png" }
-  ]
+  ];
 
   return (
-    <section className="relative bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-16 overflow-hidden">
-      {/* Background Pattern */}
+    <section className="relative bg-gradient-to-b from-background/50 to-background py-16 overflow-hidden">
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-grid-gray-900/10 dark:bg-grid-gray-100/10" 
-          style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} 
+        <div 
+          className="absolute inset-0" 
+          style={{ 
+            backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)',
+            backgroundSize: '40px 40px' 
+          }} 
         />
       </div>
 
       <div className="container mx-auto px-4 relative">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+          <h2 className="text-4xl font-bold mb-4">
             Our Trusted Partners
           </h2>
-          <div className="w-20 h-1 bg-purple-600 mx-auto rounded-full mb-6" />
-          <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-6" />
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             Collaborating with leading organizations to deliver innovative mental health solutions
           </p>
         </div>
 
-        <div className="relative">
-          {/* Partners Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
-            {partners.map((partner) => (
-              <div
-                key={partner.name}
-                className="group relative bg-white dark:bg-gray-800 p-4 md:p-6 rounded-xl 
-                  shadow-sm hover:shadow-md dark:shadow-gray-900 
-                  transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <div className="relative w-full h-24">
-                  <Image
-                    src={`/images/${partner.image}`}
-                    alt={`${partner.name} logo`}
-                    fill
-                    className="object-contain filter dark:invert-0 
-                      transition-transform duration-300 group-hover:scale-105"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-purple-600/0 group-hover:bg-purple-600/5 
-                  dark:group-hover:bg-purple-400/5 rounded-xl transition-colors duration-300" />
-              </div>
-            ))}
+        <div className="relative max-w-6xl mx-auto overflow-hidden">
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10" />
+
+          <div className="flex space-x-16 animate-marquee hover:pause">
+            <div className="flex space-x-16 min-w-full">
+              {partners.map((partner) => (
+                <Card
+                  key={partner.name}
+                  className="flex-none w-48 h-32 flex items-center justify-center p-4 
+                    transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={`/images/${partner.image}`}
+                      alt={`${partner.name} logo`}
+                      fill
+                      className="object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                </Card>
+              ))}
+            </div>
+            <div className="flex space-x-16 min-w-full">
+              {partners.map((partner) => (
+                <Card
+                  key={`${partner.name}-duplicate`}
+                  className="flex-none w-48 h-32 flex items-center justify-center p-4 
+                    transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={`/images/${partner.image}`}
+                      alt={`${partner.name} logo`}
+                      fill
+                      className="object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                </Card>
+              ))}
+            </div>
           </div>
-
-          {/* Decorative Elements */}
-          <div className="absolute -top-8 -left-8 w-16 h-16 bg-purple-200/20 dark:bg-purple-400/10 rounded-full blur-xl" />
-          <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-purple-200/20 dark:bg-purple-400/10 rounded-full blur-xl" />
         </div>
+        <div className="absolute -top-8 -left-8 w-16 h-16 bg-primary/20 rounded-full blur-xl" />
+        <div className="absolute -bottom-8 -right-8 w-16 h-16 bg-primary/20 rounded-full blur-xl" />
 
-        {/* Bottom Decoration */}
         <div className="flex justify-center mt-12">
           <div className="flex space-x-2">
             {[...Array(3)].map((_, i) => (
               <div
                 key={i}
-                className="w-2 h-2 rounded-full bg-purple-600/30 dark:bg-purple-400/30"
+                className="w-2 h-2 rounded-full bg-primary/30"
               />
             ))}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

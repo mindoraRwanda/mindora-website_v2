@@ -13,6 +13,8 @@ interface FAQ {
   category: string;
 }
 
+
+
 export default function Contact() {
   const [openFAQ, setOpenFAQ] = React.useState<number | null>(null);
 

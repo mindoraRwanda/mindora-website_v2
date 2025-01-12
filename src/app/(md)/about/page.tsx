@@ -16,6 +16,10 @@ interface Milestone {
   description: string
 }
 
+export const metadata = {
+  title: "About Us"
+}
+
 export default function About() {
   const values: Value[] = [
     {
