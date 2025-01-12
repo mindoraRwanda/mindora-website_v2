@@ -74,7 +74,7 @@ export default function About() {
                 Our Story
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Mindora Health was founded to tackle the growing mental health crisis among young people across Africa. 
+                Mindora Health was founded to tackle the growing mental health crisis among adolescents and young people across Africa. 
                 By leveraging technology and empathy, we aim to provide stigma-free, accessible mental health care 
                 tailored to the unique cultural and social challenges faced by Africa’s youth.
               </p>

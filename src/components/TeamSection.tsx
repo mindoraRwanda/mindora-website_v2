@@ -68,7 +68,7 @@ const teamMembers: TeamMember[] = [
     linkedin: 'https://www.linkedin.com/in/umukundwa-larisse-749498244?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app',
   },
   {
-    image: 'team13.jpg',
+    image: 'team13.png',
     name: 'Bizimana Clement',
     role: 'COO of MINDORA',
     bio: 'Business Operations expert streamlining mental healthcare delivery',
