@@ -5,12 +5,14 @@ import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import Link from "next/link";
 
 interface Slide {
   image: string;
   heading: string;
   subheading: string;
   buttonText: string;
+  href: string;
 }
 
 export default function HeroCarousel() {
@@ -20,18 +22,21 @@ export default function HeroCarousel() {
       heading: "Welcome to Mindora Health",
       subheading: "Discover how we're shaping the future of mental health with AI-powered solutions.",
       buttonText: "Learn More",
+      href: "/about",
     },
     {
       image: "/images/slide2.jpg",
       heading: "Empowering Your Journey",
       subheading: "Join thousands who trust us to enhance their mental well-being with personalized tools and resources.",
       buttonText: "Explore Features",
+      href: "/news",
     },
     {
       image: "/images/slide3.jpg",
       heading: "Take Control of Your Mental Health",
       subheading: "Our app provides tools and guidance for better mental health, anytime, anywhere.",
-      buttonText: "Download App",
+      buttonText: "Request Demo",
+      href: "/demo",
     },
   ];
 
@@ -54,9 +59,9 @@ export default function HeroCarousel() {
               <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
                 <h1 className="text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md">{slide.heading}</h1>
                 <p className="text-lg lg:text-xl text-white/90 mt-4 lg:mt-6 max-w-3xl leading-relaxed">{slide.subheading}</p>
-                <button className="mt-8 bg-purple-600 hover:bg-purple-500 text-white py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  {slide.buttonText}
-                </button>
+                <Link href={slide.href} className="mt-8 bg-purple-600 hover:bg-purple-500 text-white py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                    {slide.buttonText}
+                </Link>
               </div>
             </div>
           </SwiperSlide>
