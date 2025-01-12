@@ -29,7 +29,7 @@ interface TeamMember {
 
 const teamMembers: TeamMember[] = [
   {
-    image: 'team1.jpg',
+    image: 'team1.png',
     name: 'Kwizera Rulinda',
     role: 'Co-founder & CEO',
     bio: 'Clinical Psychologist with a passion for accessible mental healthcare',
@@ -50,7 +50,7 @@ const teamMembers: TeamMember[] = [
     twitter: '#'
   },
   {
-    image: 'team8.jpg',
+    image: 'team8.png',
     name: 'Takudzwa Tarutira',
     role: 'Co-founder & CTO',
     bio: 'AI and Machine Learning Engineer pioneering smart mental health solutions',
@@ -88,7 +88,7 @@ const teamMembers: TeamMember[] = [
     email: '#'
   },
   {
-    image: 'team3.jpg',
+    image: 'team3.png',
     name: 'Noella Nizigama',
     role: 'DIO',
     bio: 'Disability & Inclusion Expert ensuring accessible care for all',
@@ -97,7 +97,7 @@ const teamMembers: TeamMember[] = [
     linkedin: '#'
   },
   {
-    image: 'team9.jpg',
+    image: 'team9.png',
     name: 'Dr. Gahire Hubert',
     role: 'PPO',
     bio: 'Medical Doctor integrating physical and mental healthcare',
@@ -106,7 +106,7 @@ const teamMembers: TeamMember[] = [
     linkedin: 'http://www.linkedin.com/in/hubert-gahire-6a881231a'
   },
   {
-    image: 'team14.jpg',
+    image: 'team14.png',
     name: 'Utuje Benie',
     role: 'Content Creator',
     bio: 'Clinical Psychologist crafting engaging mental health content',
@@ -115,7 +115,7 @@ const teamMembers: TeamMember[] = [
     twitter: '#'
   },
   {
-    image: 'team7.jpg',
+    image: 'team7.png',
     name: 'Kevin Ishimwe',
     role: 'UX',
     bio: 'Software Engineer focused on user-centered design',
@@ -124,7 +124,7 @@ const teamMembers: TeamMember[] = [
     linkedin: '#'
   },
   {
-    image: 'team4.jpg',
+    image: 'team4.png',
     name: 'Muhire Leon Pierre',
     role: 'Marketing Director',
     bio: 'Business & Market Strategist expanding mental health access',
