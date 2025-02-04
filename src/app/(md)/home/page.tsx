@@ -5,6 +5,7 @@ import { Link, LucideChevronRight, LucideDownload, LucideGlobe, Users, Gamepad2,
 import HeroCarousel from "@/components/HeroCarousel";
 import PartnersSection from "@/components/PartnersSection";
 import DownloadSection from "@/components/DownloadSection";
+import Sponsor from "@/components/Sponsor";
 
 export const metadata = {
   title: "Home"
@@ -109,7 +110,9 @@ export default function Home() {
             </Card>
           </div>
         </div>
-      </div>
+      </div> 
+
+      <Sponsor />
 
       {/* Call to Action Section */}
       <div className="bg-primary text-primary-foreground py-24">
