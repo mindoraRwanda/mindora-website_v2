@@ -28,6 +28,7 @@ export default function Header() {
     { href: "/about", label: "About us" },
     { href: "/services", label: "Services" },
     { href: "/news", label: "Our Impact" },
+    { href: "/career", label: "Careers" },
     { href: "/contact", label: "Contact us" }
   ];
 
