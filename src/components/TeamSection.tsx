@@ -212,11 +212,11 @@ export default function TeamSection() {
                     </p>
                   </div>
 
-                  {expandedMember === member.name && member.extendedBio && (
+                  {/* {expandedMember === member.name && member.extendedBio && (
                     <div className="mt-4 text-gray-600 dark:text-gray-300 text-sm">
                       {member.extendedBio}
                     </div>
-                  )}
+                  )} */}
 
                   {member.expertise && (
                     <div className="flex flex-wrap gap-2 mt-3">

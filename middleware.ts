@@ -13,6 +13,6 @@ export default withAuth(
 export const config = {
     matcher: [
         // Only protect routes starting with /ds/
-        '/(ds)/:path*'
+        '(ds)/dashboard'
     ]
 }
