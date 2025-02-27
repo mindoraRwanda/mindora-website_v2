@@ -67,8 +67,8 @@ export default function Header() {
                 </MobileNavLink>
               ))}
               <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-                <Link href="/demo">
-                Request Demo
+                <Link href="https://mindora-app.netlify.app/">
+                Access  the App
                 </Link>
               </Button>
             </div>
@@ -116,8 +116,8 @@ export default function Header() {
               isScrolled ? "py-2" : "py-3"
             }`}
           >
-            <Link href="/demo">
-            Request Demo
+            <Link href="https://mindora-app.netlify.app/">
+            Access the App 
             </Link>
           </Button>
           <ModeToggle />
