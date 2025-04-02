@@ -58,8 +58,6 @@ export default function LoadingPage() {
             We are preparing your space...
           </p>
         </div>
-
-        {/* Background */}
         <div className="absolute inset-0 z-[-1] overflow-hidden">
           <div
             className={`absolute top-0 left-0 w-64 h-64 rounded-full blur-[100px] ${
