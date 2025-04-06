@@ -43,3 +43,10 @@ export const successStories = pgTable('success_stories', {
   createdAt: timestamp('created_at').defaultNow(), 
 });
 
+
+export const hallOfFame = pgTable('hall_of_fame', {
+  id: serial('id').primaryKey(), 
+  name: varchar('name', { length: 255 }), 
+  role: varchar('role', { length: 255 }),
+  image: text('image'),
+});
