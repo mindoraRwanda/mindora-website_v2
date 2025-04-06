@@ -1,5 +1,6 @@
-// components/Sidebar.tsx
 'use client';
+import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
+
 
 import { useState } from 'react';
 import {
@@ -78,7 +79,7 @@ const Sidebar: React.FC = () => {
           )}
         >
           <LogOut size={20} />
-          {!isCollapsed && <span>Logout</span>}
+          {!isCollapsed && <span> <LogoutLink>Log out</LogoutLink></span>}
         </button>
       </div>
     </div>
