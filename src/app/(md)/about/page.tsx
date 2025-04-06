@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import TopSection from '@/components/TopSection';
-import TeamSection from '@/components/TeamSection';
+import TeamSection from '@/components/team/TeamSection';
 import { ArrowRight, Heart, Lightbulb, Users, Star, ChevronRight, MessageCircle, Link } from 'lucide-react';
 
 interface Value {
