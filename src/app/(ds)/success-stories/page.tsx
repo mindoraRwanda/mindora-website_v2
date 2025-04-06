@@ -1,62 +1,105 @@
-// app/dashboard/success-stories/page.tsx
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import {
+  getStories,
+  addStory,
+  updateStory,
+  deleteStory,
+} from './action';
 
 interface SuccessStory {
   id: number;
-  title: string;
-  description: string;
+  text: string;
+  author: string;
+  role: string;
+  createdAt: string;
 }
 
 export default function SuccessStoriesPage() {
-  const [stories, setStories] = useState<SuccessStory[]>([
-    { id: 1, title: 'Project A', description: 'Achieved 200% growth.' },
-  ]);
-  const [form, setForm] = useState<SuccessStory | null>(null);
+  const [stories, setStories] = useState<SuccessStory[]>([]);
+  const [form, setForm] = useState<Partial<SuccessStory> | null>(null);
 
-  const handleCreateOrUpdate = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!form) return;
-    if (form.id) {
-      setStories(stories.map((s) => (s.id === form.id ? form : s)));
-    } else {
-      setStories([...stories, { ...form, id: Date.now() }]);
-    }
-    setForm(null);
+  const fetchStories = async () => {
+    const data = await getStories();
+    setStories(
+      data.map((story) => ({
+        ...story,
+        text: story.text || '',
+        author: story.author || '',
+        role: story.role || '',
+        createdAt: story.createdAt 
+          ? (typeof story.createdAt === 'string' ? story.createdAt : story.createdAt.toISOString()) 
+          : '',
+      }))
+    );
   };
 
-  const handleDelete = (id: number) => {
-    if (confirm('Are you sure?')) setStories(stories.filter((s) => s.id !== id));
+  useEffect(() => {
+    fetchStories();
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!form) return;
+
+    if (form.id) {
+      await updateStory(form.id, {
+        text: form.text || '',
+        author: form.author || '',
+        role: form.role || '',
+      });
+    } else {
+      await addStory({
+        text: form.text || '',
+        author: form.author || '',
+        role: form.role || '',
+      });
+    }
+
+    setForm(null);
+    await fetchStories();
+  };
+
+  const handleDelete = async (id: number) => {
+    if (confirm('Are you sure?')) {
+      await deleteStory(id);
+      await fetchStories();
+    }
   };
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-4xl mx-auto p-6 space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-purple-600">Success Stories</h1>
+        <h1 className="text-4xl font-bold text-purple-700">Success Stories</h1>
         <button
-          onClick={() => setForm({ id: 0, title: '', description: '' })}
-          className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700"
+          onClick={() => setForm({})}
+          className="bg-purple-600 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-700 transition"
         >
-          Add Story
+          + Add Story
         </button>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid md:grid-cols-2 gap-4">
         {stories.map((story) => (
-          <div key={story.id} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <h2 className="text-xl font-semibold text-gray-800">{story.title}</h2>
-            <p className="text-gray-600">{story.description}</p>
-            <div className="mt-4 space-x-3">
+          <div
+            key={story.id}
+            className="bg-white border border-gray-200 rounded-lg shadow-md p-5 space-y-2"
+          >
+            <p className=" text-lg text-gray-900 italic">“{story.text}”</p>
+            <p className="text-sm text-gray-500">
+              — {story.author}, <span className="font-medium">{story.role}</span>
+            </p>
+            <div className="flex space-x-3 mt-2">
               <button
                 onClick={() => setForm(story)}
-                className="text-purple-600 hover:underline font-medium"
+                className="text-purple-600 hover:underline"
               >
                 Edit
               </button>
               <button
                 onClick={() => handleDelete(story.id)}
-                className="text-red-600 hover:underline font-medium"
+                className="text-red-600 hover:underline"
               >
                 Delete
               </button>
@@ -66,28 +109,46 @@ export default function SuccessStoriesPage() {
       </div>
 
       {form && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
-            <h2 className="text-2xl font-bold text-purple-600 mb-4">
-              {form.id ? 'Edit Story' : 'Add Story'}
+        <div className="fixed inset-0 bg-opacity-30 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-lg space-y-5">
+            <h2 className="text-2xl font-bold text-purple-700">
+              {form.id ? 'Edit Story' : 'Add New Story'}
             </h2>
-            <form onSubmit={handleCreateOrUpdate} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-gray-700 font-medium">Title</label>
-                <input
-                  type="text"
-                  value={form.title}
-                  onChange={(e) => setForm({ ...form, title: e.target.value })}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+                <label className="block text-gray-700">Text</label>
+                <textarea
+                  value={form.text || ''}
+                  onChange={(e) =>
+                    setForm({ ...form, text: e.target.value })
+                  }
+                  rows={3}
+                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-purple-600"
+                  required
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium">Description</label>
-                <textarea
-                  value={form.description}
-                  onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  rows={3}
+                <label className="block text-gray-700">Author</label>
+                <input
+                  type="text"
+                  value={form.author || ''}
+                  onChange={(e) =>
+                    setForm({ ...form, author: e.target.value })
+                  }
+                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-purple-600"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700">Role</label>
+                <input
+                  type="text"
+                  value={form.role || ''}
+                  onChange={(e) =>
+                    setForm({ ...form, role: e.target.value })
+                  }
+                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-purple-600"
+                  required
                 />
               </div>
               <div className="flex justify-end space-x-3">

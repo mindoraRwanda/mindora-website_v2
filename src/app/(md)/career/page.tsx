@@ -51,11 +51,11 @@ export default function Careers() {
             Be part of a team that&apos;s making a difference with AI-powered and culturally sensitive solutions.
           </p>
           <div className="flex justify-center gap-4">
-           <Link href="/career/jobs" className="flex items-center gap-2">
            <Button size="lg" className="rounded-full">
-            View Open Positions
+              <Link href="/career/jobs" className="flex items-center gap-2">
+                 View Open Positions<ArrowRight className="w-5 h-5" />
+              </Link>
           </Button>
-        </Link>
             <Button size="lg" variant="outline" className="rounded-full">
               Our Culture
             </Button>

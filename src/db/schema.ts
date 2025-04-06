@@ -22,3 +22,24 @@ export const job = pgTable('job', {
 });
 
 export type Job = typeof job.$inferSelect;
+
+export const service = pgTable('service', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 255 }).notNull(),
+  description: text('description').notNull(),
+  icon: varchar('icon', { length: 50 }), // Store icon name (e.g., "Brain", "Shield", "Heart", "Activity")
+  createdAt: timestamp('created_at').defaultNow(),
+  isActive: boolean('is_active').default(true),
+});
+
+export type Service = typeof service.$inferSelect;
+
+
+export const successStories = pgTable('success_stories', {
+  id: serial('id').primaryKey(),
+  text: text('text'),
+  author: varchar('author', { length: 255 }), 
+  role: varchar('role', { length: 255 }),
+  createdAt: timestamp('created_at').defaultNow(), 
+});
+
