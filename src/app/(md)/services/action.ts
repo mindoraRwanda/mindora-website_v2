@@ -2,7 +2,7 @@
 'use server';
 
 import { db } from '@/db'; 
-import { service, Service } from '@/db/schema';
+import { service, Service,  successStories } from '@/db/schema';
 import { desc } from 'drizzle-orm';
 
 export async function getServices(): Promise<Service[]> {
@@ -14,5 +14,8 @@ export async function getServices(): Promise<Service[]> {
   }
 }
 
+export async function getStories() {
+  return await db.select().from(successStories).orderBy(successStories.createdAt);
+}
 
 

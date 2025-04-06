@@ -1,25 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import TopSection from "@/components/TopSection";
-import {
-  Brain,
-  Shield,
-  Heart,
-  Stars,
-  Activity,
-  Smile,
-  UserCheck,
-  Globe,
-  ArrowRight,
-  Quote,
-} from "lucide-react";
+import { Brain,  ArrowRight, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { getServices } from "./action";
+import { getServices, getStories } from "./action";
 
 export default async function Services() {
-  // Fetch services from the database
-  const services = await getServices();
+  // Fetch services and success stories from the database
+  const [services, stories] = await Promise.all([getServices(), getStories()]);
 
   if (!services || services.length === 0) {
     return (
@@ -53,7 +42,7 @@ export default async function Services() {
             </p>
           </div>
 
-          {/* Services Grid with Staggered Animation */}
+          {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <Card
@@ -63,7 +52,7 @@ export default async function Services() {
                 <CardHeader>
                   <div className="flex flex-col items-center text-center gap-4">
                     <div className="p-4 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 group-hover:scale-110 transition-transform duration-500">
-                      {/* Dynamically render the icon */}
+                      {/* Placeholder for service icon */}
                       <Brain className="w-8 h-8 text-primary group-hover:animate-pulse" />
                     </div>
                     <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -80,7 +69,7 @@ export default async function Services() {
             ))}
           </div>
 
-          {/* Enhanced Call to Action */}
+          {/* Call to Action */}
           <div className="mt-24 text-center max-w-3xl mx-auto">
             <Card className="bg-gradient-to-br from-purple-600 via-pink-600 to-purple-600 text-white hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-500">
               <CardContent className="pt-16 pb-14">
@@ -101,6 +90,51 @@ export default async function Services() {
                 </Button>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-24 bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 dark:from-gray-800/50 dark:via-purple-900/30 dark:to-gray-800/50 relative overflow-hidden">
+        {/* Enhanced decorative elements */}
+        <div className="absolute inset-0 bg-grid-gray-900/[0.04] -z-10" />
+        <div className="absolute -left-20 top-20 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -right-20 bottom-20 w-96 h-96 bg-pink-400/20 rounded-full blur-3xl animate-pulse" />
+
+        <div className="container mx-auto px-4 relative">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              What Our Users Say
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Hear from individuals who have transformed their mental wellness journey with our support.
+            </p>
+          </div>
+
+          {/* Success Stories */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {stories.map((story, index) => (
+              <Card
+                key={index}
+                className="group hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-white/90 dark:bg-gray-800/90 border-purple-100 dark:border-purple-900"
+              >
+                <CardContent className="pt-8">
+                  <Quote className="w-12 h-12 text-primary/30 mb-6 group-hover:text-primary/50 transition-colors" />
+                  <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
+                    {story.text}
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 flex items-center justify-center text-primary font-semibold">
+                      {story.author ? story.author[0] : ''}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-lg">{story.author}</p>
+                      <p className="text-sm text-muted-foreground">{story.role}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

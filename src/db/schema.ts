@@ -33,3 +33,13 @@ export const service = pgTable('service', {
 });
 
 export type Service = typeof service.$inferSelect;
+
+
+export const successStories = pgTable('success_stories', {
+  id: serial('id').primaryKey(),
+  text: text('text'),
+  author: varchar('author', { length: 255 }), 
+  role: varchar('role', { length: 255 }),
+  createdAt: timestamp('created_at').defaultNow(), 
+});
+
