@@ -1,7 +1,6 @@
 'use client';
-import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 
-
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { useState } from 'react';
 import {
   Users,
@@ -41,21 +40,24 @@ const Sidebar: React.FC = () => {
   return (
     <div
       className={cn(
-        'flex flex-col h-screen bg-purple-600 text-white transition-all duration-300',
+        'flex flex-col h-screen top-0 left-0 bg-purple-600 text-white transition-all duration-300 z-50',
         isCollapsed ? 'w-16' : 'w-64'
       )}
     >
+      {/* Sidebar Header */}
       <div className="flex items-center justify-between p-4 border-b border-purple-700">
         {!isCollapsed && <span className="text-xl font-bold">Mindora</span>}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
           className="p-1 rounded-full hover:bg-purple-700 focus:outline-none"
+          aria-label="Toggle Sidebar"
         >
           {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
         </button>
       </div>
 
-      <nav className="flex-1 p-2">
+      {/* Navigation Links */}
+      <nav className="flex-1 p-2 overflow-y-auto">
         {navItems.map((item) => (
           <Link
             key={item.name}
@@ -71,15 +73,21 @@ const Sidebar: React.FC = () => {
         ))}
       </nav>
 
+      {/* Logout Section */}
       <div className="p-2 border-t border-purple-700">
         <button
           className={cn(
             'flex items-center w-full p-2 rounded-lg hover:bg-purple-700 transition-colors',
             isCollapsed ? 'justify-center' : 'space-x-3'
           )}
+          aria-label="Log out"
         >
           <LogOut size={20} />
-          {!isCollapsed && <span> <LogoutLink>Log out</LogoutLink></span>}
+          {!isCollapsed && (
+            <span>
+              <LogoutLink>Log out</LogoutLink>
+            </span>
+          )}
         </button>
       </div>
     </div>
