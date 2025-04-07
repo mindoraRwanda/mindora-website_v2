@@ -8,7 +8,6 @@ import {
   TwitterIcon,
   MailIcon,
   ChevronUpIcon,
-  BookOpenIcon,
   Phone,
   ArrowRightIcon,
 } from "lucide-react";
