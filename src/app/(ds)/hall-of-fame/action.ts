@@ -11,7 +11,6 @@ interface HallOfFameMember {
   image?: string;
 }
 
-// Get all Hall of Fame members
 export async function getHallOfFame() {
   try {
     const allMembers = await db.select().from(hallOfFame);
@@ -22,7 +21,6 @@ export async function getHallOfFame() {
   }
 }
 
-// Get a single member by ID
 export async function getHallOfFameMember(id: number) {
   try {
     const member = await db.select().from(hallOfFame).where(eq(hallOfFame.id, id));
@@ -58,7 +56,6 @@ export async function createHallOfFame(data: HallOfFameMember) {
   }
 }
 
-// Update an existing Hall of Fame member
 export async function updateHallOfFame(id: number, data: HallOfFameMember) {
   try {
     if (!data.name || !data.role) {
