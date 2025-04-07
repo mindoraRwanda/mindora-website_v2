@@ -212,7 +212,7 @@ export default function OurStoriesPage() {
                     placeholder="/api/placeholder/600/400"
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
                   />
-                  <p className="text-xs text-gray-500 mt-1">Use "/api/placeholder/600/400" for a placeholder image</p>
+                  <p className="text-xs text-gray-500 mt-1">Use &quot;/api/placeholder/600/400 &quot; for a placeholder image</p>
                 </div>
                 <div>
                   <label className="block text-gray-700 font-medium mb-2">Title</label>
