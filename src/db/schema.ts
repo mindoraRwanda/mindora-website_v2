@@ -50,3 +50,9 @@ export const hallOfFame = pgTable('hall_of_fame', {
   role: varchar('role', { length: 255 }),
   image: text('image'),
 });
+
+export const partners = pgTable('partners', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 255 }),
+  image: text('image'),
+});

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
 import { Link, LucideChevronRight, LucideDownload, LucideGlobe, Users, Gamepad2, ArrowRight } from "lucide-react"; 
 import HeroCarousel from "@/components/HeroCarousel";
-import PartnersSection from "@/components/PartnersSection";
+import PartnersSection from "@/components/Partener/PartnersSection";
 import DownloadSection from "@/components/DownloadSection";
 import Sponsor from "@/components/Sponsor";
 
