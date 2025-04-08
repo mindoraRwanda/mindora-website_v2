@@ -12,6 +12,7 @@ import {
   Mail,
   ChevronLeft,
   ChevronRight,
+  Hotel, 
   LogOut,
   LucideIcon,
 } from 'lucide-react';
@@ -31,6 +32,7 @@ const Sidebar: React.FC = () => {
     { name: 'Team', href: '/team', icon: Users },
     { name: 'Jobs', href: '/jobs', icon: Briefcase },
     { name: 'Service', href: '/service', icon: Wrench },
+    { name: 'Partners', href: '/partners', icon: Hotel},
     { name: 'Success Stories', href: '/success-stories', icon: Trophy },
     { name: 'Hall of Fame', href: '/hall-of-fame', icon: Star },
     { name: 'Our Stories', href: '/our-stories', icon: BookOpen },
