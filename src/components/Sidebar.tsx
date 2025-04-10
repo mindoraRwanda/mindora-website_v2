@@ -3,6 +3,7 @@
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { useState } from 'react';
 import {
+  Earth,
   Users,
   Briefcase,
   Wrench,
@@ -29,6 +30,7 @@ const Sidebar: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   const navItems: NavItem[] = [
+    {name: 'Dashboard', href: '/dashboard', icon: Earth},
     { name: 'Team', href: '/team', icon: Users },
     { name: 'Jobs', href: '/jobs', icon: Briefcase },
     { name: 'Service', href: '/service', icon: Wrench },
