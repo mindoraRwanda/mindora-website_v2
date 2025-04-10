@@ -10,17 +10,20 @@ interface DashboardLayoutProps {
 export default async function DashboardLayout({ children }: DashboardLayoutProps) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-
+  
   if (!user) {
-    redirect('/login'); 
+    redirect('/login');
   }
-
+  
   return (
-    <div className="flex min-h-screen ">
+    <div className="flex min-h-screen h-screen overflow-hidden">
+      {/* Sidebar is already fixed in its own component */}
       <Sidebar />
-
-      <div className="flex-1 flex flex-col bg-gray-100">
-        <header className="bg-white shadow-sm p-4 flex items-center justify-between">
+      
+      {/* Content area that adjusts to sidebar width automatically */}
+      <div className="flex-1 flex flex-col h-full w-full">
+        {/* Sticky header */}
+        <header className="sticky top-0 z-10 bg-white shadow-sm p-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-purple-600">Mindora</h1>
           <div className="flex items-center space-x-4">
             <span className="text-gray-700">{`${user.family_name} ${user.given_name}`}</span>
@@ -29,7 +32,9 @@ export default async function DashboardLayout({ children }: DashboardLayoutProps
             </div>
           </div>
         </header>
-        <main className="flex-1 p-6 overflow-y-auto">{children}</main>
+        
+        {/* Scrollable main content */}
+        <main className="flex-1 p-6 overflow-y-auto bg-gray-100">{children}</main>
       </div>
     </div>
   );
