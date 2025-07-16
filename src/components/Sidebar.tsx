@@ -44,16 +44,16 @@ const Sidebar: React.FC = () => {
   return (
     <div
       className={cn(
-        'flex flex-col h-screen top-0 left-0 bg-purple-600 text-white transition-all duration-300 z-50',
+        'flex flex-col h-screen top-0 left-0 bg-primary text-primary-foreground transition-all duration-300 z-50',
         isCollapsed ? 'w-16' : 'w-64'
       )}
     >
       {/* Sidebar Header */}
-      <div className="flex items-center justify-between p-4 border-b border-purple-700">
-        {!isCollapsed && <span className="text-xl font-bold">Mindora</span>}
+      <div className="flex items-center justify-between p-4 border-b border-primary-foreground/20">
+        {!isCollapsed && <span className="text-xl font-bold">MindoraHealth</span>}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="p-1 rounded-full hover:bg-purple-700 focus:outline-none"
+          className="p-1 rounded-full hover:bg-primary-foreground/10 focus:outline-none"
           aria-label="Toggle Sidebar"
         >
           {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}

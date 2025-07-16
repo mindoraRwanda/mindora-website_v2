@@ -77,7 +77,7 @@ export default function Home() {
               </CardHeader>
               <CardContent className="text-center">
                 <div className="space-y-2">
-                  <p className="text-muted-foreground">Join thousands of users worldwide who trust Mindora</p>
+                  <p className="text-muted-foreground">Join thousands of users worldwide who trust MindoraHealth</p>
                   <p className="text-muted-foreground">Experience personalized mental health support</p>
                 </div>
               </CardContent>
@@ -89,7 +89,7 @@ export default function Home() {
                 <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                   <Gamepad2 className="w-8 h-8 text-primary" />
                 </div>
-                <CardTitle className="text-2xl font-bold mb-2">Mindora Board Game</CardTitle>
+                <CardTitle className="text-2xl font-bold mb-2">MindoraHealth Board Game</CardTitle>
                 <CardDescription className="text-lg">
                   Interactive Mental Health Support
                 </CardDescription>
@@ -121,7 +121,7 @@ export default function Home() {
             Ready to Take Control of Your Mental Well-being?
           </h2>
           <p className="text-xl mb-12 text-primary-foreground/90">
-            Start your journey with Mindora Health and access personalized mental health support.
+            Start your journey with MindoraHealth and access personalized mental health support.
           </p>
           <Button 
             size="lg" 

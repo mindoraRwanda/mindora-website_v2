@@ -5,8 +5,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { useState, useEffect } from "react";
-import { ModeToggle } from "@/components/ModeToggle";
-import { Menu, X, ChevronDown, Sparkles } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,7 +35,7 @@ export default function Header() {
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? "backdrop-blur-lg bg-white/70 dark:bg-gray-900/70 shadow-lg h-16"
+          ? "backdrop-blur-lg bg-white/90 shadow-lg h-16"
           : "bg-transparent h-20"
       }`}
     >
@@ -66,9 +65,9 @@ export default function Header() {
                   {item.label}
                 </MobileNavLink>
               ))}
-              <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Link href="https://mindora-app.netlify.app/">
-                Access  the App
+                Access the App
                 </Link>
               </Button>
             </div>
@@ -76,17 +75,12 @@ export default function Header() {
         </Sheet>
 
       
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-1">
           <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
-            <div className="relative font-bold text-2xl bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">
-              MINDORA
-              <span className="absolute -top-1 -right-1">
-                <Sparkles className="h-4 w-4 text-yellow-400 animate-pulse" />
-              </span>
+            <div className="relative font-bold text-2xl text-primary">
+              MindoraHealth
             </div>
           </div>
-          <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Health</span>
         </Link>
 
         
@@ -110,17 +104,15 @@ export default function Header() {
         <div className="flex items-center space-x-4">
           <Button
             variant="default"
-            className={`hidden md:inline-flex bg-gradient-to-r from-purple-600 to-pink-600 
-              hover:from-purple-700 hover:to-pink-700 text-white transform transition-all 
-              duration-300 hover:scale-105 shadow-lg hover:shadow-xl ${
+            className={`hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground
+              transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl ${
               isScrolled ? "py-2" : "py-3"
             }`}
           >
             <Link href="https://mindora-app.netlify.app/">
-            Access the App 
+            Access the App
             </Link>
           </Button>
-          <ModeToggle />
         </div>
       </div>
     </header>
@@ -136,11 +128,11 @@ function MobileNavLink({ href, children, onClick }: {
     <Link
       href={href}
       onClick={onClick}
-      className="flex items-center space-x-2 text-lg font-medium text-gray-700 dark:text-gray-200 
-        hover:text-purple-600 dark:hover:text-purple-400 transition-colors duration-200 
+      className="flex items-center space-x-2 text-lg font-medium text-gray-700
+        hover:text-primary transition-colors duration-200
         group relative py-2"
     >
-      <span className="absolute left-0 w-0 h-0.5 bg-purple-600 group-hover:w-full transition-all duration-300" />
+      <span className="absolute left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
       {children}
       <ChevronDown className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 
         group-hover:translate-x-0 transition-all duration-300" />
@@ -166,17 +158,17 @@ function DesktopNavLink({
       <Link
         href={href}
         className={`relative group px-4 py-2 rounded-full transition-all duration-300
-          ${isActive 
-            ? 'text-purple-600 dark:text-purple-400' 
-            : 'text-gray-700 dark:text-gray-200'
+          ${isActive
+            ? 'text-primary'
+            : 'text-gray-700'
           }`}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
         <span className="relative z-10">{children}</span>
-        <span className={`absolute inset-0 bg-purple-100 dark:bg-purple-900/40 
-          rounded-full scale-0 group-hover:scale-100 transition-transform 
-          duration-300 ease-out ${isActive ? 'scale-100' : ''}`} 
+        <span className={`absolute inset-0 bg-accent
+          rounded-full scale-0 group-hover:scale-100 transition-transform
+          duration-300 ease-out ${isActive ? 'scale-100' : ''}`}
         />
       </Link>
     </NavigationMenuLink>

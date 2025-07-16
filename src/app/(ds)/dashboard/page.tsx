@@ -102,12 +102,12 @@ export default function DashboardHome() {
         <h2 className="text-2xl font-semibold text-gray-900 mb-6">Recent Activity</h2>
         <ul className="space-y-4 text-gray-600 text-sm">
           {[
-            { text: 'Added new team member:', highlight: 'Jane Smith', emoji: '✅' },
-            { text: 'Posted job:', highlight: 'Frontend Developer', emoji: '📢' },
-            { text: 'Updated success story:', highlight: 'Project A', emoji: '📖' },
+            { text: 'Added new team member:', highlight: 'Jane Smith' },
+            { text: 'Posted job:', highlight: 'Frontend Developer' },
+            { text: 'Updated success story:', highlight: 'Project A' },
           ].map((activity, index) => (
             <li key={index} className="flex items-center space-x-2">
-              <span className="text-lg">{activity.emoji}</span>
+              <div className="w-2 h-2 bg-primary rounded-full"></div>
               <span>{activity.text}</span>
               <span className="font-medium text-gray-900">{activity.highlight}</span>
             </li>

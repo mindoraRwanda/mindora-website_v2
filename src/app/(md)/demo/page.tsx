@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Mail, Building2, MessageSquare, User, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { Mail, Building2, MessageSquare, User } from "lucide-react";
 
 export default function DemoRequestPage() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -12,16 +11,6 @@ export default function DemoRequestPage() {
     organization: "",
     message: ""
   });
-
-  useEffect(() => {
-    const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setIsDarkMode(darkMode);
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: { matches: boolean | ((prevState: boolean) => boolean); }) => setIsDarkMode(e.matches);
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -38,36 +27,29 @@ export default function DemoRequestPage() {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center px-4 py-12 
-      ${isDarkMode 
-        ? "bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900" 
-        : "bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600"}`}>
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-gradient-to-br from-primary/20 via-primary/10 to-background">
       
       {/* Animated background shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute w-96 h-96 -top-48 -left-48 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"/>
-        <div className="absolute w-96 h-96 -bottom-48 -right-48 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"/>
+        <div className="absolute w-96 h-96 -top-48 -left-48 bg-primary/20 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"/>
+        <div className="absolute w-96 h-96 -bottom-48 -right-48 bg-primary/30 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"/>
       </div>
 
-      <div className={`relative w-full max-w-3xl p-8 rounded-2xl shadow-2xl backdrop-blur-sm
-        ${isDarkMode 
-          ? "bg-gray-800/90 text-gray-100" 
-          : "bg-white/90 text-gray-900"}`}>
+      <div className="relative w-full max-w-3xl p-8 rounded-2xl shadow-2xl backdrop-blur-sm bg-card text-card-foreground">
         
         {/* Header with animation */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center space-x-2 mb-2">
-            <Sparkles className="w-8 h-8 text-purple-500 animate-pulse" />
             <h2 className="text-4xl font-bold">
               Request a Demo
             </h2>
           </div>
           <div className="relative">
-            <h3 className="text-xl font-semibold text-purple-500 mb-4">
-              Mindora Health
+            <h3 className="text-xl font-semibold text-primary mb-4">
+              MindoraHealth
             </h3>
           </div>
-          <p className={`text-sm ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
+          <p className="text-sm text-muted-foreground">
             Experience the future of healthcare management
           </p>
         </div>
@@ -87,11 +69,7 @@ export default function DemoRequestPage() {
                   id="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full pl-12 pr-4 py-3 rounded-lg border transition-all duration-200
-                    ${isDarkMode 
-                      ? "bg-gray-700/50 border-gray-600 text-gray-100" 
-                      : "bg-gray-50 border-gray-200"} 
-                    focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
+                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-input bg-background transition-all duration-200 focus:ring-2 focus:ring-ring focus:border-transparent"
                   placeholder="John Doe"
                   required
                 />
@@ -110,11 +88,7 @@ export default function DemoRequestPage() {
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full pl-12 pr-4 py-3 rounded-lg border transition-all duration-200
-                    ${isDarkMode 
-                      ? "bg-gray-700/50 border-gray-600 text-gray-100" 
-                      : "bg-gray-50 border-gray-200"} 
-                    focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
+                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-input bg-background transition-all duration-200 focus:ring-2 focus:ring-ring focus:border-transparent"
                   placeholder="johndoe@example.com"
                   required
                 />
@@ -134,12 +108,8 @@ export default function DemoRequestPage() {
                 id="organization"
                 value={formData.organization}
                 onChange={handleChange}
-                className={`w-full pl-12 pr-4 py-3 rounded-lg border transition-all duration-200
-                  ${isDarkMode 
-                    ? "bg-gray-700/50 border-gray-600 text-gray-100" 
-                    : "bg-gray-50 border-gray-200"} 
-                  focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
-                placeholder="Mindora Inc."
+                className="w-full pl-12 pr-4 py-3 rounded-lg border border-input bg-background transition-all duration-200 focus:ring-2 focus:ring-ring focus:border-transparent"
+                placeholder="MindoraHealth Inc."
                 required
               />
             </div>
@@ -157,11 +127,7 @@ export default function DemoRequestPage() {
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className={`w-full pl-12 pr-4 py-3 rounded-lg border transition-all duration-200
-                  ${isDarkMode 
-                    ? "bg-gray-700/50 border-gray-600 text-gray-100" 
-                    : "bg-gray-50 border-gray-200"} 
-                  focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
+                className="w-full pl-12 pr-4 py-3 rounded-lg border border-input bg-background transition-all duration-200 focus:ring-2 focus:ring-ring focus:border-transparent"
                 placeholder="Tell us more about your needs..."
               />
             </div>
@@ -172,13 +138,7 @@ export default function DemoRequestPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`relative w-full px-6 py-3 text-lg font-medium rounded-lg
-                transition-all duration-200 transform hover:scale-[1.02]
-                ${isDarkMode 
-                  ? "bg-purple-600 hover:bg-purple-700" 
-                  : "bg-purple-500 hover:bg-purple-600"}
-                text-white shadow-lg hover:shadow-xl
-                disabled:opacity-70 disabled:cursor-not-allowed`}
+              className="relative w-full px-6 py-3 text-lg font-medium rounded-lg transition-all duration-200 transform hover:scale-[1.02] bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {isSubmitting ? (
                 <span className="inline-flex items-center">
