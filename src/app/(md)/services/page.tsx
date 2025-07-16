@@ -27,41 +27,39 @@ export default async function Services() {
       />
 
       {/* Main Services Section */}
-      <section className="py-24 relative">
-        {/* Enhanced background with animated gradient */}
-        <div className="absolute inset-0 bg-grid-gray-900/[0.04] -z-10" />
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-pink-50/50 to-background animate-gradient -z-10" />
-
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 max-w-3xl mx-auto">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent animate-gradient-x">
+      <section className="py-24 bg-gradient-to-b from-background to-muted/30">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16 max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-foreground">
               Discover Our Comprehensive Services
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-4">
               From early detection to community support, our wide range of services aims to provide accessible, culturally relevant, and effective mental health solutions.
+            </p>
+            <p className="text-lg text-muted-foreground">
+              Empowering mental health with innovative, AI-driven solutions tailored specifically for you.
             </p>
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {services.map((service) => (
               <Card
-                key={index}
-                className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 backdrop-blur-sm bg-white/90 dark:bg-gray-800/90 border border-purple-100 dark:border-purple-900"
+                key={service.id}
+                className="group border-0 shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2 bg-card"
               >
-                <CardHeader>
-                  <div className="flex flex-col items-center text-center gap-4">
-                    <div className="p-4 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 group-hover:scale-110 transition-transform duration-500">
-                      {/* Placeholder for service icon */}
-                      <Brain className="w-8 h-8 text-primary group-hover:animate-pulse" />
+                <CardHeader className="pb-6">
+                  <div className="flex flex-col items-center text-center gap-6">
+                    <div className="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 group-hover:scale-110">
+                      <Brain className="w-10 h-10 text-primary" />
                     </div>
-                    <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    <h3 className="text-2xl font-semibold text-foreground">
                       {service.name}
                     </h3>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed text-center">
+                <CardContent className="text-center">
+                  <p className="text-muted-foreground leading-relaxed text-lg">
                     {service.description}
                   </p>
                 </CardContent>
@@ -70,20 +68,23 @@ export default async function Services() {
           </div>
 
           {/* Call to Action */}
-          <div className="mt-24 text-center max-w-3xl mx-auto">
-            <Card className="bg-gradient-to-br from-purple-600 via-pink-600 to-purple-600 text-white hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-500">
-              <CardContent className="pt-16 pb-14">
-                <h3 className="text-4xl font-bold mb-6 animate-gradient-x">
+          <div className="mt-24 text-center max-w-4xl mx-auto">
+            <Card className="border-0 bg-gradient-to-r from-primary via-primary/95 to-primary text-primary-foreground shadow-xl overflow-hidden">
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-foreground/5 to-transparent" />
+              </div>
+              <CardContent className="pt-16 pb-16 relative z-10">
+                <h3 className="text-4xl md:text-5xl font-bold mb-8">
                   Ready to Start Your Journey?
                 </h3>
-                <p className="text-xl opacity-90 mb-10">
+                <p className="text-xl md:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto">
                   Join our growing community of individuals committed to mental wellness.
                   Take the first step toward a better you.
                 </p>
                 <Button
                   size="lg"
                   variant="secondary"
-                  className="group bg-white text-purple-600 hover:bg-purple-50 hover:scale-105 transition-all duration-300"
+                  className="group bg-background text-foreground hover:bg-background/90 px-8 py-4 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
                   Get Started
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

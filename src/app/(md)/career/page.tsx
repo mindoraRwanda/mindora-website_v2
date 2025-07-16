@@ -38,16 +38,17 @@ export default function Careers() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="container mx-auto px-4 pt-16 pb-20 text-center">
-        <div className="relative mb-12">
-          <div className="absolute inset-0 flex items-center justify-center opacity-10">
-            <div className="w-64 h-64 rounded-full bg-primary blur-3xl"></div>
-          </div>
-          <h1 className="text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">Join Our Mission at Mindora Health</h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            At Mindora Health, we are revolutionizing mental health care for young people across Africa.
+      <section className="py-24 bg-gradient-to-b from-background to-muted/30">
+        <div className="container mx-auto px-6 text-center">
+          <div className="relative mb-16 max-w-5xl mx-auto">
+            <div className="absolute inset-0 flex items-center justify-center opacity-5">
+              <div className="w-96 h-96 rounded-full bg-primary blur-3xl"></div>
+            </div>
+          <h1 className="text-5xl md:text-6xl font-bold mb-8 text-foreground">Join Our Mission at MindoraHealth</h1>
+          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-4xl mx-auto leading-relaxed">
+            At MindoraHealth, we are revolutionizing mental health care for young people across Africa.
             Be part of a team that&apos;s making a difference with AI-powered and culturally sensitive solutions.
           </p>
           <div className="flex justify-center gap-4">
@@ -61,21 +62,29 @@ export default function Careers() {
             </Button>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Benefits Section */}
-      <div className="container mx-auto px-4 py-16 text-center">
-        <h2 className="text-3xl font-bold mb-12">Why Join Mindora Health?</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {benefits.map((benefit, index) => (
-            <Card key={index} className="border border-border/50 bg-background/50 backdrop-blur-sm hover:border-primary/20 hover:shadow-lg transition-all duration-300">
-              <CardHeader className="flex flex-col items-center pb-2">
-                <div className="p-3 rounded-full bg-primary/10 mb-4">
-                  {benefit.icon}
+      <section className="py-24 bg-muted/30">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Why Join MindoraHealth?</h2>
+            <p className="text-lg text-muted-foreground">
+              Discover the benefits of being part of our mission-driven team
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {benefits.map((benefit) => (
+              <Card key={benefit.title} className="border-0 bg-card shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+              <CardHeader className="flex flex-col items-center pb-6">
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                  {React.cloneElement(benefit.icon as React.ReactElement, {
+                    className: "w-8 h-8 text-primary"
+                  })}
                 </div>
-                <CardTitle className="text-xl">{benefit.title}</CardTitle>
+                <CardTitle className="text-2xl font-semibold text-center">{benefit.title}</CardTitle>
               </CardHeader>
-              <CardContent className="text-muted-foreground">
+              <CardContent className="text-muted-foreground text-center leading-relaxed">
                 {benefit.description}
               </CardContent>
             </Card>
