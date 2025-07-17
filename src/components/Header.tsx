@@ -23,7 +23,7 @@ export default function Header() {
   }, []);
 
   const navigationItems = [
-    { href: "/home", label: "Home" },
+    { href: "/", label: "Home" },
     { href: "/about", label: "About us" },
     { href: "/services", label: "Services" },
     { href: "/news", label: "Our Impact" },

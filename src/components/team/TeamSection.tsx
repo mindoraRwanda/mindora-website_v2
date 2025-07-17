@@ -32,7 +32,7 @@ const predefinedRoleOrder = [
   "Co-founder & SEO",
   "Co-founder & CTO",
   "Co-founder & CPO",
-  "COO of MINDORA",
+  "COO of MindoraHealth",
   "MRO",
   "DIO",
   "PPO",

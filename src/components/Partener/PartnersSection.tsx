@@ -49,14 +49,18 @@ export default function PartnersSection() {
         { transform: 'translateX(-50%)' }
       ],
       {
-        duration: 20000, // Faster scroll for modern feel
+        duration: 25000, // Slower for better readability
         iterations: Infinity,
         easing: 'linear',
       }
     );
 
-    const handleMouseEnter = () => animation.pause();
-    const handleMouseLeave = () => animation.play();
+    const handleMouseEnter = () => {
+      animation.pause();
+    };
+    const handleMouseLeave = () => {
+      animation.play();
+    };
 
     marquee.addEventListener('mouseenter', handleMouseEnter);
     marquee.addEventListener('mouseleave', handleMouseLeave);
@@ -69,64 +73,96 @@ export default function PartnersSection() {
   }, [partners, loading]);
 
   return (
-    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
-      {/* Simplified background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.1),transparent_70%)]" />
+    <section className="relative py-32 overflow-hidden bg-gradient-to-b from-background via-muted/20 to-background">
+      {/* Modern Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full animate-ping"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-20 max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Our Partners
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            <span>Trusted Partnerships</span>
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-8 leading-tight">
+            Trusted by Leading{" "}
+            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              Organizations
+            </span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Working with top organizations to drive mental health innovation
+          <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+            Collaborating with world-class organizations to revolutionize mental health support and create meaningful impact across communities.
           </p>
         </motion.div>
 
-        {loading ? (
-          <div className="flex justify-center py-16">
-            <Loader2 className="w-10 h-10 text-indigo-500 animate-spin" />
+        {loading && (
+          <div className="flex justify-center py-20">
+            <div className="flex items-center gap-3">
+              <Loader2 className="w-8 h-8 text-primary animate-spin" />
+              <span className="text-muted-foreground font-medium">Loading our trusted partners...</span>
+            </div>
           </div>
-        ) : partners.length === 0 ? (
-          <div className="text-center py-12 text-gray-400">
-            No partners available yet.
+        )}
+
+        {!loading && partners.length === 0 && (
+          <div className="text-center py-16">
+            <div className="max-w-md mx-auto">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Loader2 className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">Building Partnerships</h3>
+              <p className="text-muted-foreground">We're actively building relationships with leading organizations.</p>
+            </div>
           </div>
-        ) : (
-          <div className="relative overflow-hidden py-8">
-            {/* Fade masks */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-gray-900 to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-gray-900 to-transparent z-10" />
+        )}
+
+        {!loading && partners.length > 0 && (
+          <div className="relative overflow-hidden py-12">
+            {/* Enhanced Fade masks */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background via-background/80 to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background via-background/80 to-transparent z-10" />
 
             <div ref={marqueeRef} className="flex whitespace-nowrap">
               {/* First set */}
-              <div className="flex gap-6 min-w-full">
+              <div className="flex gap-8 min-w-full">
                 {partners.map((partner) => (
                   <Card
                     key={partner.id}
-                    className="group flex-none w-64 h-36 flex items-center justify-center p-6
-                      bg-gray-800/80 border border-gray-700/50 rounded-lg
-                      hover:bg-gray-700/90 hover:border-indigo-500/50
-                      transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10"
+                    className="group flex-none w-80 h-48 flex items-center justify-center p-8
+                      bg-card border-0 shadow-lg hover:shadow-2xl rounded-2xl
+                      hover:bg-card/80 transition-all duration-500 hover:-translate-y-2
+                      backdrop-blur-sm relative overflow-hidden"
                   >
-                    <div className="relative w-full h-full">
+                    {/* Card Background Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors duration-500" />
+
+                    <div className="relative w-full h-full z-10">
                       {partner.image && partner.image !== '/default-partner-image.png' ? (
                         <Image
                           src={partner.image}
                           alt={`${partner.name} logo`}
                           fill
-                          sizes="(max-width: 768px) 100vw, 256px"
-                          className="object-contain transition-transform duration-300 group-hover:scale-110"
+                          sizes="(max-width: 768px) 100vw, 320px"
+                          className="object-contain transition-all duration-500 group-hover:scale-110 filter group-hover:brightness-110"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-indigo-300 font-medium">
-                          {partner.name}
+                        <div className="w-full h-full flex items-center justify-center">
+                          <div className="text-center">
+                            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                              <span className="text-2xl font-bold text-primary">{partner.name?.charAt(0)}</span>
+                            </div>
+                            <span className="text-foreground font-semibold text-lg group-hover:text-primary transition-colors duration-300">
+                              {partner.name}
+                            </span>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -134,27 +170,38 @@ export default function PartnersSection() {
                 ))}
               </div>
               {/* Duplicate set for seamless loop */}
-              <div className="flex gap-6 min-w-full">
+              <div className="flex gap-8 min-w-full">
                 {partners.map((partner) => (
                   <Card
                     key={`${partner.id}-duplicate`}
-                    className="group flex-none w-64 h-36 flex items-center justify-center p-6
-                      bg-gray-800/80 border border-gray-700/50 rounded-lg
-                      hover:bg-gray-700/90 hover:border-indigo-500/50
-                      transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10"
+                    className="group flex-none w-80 h-48 flex items-center justify-center p-8
+                      bg-card border-0 shadow-lg hover:shadow-2xl rounded-2xl
+                      hover:bg-card/80 transition-all duration-500 hover:-translate-y-2
+                      backdrop-blur-sm relative overflow-hidden"
                   >
-                    <div className="relative w-full h-full">
+                    {/* Card Background Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors duration-500" />
+
+                    <div className="relative w-full h-full z-10">
                       {partner.image && partner.image !== '/default-partner-image.png' ? (
                         <Image
                           src={partner.image}
                           alt={`${partner.name} logo`}
                           fill
-                          sizes="(max-width: 768px) 100vw, 256px"
-                          className="object-contain transition-transform duration-300 group-hover:scale-110"
+                          sizes="(max-width: 768px) 100vw, 320px"
+                          className="object-contain transition-all duration-500 group-hover:scale-110 filter group-hover:brightness-110"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-indigo-300 font-medium">
-                          {partner.name}
+                        <div className="w-full h-full flex items-center justify-center">
+                          <div className="text-center">
+                            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors duration-300">
+                              <span className="text-2xl font-bold text-primary">{partner.name?.charAt(0)}</span>
+                            </div>
+                            <span className="text-foreground font-semibold text-lg group-hover:text-primary transition-colors duration-300">
+                              {partner.name}
+                            </span>
+                          </div>
                         </div>
                       )}
                     </div>

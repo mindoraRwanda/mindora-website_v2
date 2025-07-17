@@ -1,5 +1,4 @@
 'use client';
-
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { useState } from 'react';
 import {
