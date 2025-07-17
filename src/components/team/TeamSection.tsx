@@ -10,6 +10,7 @@ import {
   ChevronUpIcon,
   Phone,
   ArrowRightIcon,
+  Users,
 } from "lucide-react";
 import { getTeamMembers } from "./action";
 import { motion } from "framer-motion";
@@ -101,12 +102,18 @@ export default function TeamSection() {
   };
 
   return (
-    <section className="relative py-24 overflow-hidden bg-gradient-to-b from-slate-950 to-indigo-950">
-      {/* Abstract background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl" />
-        <div className="absolute top-2/3 left-1/2 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl" />
+    <section className="relative py-32 overflow-hidden">
+      {/* Ultra-Modern Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-primary/10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(147,51,234,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(147,51,234,0.05),transparent_50%)]" />
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-primary/30 rounded-full animate-ping delay-0"></div>
+        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-primary/40 rounded-full animate-ping delay-1000"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-4 h-4 bg-primary/20 rounded-full animate-ping delay-2000"></div>
         <svg
           className="absolute inset-0 w-full h-full opacity-30"
           xmlns="http://www.w3.org/2000/svg"
@@ -130,19 +137,28 @@ export default function TeamSection() {
         </svg>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-20 max-w-4xl mx-auto"
         >
-          <h2 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-cyan-400 inline-block mb-6">
-            The Minds Behind Our Mission
+          {/* Premium Badge */}
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold mb-8">
+            <Users className="w-4 h-4" />
+            <span>Our Team</span>
+          </div>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-foreground leading-tight">
+            The Minds Behind{" "}
+            <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              Our Mission
+            </span>
           </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-violet-500 to-cyan-500 mx-auto rounded-full mb-8" />
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            Our passionate team combines expertise in psychology, technology, and design 
+
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Our passionate team combines expertise in psychology, technology, and design
             to create meaningful mental health support for everyone.
           </p>
         </motion.div>
@@ -160,46 +176,55 @@ export default function TeamSection() {
             >
               <Card
                 className={`
-                  group relative overflow-hidden border-0 rounded-xl
+                  group relative overflow-hidden border-0 rounded-3xl
                   ${
                     expandedMember === member.name
-                      ? "bg-gradient-to-b from-slate-800/90 to-indigo-900/90 backdrop-blur-lg shadow-xl shadow-indigo-500/20 scale-105 z-10"
-                      : "bg-slate-800/60 backdrop-blur-md hover:bg-slate-800/80 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300"
+                      ? "bg-card shadow-2xl scale-105 z-10"
+                      : "bg-card shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
                   }
                 `}
               >
-                <div className="p-5">
-                  <div className="flex flex-col md:flex-row gap-5 items-center">
-                    <div className="relative w-32 h-32 rounded-full overflow-hidden shrink-0 bg-gradient-to-br from-violet-600 to-indigo-600 p-1">
-                      <div className="absolute inset-0 rounded-full overflow-hidden p-1">
+                {/* Card Background Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors duration-500" />
+
+                <div className="p-8 relative z-10">
+                  <div className="flex flex-col items-center text-center">
+                    {/* Professional Profile Image */}
+                    <div className="relative w-32 h-32 rounded-2xl overflow-hidden shrink-0 mb-6 group-hover:scale-105 transition-transform duration-300">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl p-1">
                         <Image
                           src={member.imageUrl}
                           alt={member.name}
                           fill
                           sizes="128px"
-                          className="object-cover rounded-full"
+                          className="object-cover rounded-2xl"
                           priority
                         />
                       </div>
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-tl from-violet-600 to-indigo-600 opacity-0 group-hover:opacity-30 transition-opacity" />
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-tl from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                     
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
-                      <p className="text-sm font-medium text-violet-300 mb-3">{member.role}</p>
-                      <p className="text-gray-300 text-sm line-clamp-2 mb-3">
+                    {/* Professional Member Info */}
+                    <div className="w-full">
+                      <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{member.name}</h3>
+                      <div className="inline-flex items-center px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-4">
+                        {member.role}
+                      </div>
+                      <p className="text-muted-foreground text-base leading-relaxed mb-6 line-clamp-3">
                         {member.bio}
                       </p>
-                      
-                      <div className="flex flex-wrap justify-center md:justify-start gap-2">
+
+                      {/* Professional Social Links */}
+                      <div className="flex justify-center gap-3">
                         {member.linkedin && (
                           <a
                             href={member.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="h-8 w-8 flex justify-center items-center rounded-full bg-slate-700 text-violet-300 hover:bg-violet-600 hover:text-white transition-colors"
+                            className="w-10 h-10 flex justify-center items-center rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
                           >
-                            <LinkedinIcon className="h-4 w-4" />
+                            <LinkedinIcon className="w-5 h-5" />
                           </a>
                         )}
                         {member.twitter && (
@@ -207,25 +232,25 @@ export default function TeamSection() {
                             href={member.twitter}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="h-8 w-8 flex justify-center items-center rounded-full bg-slate-700 text-blue-300 hover:bg-blue-600 hover:text-white transition-colors"
+                            className="w-10 h-10 flex justify-center items-center rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
                           >
-                            <TwitterIcon className="h-4 w-4" />
+                            <TwitterIcon className="w-5 h-5" />
                           </a>
                         )}
                         {member.email && (
                           <a
                             href={`mailto:${member.email}`}
-                            className="h-8 w-8 flex justify-center items-center rounded-full bg-slate-700 text-cyan-300 hover:bg-cyan-600 hover:text-white transition-colors"
+                            className="w-10 h-10 flex justify-center items-center rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
                           >
-                            <MailIcon className="h-4 w-4" />
+                            <MailIcon className="w-5 h-5" />
                           </a>
                         )}
                         {member.phone && (
                           <a
                             href={`tel:${member.phone}`}
-                            className="h-8 w-8 flex justify-center items-center rounded-full bg-slate-700 text-emerald-300 hover:bg-emerald-600 hover:text-white transition-colors"
+                            className="w-10 h-10 flex justify-center items-center rounded-xl bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-110"
                           >
-                            <Phone className="h-4 w-4" />
+                            <Phone className="w-5 h-5" />
                           </a>
                         )}
                       </div>
