@@ -71,10 +71,10 @@ export default function SuccessStoriesPage() {
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-4xl font-bold text-purple-700">Success Stories</h1>
+        <h1 className="text-4xl font-bold text-brand-700">Success Stories</h1>
         <button
           onClick={() => setForm({})}
-          className="bg-purple-600 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-700 transition"
+          className="bg-brand-600 text-white px-4 py-2 rounded-lg shadow hover:bg-brand-700 transition"
         >
           + Add Story
         </button>
@@ -84,16 +84,16 @@ export default function SuccessStoriesPage() {
         {stories.map((story) => (
           <div
             key={story.id}
-            className="bg-white border border-gray-200 rounded-lg shadow-md p-5 space-y-2"
+            className="bg-white border border-stone-200 rounded-lg shadow-md p-5 space-y-2"
           >
-            <p className=" text-lg text-gray-900 italic">“{story.text}”</p>
-            <p className="text-sm text-gray-500">
+            <p className=" text-lg text-stone-900 italic">“{story.text}”</p>
+            <p className="text-sm text-stone-500">
               — {story.author}, <span className="font-medium">{story.role}</span>
             </p>
             <div className="flex space-x-3 mt-2">
               <button
                 onClick={() => setForm(story)}
-                className="text-purple-600 hover:underline"
+                className="text-brand-600 hover:underline"
               >
                 Edit
               </button>
@@ -111,43 +111,43 @@ export default function SuccessStoriesPage() {
       {form && (
         <div className="fixed inset-0 bg-opacity-30 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-lg space-y-5">
-            <h2 className="text-2xl font-bold text-purple-700">
+            <h2 className="text-2xl font-bold text-brand-700">
               {form.id ? 'Edit Story' : 'Add New Story'}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-gray-700">Text</label>
+                <label className="block text-stone-700">Text</label>
                 <textarea
                   value={form.text || ''}
                   onChange={(e) =>
                     setForm({ ...form, text: e.target.value })
                   }
                   rows={3}
-                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-purple-600"
+                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-brand-600"
                   required
                 />
               </div>
               <div>
-                <label className="block text-gray-700">Author</label>
+                <label className="block text-stone-700">Author</label>
                 <input
                   type="text"
                   value={form.author || ''}
                   onChange={(e) =>
                     setForm({ ...form, author: e.target.value })
                   }
-                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-purple-600"
+                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-brand-600"
                   required
                 />
               </div>
               <div>
-                <label className="block text-gray-700">Role</label>
+                <label className="block text-stone-700">Role</label>
                 <input
                   type="text"
                   value={form.role || ''}
                   onChange={(e) =>
                     setForm({ ...form, role: e.target.value })
                   }
-                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-purple-600"
+                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-brand-600"
                   required
                 />
               </div>
@@ -155,13 +155,13 @@ export default function SuccessStoriesPage() {
                 <button
                   type="button"
                   onClick={() => setForm(null)}
-                  className="text-gray-600 hover:underline"
+                  className="text-stone-600 hover:underline"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700"
+                  className="bg-brand-600 text-white px-4 py-2 rounded-md hover:bg-brand-700"
                 >
                   {form.id ? 'Update' : 'Create'}
                 </button>

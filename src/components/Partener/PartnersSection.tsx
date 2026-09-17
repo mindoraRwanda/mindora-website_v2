@@ -69,11 +69,14 @@ export default function PartnersSection() {
   }, [partners, loading]);
 
   return (
-    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
+    <section className="relative py-20 overflow-hidden bg-gradient-to-b from-stone-900 to-stone-800">
       {/* Simplified background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.1),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(138,112,227,0.12),transparent_70%)]" />
       </div>
+
+      {/* Soft floating accent for a calmer feel against the dark section */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28rem] h-[28rem] bg-brand-500/10 rounded-full blur-3xl animate-breathe" />
 
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
@@ -85,24 +88,24 @@ export default function PartnersSection() {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Our Partners
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+          <p className="text-stone-400 max-w-2xl mx-auto text-lg">
             Working with top organizations to drive mental health innovation
           </p>
         </motion.div>
 
         {loading ? (
           <div className="flex justify-center py-16">
-            <Loader2 className="w-10 h-10 text-indigo-500 animate-spin" />
+            <Loader2 className="w-10 h-10 text-brand-400 animate-spin" />
           </div>
         ) : partners.length === 0 ? (
-          <div className="text-center py-12 text-gray-400">
+          <div className="text-center py-12 text-stone-400">
             No partners available yet.
           </div>
         ) : (
           <div className="relative overflow-hidden py-8">
             {/* Fade masks */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-gray-900 to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-gray-900 to-transparent z-10" />
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-stone-900 to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-stone-900 to-transparent z-10" />
 
             <div ref={marqueeRef} className="flex whitespace-nowrap">
               {/* First set */}
@@ -111,9 +114,9 @@ export default function PartnersSection() {
                   <Card
                     key={partner.id}
                     className="group flex-none w-64 h-36 flex items-center justify-center p-6
-                      bg-gray-800/80 border border-gray-700/50 rounded-lg
-                      hover:bg-gray-700/90 hover:border-indigo-500/50
-                      transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10"
+                      bg-stone-800/80 border border-stone-700/50 rounded-2xl
+                      hover:bg-stone-700/90 hover:border-brand-500/50
+                      transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/10"
                   >
                     <div className="relative w-full h-full">
                       {partner.image && partner.image !== '/default-partner-image.png' ? (
@@ -125,7 +128,7 @@ export default function PartnersSection() {
                           className="object-contain transition-transform duration-300 group-hover:scale-110"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-indigo-300 font-medium">
+                        <div className="w-full h-full flex items-center justify-center text-brand-300 font-medium">
                           {partner.name}
                         </div>
                       )}
@@ -139,9 +142,9 @@ export default function PartnersSection() {
                   <Card
                     key={`${partner.id}-duplicate`}
                     className="group flex-none w-64 h-36 flex items-center justify-center p-6
-                      bg-gray-800/80 border border-gray-700/50 rounded-lg
-                      hover:bg-gray-700/90 hover:border-indigo-500/50
-                      transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10"
+                      bg-stone-800/80 border border-stone-700/50 rounded-2xl
+                      hover:bg-stone-700/90 hover:border-brand-500/50
+                      transition-all duration-300 hover:shadow-xl hover:shadow-brand-500/10"
                   >
                     <div className="relative w-full h-full">
                       {partner.image && partner.image !== '/default-partner-image.png' ? (
@@ -153,7 +156,7 @@ export default function PartnersSection() {
                           className="object-contain transition-transform duration-300 group-hover:scale-110"
                         />
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-indigo-300 font-medium">
+                        <div className="w-full h-full flex items-center justify-center text-brand-300 font-medium">
                           {partner.name}
                         </div>
                       )}

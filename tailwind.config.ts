@@ -10,6 +10,32 @@ export default {
   theme: {
   	extend: {
   		colors: {
+  			brand: {
+  				50: '#F6F4FE',
+  				100: '#EEEAFD',
+  				200: '#DED6FB',
+  				300: '#C3B5F6',
+  				400: '#A48EEE',
+  				500: '#8A70E3',
+  				600: '#7358D1',
+  				700: '#5D45AC',
+  				800: '#4A3888',
+  				900: '#3C2E6E',
+  				950: '#251C47',
+  			},
+  			calm: {
+  				50: '#F1FAF6',
+  				100: '#DFF3EA',
+  				200: '#BFE6D5',
+  				300: '#96D4BC',
+  				400: '#6BBE9F',
+  				500: '#4FA687',
+  				600: '#3D8A70',
+  				700: '#326F5B',
+  				800: '#2A594B',
+  				900: '#23483E',
+  				950: '#122922',
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -57,12 +83,23 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
 		animation: {
-			marquee: 'marquee 20s linear infinite'
+			marquee: 'marquee 20s linear infinite',
+			float: 'float 8s ease-in-out infinite',
+			'float-slow': 'float 12s ease-in-out infinite',
+			breathe: 'breathe 6s ease-in-out infinite'
 		},
 		keyframes: {
 			marquee: {
 				'0%': { transform: 'translateX(0)' },
 				'100%': { transform: 'translateX(-50%)' }
+			},
+			float: {
+				'0%, 100%': { transform: 'translateY(0px)' },
+				'50%': { transform: 'translateY(-16px)' }
+			},
+			breathe: {
+				'0%, 100%': { transform: 'scale(1)', opacity: '0.6' },
+				'50%': { transform: 'scale(1.08)', opacity: '0.9' }
 			}
 		}
   	}

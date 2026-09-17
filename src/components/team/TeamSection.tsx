@@ -104,7 +104,7 @@ export default function TeamSection() {
     <section className="relative py-24 overflow-hidden bg-gradient-to-b from-slate-950 to-indigo-950">
       {/* Abstract background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl" />
         <div className="absolute top-2/3 left-1/2 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl" />
         <svg
@@ -141,7 +141,7 @@ export default function TeamSection() {
             The Minds Behind Our Mission
           </h2>
           <div className="w-32 h-1 bg-gradient-to-r from-violet-500 to-cyan-500 mx-auto rounded-full mb-8" />
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+          <p className="text-stone-300 max-w-2xl mx-auto text-lg">
             Our passionate team combines expertise in psychology, technology, and design 
             to create meaningful mental health support for everyone.
           </p>
@@ -187,7 +187,7 @@ export default function TeamSection() {
                     <div className="flex-1 text-center md:text-left">
                       <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
                       <p className="text-sm font-medium text-violet-300 mb-3">{member.role}</p>
-                      <p className="text-gray-300 text-sm line-clamp-2 mb-3">
+                      <p className="text-stone-300 text-sm line-clamp-2 mb-3">
                         {member.bio}
                       </p>
                       
@@ -263,7 +263,7 @@ export default function TeamSection() {
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="mt-4 text-gray-300 text-sm leading-relaxed"
+                          className="mt-4 text-stone-300 text-sm leading-relaxed"
                         >
                           <div className="bg-slate-800/70 rounded-lg p-4 backdrop-blur-sm border border-indigo-900/50">
                             {member.extendedBio}

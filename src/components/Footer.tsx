@@ -1,35 +1,24 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Heart } from "lucide-react";
 
 export default function Footer() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setIsDarkMode(darkMode);
-  }, []);
-
   return (
-    <footer
-      className={`w-full mt-auto px-6 py-10 md:px-16 lg:px-24 ${
-        isDarkMode ? "bg-[#1e1e2f] text-gray-300" : "bg-gray-100 text-gray-800"
-      }`}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <footer className="w-full mt-auto border-t border-border bg-secondary/40 dark:bg-secondary/20 px-6 py-12 md:px-16 lg:px-24">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
         {/* Logo and Description */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold text-[#9333EA]">MINDORA Health</h2>
-          <p className="text-sm">
+          <h2 className="flex items-center gap-2 text-2xl font-bold text-brand-600 dark:text-brand-400">
+            MINDORA Health
+            <Heart className="h-5 w-5 fill-calm-500 text-calm-500" />
+          </h2>
+          <p className="text-sm leading-relaxed text-muted-foreground">
             At Mindora, we believe that mental health is a key part of living a fulfilled life. We are driven by the mission to provide accessible, AI-powered solutions that help individuals take control of their mental well-being before challenges arise.
           </p>
         </div>
 
         {/* Navigation Links */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-[#9333EA]">Quick Links</h3>
+          <h3 className="text-lg font-semibold text-foreground">Quick Links</h3>
           <ul className="space-y-2">
             {["Home", "About Us", "Services", "News", "Contact Us"].map(
               (link, index) => (
@@ -43,23 +32,19 @@ export default function Footer() {
 
         {/* Newsletter Subscription */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-[#9333EA]">Subscribe</h3>
-          <p className="text-sm">
+          <h3 className="text-lg font-semibold text-foreground">Subscribe</h3>
+          <p className="text-sm text-muted-foreground">
             Stay updated with our latest news and updates. Subscribe to our newsletter!
           </p>
-          <form className="flex items-center space-x-2">
+          <form className="flex items-center gap-2">
             <input
               type="email"
               placeholder="Enter your email"
-              className={`w-full rounded-md border px-4 py-2 ${
-                isDarkMode
-                  ? "border-gray-700 bg-[#1a1a29] text-gray-300 placeholder-gray-500"
-                  : "border-gray-300 bg-white text-gray-800 placeholder-gray-500"
-              }`}
+              className="w-full rounded-full border border-input bg-background px-4 py-2 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <button
               type="submit"
-              className="rounded-md bg-[#9333EA] px-4 py-2 text-white hover:bg-[#7E22CE] transition"
+              className="shrink-0 rounded-full bg-brand-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-700"
             >
               Subscribe
             </button>
@@ -68,37 +53,17 @@ export default function Footer() {
       </div>
 
       {/* Social Media and Copyright */}
-      <div className="mt-10 flex flex-col items-center justify-between border-t border-gray-300 dark:border-gray-600 pt-6 md:flex-row">
+      <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 md:flex-row">
         {/* Social Media Links */}
         <div className="flex space-x-4">
-          <SocialIcon
-            href="https://facebook.com"
-            label="Facebook"
-            icon={<Facebook />}
-            isDarkMode={isDarkMode}
-          />
-          <SocialIcon
-            href="https://twitter.com"
-            label="Twitter"
-            icon={<Twitter />}
-            isDarkMode={isDarkMode}
-          />
-          <SocialIcon
-            href="https://instagram.com"
-            label="Instagram"
-            icon={<Instagram />}
-            isDarkMode={isDarkMode}
-          />
-          <SocialIcon
-            href="https://linkedin.com"
-            label="LinkedIn"
-            icon={<Linkedin />}
-            isDarkMode={isDarkMode}
-          />
+          <SocialIcon href="https://facebook.com" label="Facebook" icon={<Facebook className="h-4 w-4" />} />
+          <SocialIcon href="https://twitter.com" label="Twitter" icon={<Twitter className="h-4 w-4" />} />
+          <SocialIcon href="https://instagram.com" label="Instagram" icon={<Instagram className="h-4 w-4" />} />
+          <SocialIcon href="https://linkedin.com" label="LinkedIn" icon={<Linkedin className="h-4 w-4" />} />
         </div>
 
         {/* Copyright Notice */}
-        <p className="mt-4 text-sm md:mt-0">
+        <p className="text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} MINDORA Africa. All Rights Reserved.
         </p>
       </div>
@@ -112,7 +77,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     <li>
       <Link
         href={href}
-        className="text-sm hover:underline hover:text-[#9333EA] transition"
+        className="text-sm text-muted-foreground transition hover:text-brand-600 dark:hover:text-brand-400"
       >
         {children}
       </Link>
@@ -125,12 +90,10 @@ function SocialIcon({
   href,
   label,
   icon,
-  isDarkMode,
 }: {
   href: string;
   label: string;
   icon: React.ReactNode;
-  isDarkMode: boolean;
 }) {
   return (
     <a
@@ -138,9 +101,7 @@ function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className={`flex h-10 w-10 items-center justify-center rounded-full ${
-        isDarkMode ? "bg-[#2c2c3d] text-gray-300" : "bg-gray-200 text-gray-800"
-      } hover:bg-[#9333EA] hover:text-white transition`}
+      className="flex h-10 w-10 items-center justify-center rounded-full bg-background text-muted-foreground shadow-sm transition hover:bg-brand-600 hover:text-white"
     >
       {icon}
     </a>

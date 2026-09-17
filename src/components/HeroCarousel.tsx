@@ -41,7 +41,7 @@ export default function HeroCarousel() {
   ];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-gray-900">
+    <div className="relative w-full h-screen overflow-hidden bg-stone-900">
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
@@ -55,11 +55,11 @@ export default function HeroCarousel() {
               className="relative w-full h-full bg-cover bg-center"
               style={{ backgroundImage: `url('${slide.image}')` }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-brand-950/20" />
               <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
                 <h1 className="text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md">{slide.heading}</h1>
                 <p className="text-lg lg:text-xl text-white/90 mt-4 lg:mt-6 max-w-3xl leading-relaxed">{slide.subheading}</p>
-                <Link href={slide.href} className="mt-8 bg-purple-600 hover:bg-purple-500 text-white py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                <Link href={slide.href} className="mt-8 bg-brand-600 hover:bg-brand-500 text-white py-3 px-8 rounded-full shadow-lg shadow-brand-900/30 transition-all duration-300 hover:scale-105 hover:shadow-xl">
                     {slide.buttonText}
                 </Link>
               </div>

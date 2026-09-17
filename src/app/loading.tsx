@@ -38,7 +38,7 @@ export default function LoadingPage() {
         }
       `}</style>
 
-      <div className={`flex items-center justify-center h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
+      <div className={`flex items-center justify-center h-screen ${isDarkMode ? 'bg-stone-900' : 'bg-white'}`}>
         <div className="relative flex flex-col items-center space-y-6">
           {/* Loader */}
           <div className="flex justify-center space-x-2">
@@ -46,7 +46,7 @@ export default function LoadingPage() {
               <div
                 key={i}
                 className={`w-4 h-16 rounded origin-bottom animate-breath ${
-                  isDarkMode ? 'bg-gradient-to-t from-purple-400 to-purple-300' : 'bg-gradient-to-t from-purple-600 to-purple-500'
+                  isDarkMode ? 'bg-gradient-to-t from-brand-400 to-brand-300' : 'bg-gradient-to-t from-brand-600 to-brand-500'
                 }`}
                 style={{ animationDelay: `${i * 0.4}s` }}
               />
@@ -54,32 +54,32 @@ export default function LoadingPage() {
           </div>
 
           {/* Text */}
-          <p className={`text-lg md:text-xl font-semibold text-center animate-fadeIn ${isDarkMode ? 'text-gray-100' : 'text-gray-800'}`}>
+          <p className={`text-lg md:text-xl font-semibold text-center animate-fadeIn ${isDarkMode ? 'text-stone-100' : 'text-stone-800'}`}>
             We are preparing your space...
           </p>
         </div>
         <div className="absolute inset-0 z-[-1] overflow-hidden">
           <div
             className={`absolute top-0 left-0 w-64 h-64 rounded-full blur-[100px] ${
-              isDarkMode ? 'bg-purple-800/20' : 'bg-purple-200/30'
+              isDarkMode ? 'bg-brand-800/20' : 'bg-brand-200/30'
             } animate-scalePulse`}
             style={{ animationDuration: '8s' }}
           />
           <div
             className={`absolute top-0 right-0 w-80 h-80 rounded-full blur-[120px] ${
-              isDarkMode ? 'bg-purple-700/25' : 'bg-purple-300/35'
+              isDarkMode ? 'bg-brand-700/25' : 'bg-brand-300/35'
             } animate-scalePulse`}
             style={{ animationDuration: '10s' }}
           />
           <div
             className={`absolute bottom-0 left-0 w-72 h-72 rounded-full blur-[110px] ${
-              isDarkMode ? 'bg-purple-900/15' : 'bg-purple-100/25'
+              isDarkMode ? 'bg-brand-900/15' : 'bg-brand-100/25'
             } animate-scalePulse`}
             style={{ animationDuration: '12s' }}
           />
           <div
             className={`absolute bottom-0 right-0 w-56 h-56 rounded-full blur-[90px] ${
-              isDarkMode ? 'bg-purple-600/30' : 'bg-purple-400/40'
+              isDarkMode ? 'bg-brand-600/30' : 'bg-brand-400/40'
             } animate-scalePulse`}
             style={{ animationDuration: '9s' }}
           />

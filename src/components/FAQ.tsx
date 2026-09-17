@@ -52,21 +52,24 @@ export default function FAQ() {
 
         <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+            <div
+              key={index}
+              className="bg-card border border-border/60 rounded-2xl shadow-sm transition-shadow duration-300 hover:shadow-md"
+            >
               <button
                 onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                className="w-full text-left p-6 flex justify-between items-center"
+                className="w-full text-left p-6 flex justify-between items-center gap-4"
               >
                 <span className="font-medium">{faq.question}</span>
                 <ChevronDown
-                  className={`w-5 h-5 transition-transform ${
+                  className={`w-5 h-5 shrink-0 text-brand-500 transition-transform duration-300 ${
                     openFAQ === index ? "transform rotate-180" : ""
                   }`}
                 />
               </button>
               {openFAQ === index && (
                 <div className="px-6 pb-6">
-                  <div className="text-sm text-purple-600 dark:text-purple-400 mb-2">
+                  <div className="text-sm text-brand-600 dark:text-brand-400 mb-2">
                     {faq.category}
                   </div>
                   <p className="text-muted-foreground">{faq.answer}</p>

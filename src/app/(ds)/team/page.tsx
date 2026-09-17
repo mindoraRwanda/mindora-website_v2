@@ -150,10 +150,10 @@ export default function TeamPage() {
     <div className="space-y-8 p-8">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-purple-600">Team Management</h1>
+        <h1 className="text-3xl font-bold text-brand-600">Team Management</h1>
         <button
           onClick={() => setForm({ id: 0, name: '', role: '', bio: '', description: '', imageUrl: '' })}
-          className="flex items-center gap-2 bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors shadow-md disabled:opacity-50"
+          className="flex items-center gap-2 bg-brand-600 text-white px-5 py-2 rounded-lg hover:bg-brand-700 transition-colors shadow-md disabled:opacity-50"
           disabled={loading}
         >
           <Plus className="w-5 h-5" />
@@ -164,14 +164,14 @@ export default function TeamPage() {
       {/* Team List */}
       {loading && !team.length ? (
         <div className="flex justify-center items-center h-64">
-          <svg className="animate-spin h-8 w-8 text-purple-600" viewBox="0 0 24 24">
+          <svg className="animate-spin h-8 w-8 text-brand-600" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
           </svg>
         </div>
       ) : team.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-lg shadow-sm">
-          <p className="text-gray-500 text-lg">No team members found. Start by adding your first member!</p>
+          <p className="text-stone-500 text-lg">No team members found. Start by adding your first member!</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -192,15 +192,15 @@ export default function TeamPage() {
                       setForm(member);
                       setImagePreview(member.imageUrl || null);
                     }}
-                    className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
+                    className="p-2 bg-white rounded-full shadow-md hover:bg-stone-100 transition-colors"
                     title="Edit"
                     disabled={loading}
                   >
-                    <Pencil className="w-5 h-5 text-purple-600" />
+                    <Pencil className="w-5 h-5 text-brand-600" />
                   </button>
                   <button
                     onClick={() => handleDelete(member.id)}
-                    className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors"
+                    className="p-2 bg-white rounded-full shadow-md hover:bg-stone-100 transition-colors"
                     title="Delete"
                     disabled={loading}
                   >
@@ -209,14 +209,14 @@ export default function TeamPage() {
                 </div>
               </div>
               <div className="p-5">
-                <h2 className="text-xl font-semibold text-gray-800">{member.name}</h2>
-                <p className="text-purple-600 font-medium">{member.role}</p>
-                <p className="mt-2 text-gray-600 text-sm italic">{member.bio}</p>
-                <p className="mt-2 text-gray-700 text-sm line-clamp-3">{member.description}</p>
-                <div className="mt-4 flex gap-4 text-gray-500">
-                  <Linkedin className="w-5 h-5 hover:text-purple-600 cursor-pointer transition-colors" />
-                  <Twitter className="w-5 h-5 hover:text-purple-600 cursor-pointer transition-colors" />
-                  <Mail className="w-5 h-5 hover:text-purple-600 cursor-pointer transition-colors" />
+                <h2 className="text-xl font-semibold text-stone-800">{member.name}</h2>
+                <p className="text-brand-600 font-medium">{member.role}</p>
+                <p className="mt-2 text-stone-600 text-sm italic">{member.bio}</p>
+                <p className="mt-2 text-stone-700 text-sm line-clamp-3">{member.description}</p>
+                <div className="mt-4 flex gap-4 text-stone-500">
+                  <Linkedin className="w-5 h-5 hover:text-brand-600 cursor-pointer transition-colors" />
+                  <Twitter className="w-5 h-5 hover:text-brand-600 cursor-pointer transition-colors" />
+                  <Mail className="w-5 h-5 hover:text-brand-600 cursor-pointer transition-colors" />
                 </div>
               </div>
             </div>
@@ -234,62 +234,62 @@ export default function TeamPage() {
                 setImageFile(null);
                 setImagePreview(null);
               }}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+              className="absolute top-4 right-4 text-stone-500 hover:text-stone-700 transition-colors"
               disabled={loading}
             >
               <X className="w-6 h-6" />
             </button>
-            <h2 className="text-2xl font-bold text-purple-600 mb-6">
+            <h2 className="text-2xl font-bold text-brand-600 mb-6">
               {form.id ? 'Edit Team Member' : 'Add Team Member'}
             </h2>
             <form onSubmit={handleCreateOrUpdate} className="space-y-5">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Name</label>
                 <input
                   type="text"
                   placeholder="Full Name"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Role</label>
                 <input
                   type="text"
                   placeholder="Job Title"
                   value={form.role}
                   onChange={(e) => setForm({ ...form, role: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Short Bio</label>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Short Bio</label>
                 <input
                   type="text"
                   placeholder="One-line bio"
                   value={form.bio}
                   onChange={(e) => setForm({ ...form, bio: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Description</label>
                 <textarea
                   placeholder="Full professional background"
                   value={form.description}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent h-32 resize-none transition-all"
+                  className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent h-32 resize-none transition-all"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Profile Image</label>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Profile Image</label>
                 <div
-                  className="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:border-purple-500 transition-colors"
+                  className="border-2 border-dashed border-stone-300 rounded-lg p-6 flex flex-col items-center justify-center cursor-pointer hover:border-brand-500 transition-colors"
                   onClick={triggerFileInput}
                 >
                   {imagePreview ? (
@@ -300,8 +300,8 @@ export default function TeamPage() {
                     />
                   ) : (
                     <>
-                      <Upload className="w-10 h-10 text-gray-400" />
-                      <p className="text-sm text-gray-500 mt-2">Upload or click to select an image</p>
+                      <Upload className="w-10 h-10 text-stone-400" />
+                      <p className="text-sm text-stone-500 mt-2">Upload or click to select an image</p>
                     </>
                   )}
                   <input
@@ -333,14 +333,14 @@ export default function TeamPage() {
                     setImageFile(null);
                     setImagePreview(null);
                   }}
-                  className="px-5 py-2 text-gray-600 hover:text-gray-800 rounded-lg transition-colors"
+                  className="px-5 py-2 text-stone-600 hover:text-stone-800 rounded-lg transition-colors"
                   disabled={loading}
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex items-center gap-2 px-5 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50"
+                  className="flex items-center gap-2 px-5 py-2 bg-brand-600 text-white rounded-lg hover:bg-brand-700 transition-colors disabled:opacity-50"
                   disabled={loading}
                 >
                   {loading ? (

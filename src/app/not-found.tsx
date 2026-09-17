@@ -16,13 +16,13 @@ export default function NotFound() {
     <div
       className={`relative flex flex-col items-center justify-center h-screen transition-all ${
         isDarkMode
-          ? "bg-gray-900 text-gray-100"
-          : "bg-gradient-to-br from-purple-600 via-blue-500 to-indigo-800 text-white"
+          ? "bg-stone-900 text-stone-100"
+          : "bg-gradient-to-br from-brand-600 via-blue-500 to-indigo-800 text-white"
       }`}
     >
       <h1
         className={`text-9xl font-bold tracking-widest drop-shadow-lg transition-all ${
-          isDarkMode ? "text-gray-100" : "text-white"
+          isDarkMode ? "text-stone-100" : "text-white"
         }`}
       >
         404
@@ -34,8 +34,8 @@ export default function NotFound() {
 
       <Link href="/" className={`px-6 py-3 font-semibold text-lg rounded-lg shadow-md hover:scale-105 transform transition-all duration-300 ${
             isDarkMode
-              ? "bg-gray-800 text-gray-100 hover:bg-gray-700"
-              : "bg-white text-indigo-800 hover:bg-gray-100"
+              ? "bg-stone-800 text-stone-100 hover:bg-stone-700"
+              : "bg-white text-indigo-800 hover:bg-stone-100"
           }`}
         >
           Go Back Home
@@ -45,7 +45,7 @@ export default function NotFound() {
       <div className="absolute inset-0 z-[-1] overflow-hidden">
         <div
           className={`absolute top-1/3 left-1/4 w-96 h-96 rounded-full blur-[150px] transition-all duration-500 ${
-            isDarkMode ? "bg-purple-600/20" : "bg-purple-400/30"
+            isDarkMode ? "bg-brand-600/20" : "bg-brand-400/30"
           }`}
         ></div>
         <div
@@ -58,7 +58,7 @@ export default function NotFound() {
       <div className="absolute top-10 right-10 animate-float">
         <svg
           className={`w-16 h-16 ${
-            isDarkMode ? "text-gray-500" : "text-indigo-300"
+            isDarkMode ? "text-stone-500" : "text-indigo-300"
           }`}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -76,7 +76,7 @@ export default function NotFound() {
       <div className="absolute bottom-10 left-10 animate-float delay-200">
         <svg
           className={`w-12 h-12 ${
-            isDarkMode ? "text-gray-600" : "text-indigo-200"
+            isDarkMode ? "text-stone-600" : "text-indigo-200"
           }`}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -95,10 +95,10 @@ export default function NotFound() {
 
       {isDarkMode && (
         <div className="absolute inset-0 z-[-2] overflow-hidden">
-          <div className="absolute w-[2px] h-[2px] bg-gray-100 rounded-full top-1/3 left-1/4 animate-twinkle"></div>
-          <div className="absolute w-[2px] h-[2px] bg-gray-100 rounded-full top-1/2 right-1/3 animate-twinkle"></div>
-          <div className="absolute w-[3px] h-[3px] bg-gray-300 rounded-full bottom-1/3 left-1/3 animate-twinkle"></div>
-          <div className="absolute w-[1px] h-[1px] bg-gray-400 rounded-full top-1/4 right-1/5 animate-twinkle"></div>
+          <div className="absolute w-[2px] h-[2px] bg-stone-100 rounded-full top-1/3 left-1/4 animate-twinkle"></div>
+          <div className="absolute w-[2px] h-[2px] bg-stone-100 rounded-full top-1/2 right-1/3 animate-twinkle"></div>
+          <div className="absolute w-[3px] h-[3px] bg-stone-300 rounded-full bottom-1/3 left-1/3 animate-twinkle"></div>
+          <div className="absolute w-[1px] h-[1px] bg-stone-400 rounded-full top-1/4 right-1/5 animate-twinkle"></div>
         </div>
       )}
     </div>

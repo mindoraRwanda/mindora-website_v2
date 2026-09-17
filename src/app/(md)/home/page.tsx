@@ -1,7 +1,8 @@
 import React from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
-import { Link, LucideChevronRight, LucideDownload, LucideGlobe, Users, Gamepad2, ArrowRight } from "lucide-react"; 
+import { LucideChevronRight, LucideDownload, LucideGlobe, Users, Gamepad2, ArrowRight } from "lucide-react";
 import HeroCarousel from "@/components/HeroCarousel";
 import PartnersSection from "@/components/Partener/PartnersSection";
 import DownloadSection from "@/components/DownloadSection";
@@ -16,12 +17,12 @@ export default function Home() {
     <>
       <HeroCarousel />
 
-      <div className="container mx-auto px-6 py-16">
-        <h2 className="text-4xl font-extrabold text-center mb-12">
+      <div className="container mx-auto px-6 py-20 md:py-28">
+        <h2 className="text-4xl font-extrabold text-center mb-16">
           Our Features
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <Card className="group rounded-2xl border-border/60 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
             <CardHeader>
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <LucideChevronRight className="w-6 h-6 text-primary" />
@@ -33,7 +34,7 @@ export default function Home() {
             </CardHeader>
           </Card>
 
-          <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <Card className="group rounded-2xl border-border/60 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
             <CardHeader>
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <LucideDownload className="w-6 h-6 text-primary" />
@@ -45,7 +46,7 @@ export default function Home() {
             </CardHeader>
           </Card>
 
-          <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+          <Card className="group rounded-2xl border-border/60 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
             <CardHeader>
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <LucideGlobe className="w-6 h-6 text-primary" />
@@ -58,14 +59,17 @@ export default function Home() {
           </Card>
         </div>
       </div>
-      
+
       <PartnersSection />
-      
-      
-      <div className="bg-gradient-to-b from-background to-background/50 py-24">
-        <div className="container mx-auto px-6">
+
+      <div className="relative overflow-hidden bg-secondary/30 py-24">
+        {/* Soft floating accent to echo the wellness-app feel */}
+        <div className="pointer-events-none absolute -top-16 -left-16 w-72 h-72 bg-brand-200/30 dark:bg-brand-900/20 rounded-full blur-3xl animate-float-slow" />
+        <div className="pointer-events-none absolute -bottom-16 -right-16 w-72 h-72 bg-calm-200/30 dark:bg-calm-900/20 rounded-full blur-3xl animate-float" />
+
+        <div className="container relative mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="group hover:shadow-xl transition-all duration-300">
+            <Card className="group rounded-2xl hover:shadow-xl transition-all duration-300">
               <CardHeader className="text-center pb-4">
                 <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                   <Users className="w-8 h-8 text-primary" />
@@ -84,7 +88,7 @@ export default function Home() {
             </Card>
 
             {/* Mindora Board Game Card */}
-            <Card className="group hover:shadow-xl transition-all duration-300">
+            <Card className="group rounded-2xl hover:shadow-xl transition-all duration-300">
               <CardHeader className="text-center pb-4">
                 <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                   <Gamepad2 className="w-8 h-8 text-primary" />
@@ -102,7 +106,7 @@ export default function Home() {
               <CardFooter className="justify-center">
                 <Button className="group" asChild>
                   <Link href="/about" className="inline-flex items-center gap-2">
-                    Learn More 
+                    Learn More
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
@@ -110,33 +114,39 @@ export default function Home() {
             </Card>
           </div>
         </div>
-      </div> 
+      </div>
 
       <Sponsor />
 
       {/* Call to Action Section */}
-      <div className="bg-primary text-primary-foreground py-24">
-        <div className="container mx-auto px-6 text-center max-w-3xl">
-          <h2 className="text-4xl font-extrabold mb-6">
-            Ready to Take Control of Your Mental Well-being?
-          </h2>
-          <p className="text-xl mb-12 text-primary-foreground/90">
-            Start your journey with Mindora Health and access personalized mental health support.
-          </p>
-          <Button 
-            size="lg" 
-            variant="secondary" 
-            className="group"
-            asChild
-          >
-            <Link href="/demo" className="inline-flex items-center gap-2">
-              Get Started
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </Button>
+      <div className="py-24">
+        <div className="container mx-auto px-6">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-brand-500 text-white py-20 px-6 text-center max-w-4xl mx-auto shadow-lg">
+            <div className="pointer-events-none absolute -top-10 -right-10 w-56 h-56 bg-white/10 rounded-full blur-3xl animate-breathe" />
+            <div className="pointer-events-none absolute -bottom-10 -left-10 w-56 h-56 bg-calm-300/20 rounded-full blur-3xl animate-float-slow" />
+            <div className="relative max-w-3xl mx-auto">
+              <h2 className="text-4xl font-extrabold mb-6">
+                Ready to Take Control of Your Mental Well-being?
+              </h2>
+              <p className="text-xl mb-12 text-white/90">
+                Start your journey with Mindora Health and access personalized mental health support.
+              </p>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="group rounded-xl"
+                asChild
+              >
+                <Link href="/demo" className="inline-flex items-center gap-2">
+                  Get Started
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
-      
+
       <DownloadSection />
     </>
   );

@@ -14,8 +14,8 @@ export default async function Services() {
 
   if (!services || services.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-lg text-gray-600">No services available at the moment.</p>
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <p className="text-lg text-muted-foreground">No services available at the moment.</p>
       </div>
     );
   }
@@ -29,14 +29,15 @@ export default async function Services() {
       />
 
       {/* Main Services Section */}
-      <section className="py-24 relative">
-        {/* Enhanced background with animated gradient */}
-        <div className="absolute inset-0 bg-grid-gray-900/[0.04] -z-10" />
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-pink-50/50 to-background animate-gradient -z-10" />
+      <section className="py-24 relative overflow-hidden">
+        {/* Soft calming wash with gently drifting accents */}
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-50/40 via-background to-calm-50/40 -z-10" />
+        <div className="absolute -top-24 -left-24 w-72 h-72 bg-brand-200/30 dark:bg-brand-900/20 rounded-full blur-3xl animate-float-slow -z-10" />
+        <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-calm-200/30 dark:bg-calm-900/20 rounded-full blur-3xl animate-float -z-10" />
 
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent animate-gradient-x">
+            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-brand-600 via-calm-600 to-brand-600 bg-clip-text text-transparent">
               Discover Our Comprehensive Services
             </h2>
             <p className="text-lg text-muted-foreground">
@@ -49,15 +50,15 @@ export default async function Services() {
             {services.map((service, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 backdrop-blur-sm bg-white/90 dark:bg-gray-800/90 border border-purple-100 dark:border-purple-900"
+                className="group rounded-2xl hover:shadow-lg transition-all duration-500 hover:-translate-y-1 backdrop-blur-sm bg-card/90 border border-brand-100 dark:border-brand-900"
               >
                 <CardHeader>
                   <div className="flex flex-col items-center text-center gap-4">
-                    <div className="p-4 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 group-hover:scale-110 transition-transform duration-500">
+                    <div className="p-4 rounded-full bg-gradient-to-br from-brand-100 to-calm-100 dark:from-brand-900 dark:to-calm-900 group-hover:scale-110 transition-transform duration-500">
                       {/* Placeholder for service icon */}
-                      <Brain className="w-8 h-8 text-primary group-hover:animate-pulse" />
+                      <Brain className="w-8 h-8 text-primary" />
                     </div>
-                    <h3 className="text-xl font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    <h3 className="text-xl font-semibold text-foreground">
                       {service.name}
                     </h3>
                   </div>
@@ -73,9 +74,9 @@ export default async function Services() {
 
           {/* Call to Action */}
           <div className="mt-24 text-center max-w-3xl mx-auto">
-            <Card className="bg-gradient-to-br from-purple-600 via-pink-600 to-purple-600 text-white hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-500">
+            <Card className="rounded-3xl bg-gradient-to-br from-brand-600 via-calm-600 to-brand-600 text-white shadow-md hover:shadow-xl hover:shadow-brand-500/20 transition-all duration-500 border-0">
               <CardContent className="pt-16 pb-14">
-                <h3 className="text-4xl font-bold mb-6 animate-gradient-x">
+                <h3 className="text-4xl font-bold mb-6">
                   Ready to Start Your Journey?
                 </h3>
                 <p className="text-xl opacity-90 mb-10">
@@ -85,7 +86,7 @@ export default async function Services() {
                 <Button
                   size="lg"
                   variant="secondary"
-                  className="group bg-white text-purple-600 hover:bg-purple-50 hover:scale-105 transition-all duration-300"
+                  className="group bg-white text-brand-600 hover:bg-brand-50 hover:scale-105 transition-all duration-300"
                 >
                   Get Started
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -97,15 +98,14 @@ export default async function Services() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-gradient-to-br from-purple-50 via-pink-50 to-purple-50 dark:from-gray-800/50 dark:via-purple-900/30 dark:to-gray-800/50 relative overflow-hidden">
-        {/* Enhanced decorative elements */}
-        <div className="absolute inset-0 bg-grid-gray-900/[0.04] -z-10" />
-        <div className="absolute -left-20 top-20 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -right-20 bottom-20 w-96 h-96 bg-pink-400/20 rounded-full blur-3xl animate-pulse" />
+      <section className="py-24 bg-secondary/30 dark:bg-stone-900/40 relative overflow-hidden">
+        {/* Gently drifting decorative accents */}
+        <div className="absolute -left-20 top-20 w-96 h-96 bg-brand-300/20 dark:bg-brand-900/20 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute -right-20 bottom-20 w-96 h-96 bg-calm-300/20 dark:bg-calm-900/20 rounded-full blur-3xl animate-float" />
 
         <div className="container mx-auto px-4 relative">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-brand-600 to-calm-600 bg-clip-text text-transparent">
               What Our Users Say
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -118,15 +118,17 @@ export default async function Services() {
             {stories.map((story, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-white/90 dark:bg-gray-800/90 border-purple-100 dark:border-purple-900"
+                className="group relative rounded-2xl overflow-hidden hover:shadow-md transition-all duration-300 backdrop-blur-sm bg-card/90 border border-brand-100 dark:border-brand-900"
               >
-                <CardContent className="pt-8">
-                  <Quote className="w-12 h-12 text-primary/30 mb-6 group-hover:text-primary/50 transition-colors" />
+                {/* Decorative oversized quote mark for warmth */}
+                <Quote className="absolute -top-4 -right-4 w-28 h-28 text-brand-100 dark:text-brand-900/40 pointer-events-none select-none" />
+                <CardContent className="pt-8 relative">
+                  <Quote className="w-10 h-10 text-primary/40 mb-6 group-hover:text-primary/60 transition-colors" />
                   <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
                     {story.text}
                   </p>
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 flex items-center justify-center text-primary font-semibold">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-100 to-calm-100 dark:from-brand-900 dark:to-calm-900 flex items-center justify-center text-primary font-semibold">
                       {story.author ? story.author[0] : ''}
                     </div>
                     <div>

@@ -38,36 +38,36 @@ export default function DemoRequestPage() {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center px-4 py-12 
-      ${isDarkMode 
-        ? "bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900" 
-        : "bg-gradient-to-br from-purple-400 via-pink-500 to-purple-600"}`}>
-      
-      {/* Animated background shapes */}
+    <div className={`relative min-h-screen flex items-center justify-center px-4 py-12 overflow-hidden
+      ${isDarkMode
+        ? "bg-gradient-to-br from-stone-900 via-brand-950 to-stone-900"
+        : "bg-gradient-to-br from-brand-100 via-calm-100 to-brand-200"}`}>
+
+      {/* Gentle floating background shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute w-96 h-96 -top-48 -left-48 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"/>
-        <div className="absolute w-96 h-96 -bottom-48 -right-48 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"/>
+        <div className="absolute w-96 h-96 -top-48 -left-48 bg-brand-300 dark:bg-brand-700 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-30 animate-float-slow"/>
+        <div className="absolute w-96 h-96 -bottom-48 -right-48 bg-calm-300 dark:bg-calm-700 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-30 animate-float"/>
       </div>
 
-      <div className={`relative w-full max-w-3xl p-8 rounded-2xl shadow-2xl backdrop-blur-sm
-        ${isDarkMode 
-          ? "bg-gray-800/90 text-gray-100" 
-          : "bg-white/90 text-gray-900"}`}>
-        
+      <div className={`relative w-full max-w-3xl p-8 rounded-2xl shadow-md backdrop-blur-sm border
+        ${isDarkMode
+          ? "bg-stone-800/90 text-stone-100 border-stone-700/50"
+          : "bg-card/90 text-stone-900 border-border/50"}`}>
+
         {/* Header with animation */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center space-x-2 mb-2">
-            <Sparkles className="w-8 h-8 text-purple-500 animate-pulse" />
+            <Sparkles className="w-8 h-8 text-brand-500 animate-breathe" />
             <h2 className="text-4xl font-bold">
               Request a Demo
             </h2>
           </div>
           <div className="relative">
-            <h3 className="text-xl font-semibold text-purple-500 mb-4">
+            <h3 className="text-xl font-semibold text-brand-500 mb-4">
               Mindora Health
             </h3>
           </div>
-          <p className={`text-sm ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
+          <p className={`text-sm ${isDarkMode ? "text-stone-400" : "text-stone-600"}`}>
             Experience the future of healthcare management
           </p>
         </div>
@@ -81,17 +81,17 @@ export default function DemoRequestPage() {
                 Full Name
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400" />
                 <input
                   type="text"
                   id="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full pl-12 pr-4 py-3 rounded-lg border transition-all duration-200
-                    ${isDarkMode 
-                      ? "bg-gray-700/50 border-gray-600 text-gray-100" 
-                      : "bg-gray-50 border-gray-200"} 
-                    focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
+                  className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-all duration-200
+                    ${isDarkMode
+                      ? "bg-stone-700/50 border-stone-600 text-stone-100"
+                      : "bg-stone-50 border-stone-200"}
+                    focus:ring-2 focus:ring-brand-400 focus:border-transparent`}
                   placeholder="John Doe"
                   required
                 />
@@ -104,17 +104,17 @@ export default function DemoRequestPage() {
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400" />
                 <input
                   type="email"
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full pl-12 pr-4 py-3 rounded-lg border transition-all duration-200
-                    ${isDarkMode 
-                      ? "bg-gray-700/50 border-gray-600 text-gray-100" 
-                      : "bg-gray-50 border-gray-200"} 
-                    focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
+                  className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-all duration-200
+                    ${isDarkMode
+                      ? "bg-stone-700/50 border-stone-600 text-stone-100"
+                      : "bg-stone-50 border-stone-200"}
+                    focus:ring-2 focus:ring-brand-400 focus:border-transparent`}
                   placeholder="johndoe@example.com"
                   required
                 />
@@ -128,17 +128,17 @@ export default function DemoRequestPage() {
               Organization Name
             </label>
             <div className="relative">
-              <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400" />
               <input
                 type="text"
                 id="organization"
                 value={formData.organization}
                 onChange={handleChange}
-                className={`w-full pl-12 pr-4 py-3 rounded-lg border transition-all duration-200
-                  ${isDarkMode 
-                    ? "bg-gray-700/50 border-gray-600 text-gray-100" 
-                    : "bg-gray-50 border-gray-200"} 
-                  focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
+                className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-all duration-200
+                  ${isDarkMode
+                    ? "bg-stone-700/50 border-stone-600 text-stone-100"
+                    : "bg-stone-50 border-stone-200"}
+                  focus:ring-2 focus:ring-brand-400 focus:border-transparent`}
                 placeholder="Mindora Inc."
                 required
               />
@@ -151,17 +151,17 @@ export default function DemoRequestPage() {
               Additional Message (Optional)
             </label>
             <div className="relative">
-              <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+              <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-stone-400" />
               <textarea
                 id="message"
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className={`w-full pl-12 pr-4 py-3 rounded-lg border transition-all duration-200
-                  ${isDarkMode 
-                    ? "bg-gray-700/50 border-gray-600 text-gray-100" 
-                    : "bg-gray-50 border-gray-200"} 
-                  focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
+                className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-all duration-200
+                  ${isDarkMode
+                    ? "bg-stone-700/50 border-stone-600 text-stone-100"
+                    : "bg-stone-50 border-stone-200"}
+                  focus:ring-2 focus:ring-brand-400 focus:border-transparent`}
                 placeholder="Tell us more about your needs..."
               />
             </div>
@@ -172,12 +172,12 @@ export default function DemoRequestPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`relative w-full px-6 py-3 text-lg font-medium rounded-lg
+              className={`relative w-full px-6 py-3 text-lg font-medium rounded-xl
                 transition-all duration-200 transform hover:scale-[1.02]
-                ${isDarkMode 
-                  ? "bg-purple-600 hover:bg-purple-700" 
-                  : "bg-purple-500 hover:bg-purple-600"}
-                text-white shadow-lg hover:shadow-xl
+                ${isDarkMode
+                  ? "bg-brand-600 hover:bg-brand-700"
+                  : "bg-brand-500 hover:bg-brand-600"}
+                text-white shadow-sm hover:shadow-md
                 disabled:opacity-70 disabled:cursor-not-allowed`}
             >
               {isSubmitting ? (

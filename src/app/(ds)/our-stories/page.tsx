@@ -320,25 +320,25 @@ export default function ArticlesAndEventsDashboard() {
   }, [form]);
 
   return (
-    <div className="p-6 lg:p-8 bg-gray-50 min-h-screen">
+    <div className="p-6 lg:p-8 bg-stone-50 min-h-screen">
       <div className="max-w-7xl mx-auto">
         {/* Header with tabs and filters */}
         <div className="bg-white rounded-xl shadow-sm p-6 mb-8">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="flex items-center gap-4">
-              <h1 className="text-3xl font-bold text-purple-600">
+              <h1 className="text-3xl font-bold text-brand-600">
                 {activeTab === 'articles' ? 'Articles' : 'Events'} Management
               </h1>
               <div className="flex gap-2">
                 <button
                   onClick={() => setActiveTab('articles')}
-                  className={`px-4 py-2 rounded-lg ${activeTab === 'articles' ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                  className={`px-4 py-2 rounded-lg ${activeTab === 'articles' ? 'bg-brand-600 text-white' : 'bg-stone-100 text-stone-700 hover:bg-stone-200'}`}
                 >
                   Articles
                 </button>
                 <button
                   onClick={() => setActiveTab('events')}
-                  className={`px-4 py-2 rounded-lg ${activeTab === 'events' ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                  className={`px-4 py-2 rounded-lg ${activeTab === 'events' ? 'bg-brand-600 text-white' : 'bg-stone-100 text-stone-700 hover:bg-stone-200'}`}
                 >
                   Events
                 </button>
@@ -348,21 +348,21 @@ export default function ArticlesAndEventsDashboard() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="h-5 w-5 text-gray-400" />
+                  <Search className="h-5 w-5 text-stone-400" />
                 </div>
                 <input
                   type="text"
                   placeholder={`Search ${activeTab}...`}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="pl-10 pr-4 py-2 border border-stone-300 rounded-lg w-full focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                 />
               </div>
               
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value as 'all' | 'published' | 'draft')}
-                className="border border-gray-300 rounded-lg py-2 px-3 bg-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="border border-stone-300 rounded-lg py-2 px-3 bg-white focus:ring-2 focus:ring-brand-500 focus:border-transparent"
               >
                 <option value="all">All {activeTab === 'articles' ? 'Articles' : 'Events'}</option>
                 <option value="published">Published</option>
@@ -371,7 +371,7 @@ export default function ArticlesAndEventsDashboard() {
               
               <button
                 onClick={() => initForm()}
-                className="flex items-center justify-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-purple-700 disabled:opacity-50 transition-colors whitespace-nowrap"
+                className="flex items-center justify-center gap-2 bg-brand-600 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-brand-700 disabled:opacity-50 transition-colors whitespace-nowrap"
                 disabled={loading}
               >
                 <Plus className="w-5 h-5" />
@@ -384,18 +384,18 @@ export default function ArticlesAndEventsDashboard() {
         {/* Loading state */}
         {loading && filteredItems.length === 0 && (
           <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"></div>
           </div>
         )}
 
         {/* Empty state */}
         {!loading && filteredItems.length === 0 && (
           <div className="bg-white rounded-lg shadow-sm p-8 text-center max-w-md mx-auto">
-            <div className="bg-purple-50 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-              <ImageIcon className="h-8 w-8 text-purple-500" />
+            <div className="bg-brand-50 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+              <ImageIcon className="h-8 w-8 text-brand-500" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No {activeTab} found</h3>
-            <p className="text-gray-500 mb-4">
+            <h3 className="text-xl font-semibold text-stone-900 mb-2">No {activeTab} found</h3>
+            <p className="text-stone-500 mb-4">
               {searchTerm || filterStatus !== 'all' 
                 ? "Try adjusting your search or filters to find what you're looking for."
                 : `Get started by creating your first ${activeTab === 'articles' ? 'article' : 'event'} using the 'New ${activeTab === 'articles' ? 'Article' : 'Event'}' button.`}
@@ -406,7 +406,7 @@ export default function ArticlesAndEventsDashboard() {
                   setSearchTerm('');
                   setFilterStatus('all');
                 }}
-                className="text-purple-600 font-medium hover:text-purple-700"
+                className="text-brand-600 font-medium hover:text-brand-700"
               >
                 Clear all filters
               </button>
@@ -422,7 +422,7 @@ export default function ArticlesAndEventsDashboard() {
                 key={item.id} 
                 className="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden flex flex-col"
               >
-                <div className="relative h-48 bg-gray-100">
+                <div className="relative h-48 bg-stone-100">
                   {item.imageUrl ? (
                     <img
                       src={item.imageUrl}
@@ -431,7 +431,7 @@ export default function ArticlesAndEventsDashboard() {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <ImageIcon className="h-16 w-16 text-gray-300" />
+                      <ImageIcon className="h-16 w-16 text-stone-300" />
                     </div>
                   )}
                   <div className="absolute top-2 right-2 flex gap-1">
@@ -443,7 +443,7 @@ export default function ArticlesAndEventsDashboard() {
                     <span className={`text-xs font-medium px-2.5 py-0.5 rounded-full ${
                       item.isPublished 
                         ? 'bg-green-100 text-green-800 border border-green-200' 
-                        : 'bg-gray-100 text-gray-800 border border-gray-200'
+                        : 'bg-stone-100 text-stone-800 border border-stone-200'
                     }`}>
                       {item.isPublished ? 'Published' : 'Draft'}
                     </span>
@@ -452,15 +452,15 @@ export default function ArticlesAndEventsDashboard() {
                 <div className="p-5 flex-1 flex flex-col">
                   <div className="mb-2">
                     {('category' in item ? item.category : item.eventType) && (
-                      <span className="inline-block bg-purple-100 text-purple-800 text-xs px-2.5 py-0.5 rounded mb-2">
+                      <span className="inline-block bg-brand-100 text-brand-800 text-xs px-2.5 py-0.5 rounded mb-2">
                         {'category' in item ? item.category : item.eventType}
                       </span>
                     )}
-                    <h2 className="text-lg font-semibold text-gray-800 line-clamp-2">{item.title}</h2>
+                    <h2 className="text-lg font-semibold text-stone-800 line-clamp-2">{item.title}</h2>
                   </div>
-                  <p className="text-gray-600 text-sm line-clamp-3 mb-4 flex-grow">{item.description}</p>
+                  <p className="text-stone-600 text-sm line-clamp-3 mb-4 flex-grow">{item.description}</p>
                   {'startDate' in item && (
-                    <p className="text-gray-500 text-xs mb-2">
+                    <p className="text-stone-500 text-xs mb-2">
                       {new Date(item.startDate).toLocaleDateString()}
                       {item.endDate && ` - ${new Date(item.endDate).toLocaleDateString()}`}
                     </p>
@@ -469,12 +469,12 @@ export default function ArticlesAndEventsDashboard() {
                     {'tags' in item && item.tags && (
                       <div className="flex flex-wrap gap-1">
                         {(item.tags as TagData[]).slice(0, 2).map((tag) => (
-                          <span key={tag.id} className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded">
+                          <span key={tag.id} className="text-xs bg-stone-100 text-stone-700 px-2 py-0.5 rounded">
                             {tag.name}
                           </span>
                         ))}
                         {item.tags.length > 2 && (
-                          <span className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded">
+                          <span className="text-xs bg-stone-100 text-stone-700 px-2 py-0.5 rounded">
                             +{item.tags.length - 2}
                           </span>
                         )}
@@ -483,14 +483,14 @@ export default function ArticlesAndEventsDashboard() {
                     <div className="flex gap-1 ml-auto">
                       <button
                         onClick={() => initForm(item)}
-                        className="p-2 rounded-md hover:bg-gray-100 transition-colors"
+                        className="p-2 rounded-md hover:bg-stone-100 transition-colors"
                         title={`Edit ${activeTab === 'articles' ? 'article' : 'event'}`}
                       >
-                        <Pencil className="w-4 h-4 text-gray-600" />
+                        <Pencil className="w-4 h-4 text-stone-600" />
                       </button>
                       <button
                         onClick={() => handleDelete(item.id!)}
-                        className="p-2 rounded-md hover:bg-gray-100 transition-colors"
+                        className="p-2 rounded-md hover:bg-stone-100 transition-colors"
                         title={`Delete ${activeTab === 'articles' ? 'article' : 'event'}`}
                       >
                         <Trash2 className="w-4 h-4 text-red-500" />
@@ -513,7 +513,7 @@ export default function ArticlesAndEventsDashboard() {
           >
             <div className="sticky top-0 bg-white z-10 p-6 pb-2 border-b">
               <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-purple-600">
+                <h2 className="text-2xl font-bold text-brand-600">
                   {form.id ? `Edit ${activeTab === 'articles' ? 'Article' : 'Event'}` : `Create New ${activeTab === 'articles' ? 'Article' : 'Event'}`}
                 </h2>
                 <button
@@ -523,9 +523,9 @@ export default function ArticlesAndEventsDashboard() {
                     setImagePreview(null);
                     setSelectedTagIds([]);
                   }}
-                  className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                  className="p-2 rounded-full hover:bg-stone-100 transition-colors"
                 >
-                  <X className="w-6 h-6 text-gray-500" />
+                  <X className="w-6 h-6 text-stone-500" />
                 </button>
               </div>
             </div>
@@ -533,34 +533,34 @@ export default function ArticlesAndEventsDashboard() {
             <form onSubmit={handleSubmit} className="p-6 pt-4 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Title*</label>
+                  <label className="block text-sm font-medium text-stone-700 mb-1">Title*</label>
                   <input
                     type="text"
                     value={form.title || ''}
                     onChange={(e) => setForm({ ...form, title: e.target.value })}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Slug <span className="text-gray-500 text-xs">(auto-generated if empty)</span>
+                  <label className="block text-sm font-medium text-stone-700 mb-1">
+                    Slug <span className="text-stone-500 text-xs">(auto-generated if empty)</span>
                   </label>
                   <input
                     type="text"
                     value={form.slug || ''}
                     onChange={(e) => setForm({ ...form, slug: e.target.value })}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                   />
                 </div>
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description*</label>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Description*</label>
                 <textarea
                   value={form.description || ''}
                   onChange={(e) => setForm({ ...form, description: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                   rows={3}
                   required
                 />
@@ -568,22 +568,22 @@ export default function ArticlesAndEventsDashboard() {
               
               {activeTab === 'articles' ? (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Content*</label>
+                  <label className="block text-sm font-medium text-stone-700 mb-1">Content*</label>
                   <textarea
                     value={(form as ArticleData).content || ''}
                     onChange={(e) => setForm({ ...form, content: e.target.value })}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     rows={8}
                     required
                   />
                 </div>
               ) : (
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Content</label>
+                  <label className="block text-sm font-medium text-stone-700 mb-1">Content</label>
                   <textarea
                     value={(form as EventData).content || ''}
                     onChange={(e) => setForm({ ...form, content: e.target.value })}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     rows={8}
                   />
                 </div>
@@ -591,13 +591,13 @@ export default function ArticlesAndEventsDashboard() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-stone-700 mb-1">
                     {activeTab === 'articles' ? 'Category*' : 'Event Type*'}
                   </label>
                   <select
                     value={activeTab === 'articles' ? (form as ArticleData).category || '' : (form as EventData).eventType || ''}
                     onChange={(e) => setForm({ ...form, [activeTab === 'articles' ? 'category' : 'eventType']: e.target.value })}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     required
                   >
                     <option value="" disabled>Select {activeTab === 'articles' ? 'a category' : 'an event type'}</option>
@@ -609,10 +609,10 @@ export default function ArticlesAndEventsDashboard() {
                 
                 {activeTab === 'articles' && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Tags</label>
-                    <div className="border border-gray-300 rounded-lg p-3">
+                    <label className="block text-sm font-medium text-stone-700 mb-1">Tags</label>
+                    <div className="border border-stone-300 rounded-lg p-3">
                       {availableTags.length === 0 ? (
-                        <p className="text-sm text-gray-500">No tags available</p>
+                        <p className="text-sm text-stone-500">No tags available</p>
                       ) : (
                         <div className="flex flex-wrap gap-2">
                           {availableTags.map(tag => (
@@ -622,8 +622,8 @@ export default function ArticlesAndEventsDashboard() {
                               onClick={() => toggleTag(tag.id!)}
                               className={`px-2 py-1 text-sm rounded ${
                                 selectedTagIds.includes(tag.id!)
-                                  ? 'bg-purple-100 text-purple-800'
-                                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                  ? 'bg-brand-100 text-brand-800'
+                                  : 'bg-stone-100 text-stone-700 hover:bg-stone-200'
                               }`}
                             >
                               {tag.name}
@@ -637,12 +637,12 @@ export default function ArticlesAndEventsDashboard() {
 
                 {activeTab === 'events' && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Start Date*</label>
+                    <label className="block text-sm font-medium text-stone-700 mb-1">Start Date*</label>
                     <input
                       type="datetime-local"
                       value={(form as EventData).startDate ? new Date((form as EventData).startDate).toISOString().slice(0, 16) : ''}
                       onChange={(e) => setForm({ ...form, startDate: new Date(e.target.value) })}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                       required
                     />
                   </div>
@@ -652,52 +652,52 @@ export default function ArticlesAndEventsDashboard() {
               {activeTab === 'events' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
+                    <label className="block text-sm font-medium text-stone-700 mb-1">End Date</label>
                     <input
                       type="datetime-local"
                       value={(form as EventData).endDate ? new Date((form as EventData).endDate!).toISOString().slice(0, 16) : ''}
                       onChange={(e) => setForm({ ...form, endDate: e.target.value ? new Date(e.target.value) : undefined })}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                    <label className="block text-sm font-medium text-stone-700 mb-1">Location</label>
                     <input
                       type="text"
                       value={(form as EventData).location || ''}
                       onChange={(e) => setForm({ ...form, location: e.target.value })}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Venue</label>
+                    <label className="block text-sm font-medium text-stone-700 mb-1">Venue</label>
                     <input
                       type="text"
                       value={(form as EventData).venue || ''}
                       onChange={(e) => setForm({ ...form, venue: e.target.value })}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Registration URL</label>
+                    <label className="block text-sm font-medium text-stone-700 mb-1">Registration URL</label>
                     <input
                       type="url"
                       value={(form as EventData).registrationUrl || ''}
                       onChange={(e) => setForm({ ...form, registrationUrl: e.target.value })}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full p-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-brand-500 focus:border-transparent"
                     />
                   </div>
                 </div>
               )}
               
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Image{activeTab === 'articles' ? '*' : ''}</label>
+                <label className="block text-sm font-medium text-stone-700 mb-1">Image{activeTab === 'articles' ? '*' : ''}</label>
                 <div className="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <button
                       type="button"
                       onClick={triggerFileInput}
-                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white border border-stone-300 text-stone-700 rounded-lg hover:bg-stone-50"
                     >
                       <Upload className="w-5 h-5" />
                       {imageFile || form.imageUrl ? 'Change Image' : 'Upload Image'}
@@ -710,7 +710,7 @@ export default function ArticlesAndEventsDashboard() {
                       className="hidden"
                     />
                   </div>
-                  <div className="relative h-32 bg-gray-100 rounded-lg overflow-hidden">
+                  <div className="relative h-32 bg-stone-100 rounded-lg overflow-hidden">
                     {imagePreview ? (
                       <>
                         <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
@@ -727,7 +727,7 @@ export default function ArticlesAndEventsDashboard() {
                         </button>
                       </>
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      <div className="w-full h-full flex items-center justify-center text-stone-400">
                         <ImageIcon className="w-10 h-10" />
                       </div>
                     )}
@@ -741,7 +741,7 @@ export default function ArticlesAndEventsDashboard() {
                     type="checkbox"
                     checked={form.isPublished || false}
                     onChange={(e) => setForm({ ...form, isPublished: e.target.checked })}
-                    className="h-4 w-4 text-purple-600 rounded focus:ring-purple-500"
+                    className="h-4 w-4 text-brand-600 rounded focus:ring-brand-500"
                   />
                   <span>Publish {activeTab === 'articles' ? 'article' : 'event'}</span>
                 </label>
@@ -750,7 +750,7 @@ export default function ArticlesAndEventsDashboard() {
                     type="checkbox"
                     checked={form.isFeatured || false}
                     onChange={(e) => setForm({ ...form, isFeatured: e.target.checked })}
-                    className="h-4 w-4 text-purple-600 rounded focus:ring-purple-500"
+                    className="h-4 w-4 text-brand-600 rounded focus:ring-brand-500"
                   />
                   <span>Feature on homepage</span>
                 </label>
@@ -760,7 +760,7 @@ export default function ArticlesAndEventsDashboard() {
                       type="checkbox"
                       checked={(form as EventData).isVirtual || false}
                       onChange={(e) => setForm({ ...form, isVirtual: e.target.checked })}
-                      className="h-4 w-4 text-purple-600 rounded focus:ring-purple-500"
+                      className="h-4 w-4 text-brand-600 rounded focus:ring-brand-500"
                     />
                     <span>Virtual Event</span>
                   </label>
@@ -776,14 +776,14 @@ export default function ArticlesAndEventsDashboard() {
                     setImagePreview(null);
                     setSelectedTagIds([]);
                   }}
-                  className="px-6 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+                  className="px-6 py-2.5 border border-stone-300 text-stone-700 rounded-lg hover:bg-stone-50"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 flex items-center gap-2"
+                  className="px-6 py-2.5 bg-brand-600 text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 flex items-center gap-2"
                 >
                   {loading ? (
                     <>

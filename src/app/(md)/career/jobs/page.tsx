@@ -13,8 +13,13 @@ export default async function JobDetailsPage() {
 
   if (!jobDetails) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-lg text-gray-600">No job details available.</p>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-secondary/20 px-4">
+        <div className="flex flex-col items-center text-center max-w-md rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm shadow-sm px-8 py-12">
+          <div className="p-4 rounded-full bg-primary/10 mb-4">
+            <Briefcase className="w-8 h-8 text-primary/70" />
+          </div>
+          <p className="text-lg text-muted-foreground">No job details available.</p>
+        </div>
       </div>
     );
   }
@@ -25,7 +30,7 @@ export default async function JobDetailsPage() {
         {/* Back Button */}
         <div className="mb-6">
           <Button variant="ghost" asChild className="pl-0 text-primary hover:text-primary/80 flex items-center gap-2">
-            <Link href="/careers">
+            <Link href="/career">
               <ArrowLeft className="w-4 h-4" /> Back to all positions
             </Link>
           </Button>
@@ -35,12 +40,12 @@ export default async function JobDetailsPage() {
         <div className="mb-10">
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4 text-foreground">{jobDetails.title}</h1>
           <div className="flex flex-wrap gap-4 mb-6 text-sm text-muted-foreground">
-            <span className="flex items-center gap-2"><MapPin className="w-4 h-4" />{jobDetails.location}</span>
-            <span className="flex items-center gap-2"><Briefcase className="w-4 h-4" />{jobDetails.type}</span>
+            <span className="flex items-center gap-2"><MapPin className="w-4 h-4 text-primary/70" />{jobDetails.location}</span>
+            <span className="flex items-center gap-2"><Briefcase className="w-4 h-4 text-primary/70" />{jobDetails.type}</span>
             {/* <span className="flex items-center gap-2"><Clock className="w-4 h-4" />{jobDetails.schedule}</span> */}
-            <span className="flex items-center gap-2"><Calendar className="w-4 h-4" />Posted: {jobDetails.postedAt ? new Date(jobDetails.postedAt).toLocaleDateString() : "N/A"}</span>
+            <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary/70" />Posted: {jobDetails.postedAt ? new Date(jobDetails.postedAt).toLocaleDateString() : "N/A"}</span>
           </div>
-          <Card className="bg-background/60 border border-border/40 shadow-sm rounded-xl">
+          <Card className="bg-card/60 border border-border/40 shadow-sm rounded-2xl">
             <CardContent className="p-6 text-base leading-relaxed text-foreground">
               <p>{jobDetails.description}</p>
             </CardContent>
@@ -52,14 +57,14 @@ export default async function JobDetailsPage() {
           {/* Tabs */}
           <div className="md:col-span-2 space-y-6">
             <Tabs defaultValue="responsibilities" className="w-full">
-              <TabsList className="grid w-full grid-cols-3 bg-muted/40 backdrop-blur-md border rounded-lg overflow-hidden">
+              <TabsList className="grid w-full grid-cols-3 bg-muted/40 backdrop-blur-md border rounded-xl overflow-hidden">
                 <TabsTrigger value="responsibilities" className="py-2">Responsibilities</TabsTrigger>
                 <TabsTrigger value="qualifications" className="py-2">Qualifications</TabsTrigger>
                 <TabsTrigger value="benefits" className="py-2">Benefits</TabsTrigger>
               </TabsList>
 
               <TabsContent value="responsibilities" className="pt-6">
-                <Card className="bg-background/60 border border-border/30 rounded-xl">
+                <Card className="bg-card/60 border border-border/30 rounded-2xl shadow-sm">
                   {/* <CardContent className="p-6">
                     <ul className="space-y-4">
                       {jobDetails.responsibilities?.map((item, index) => (
@@ -74,7 +79,7 @@ export default async function JobDetailsPage() {
               </TabsContent>
 
               <TabsContent value="qualifications" className="pt-6">
-                <Card className="bg-background/60 border border-border/30 rounded-xl">
+                <Card className="bg-card/60 border border-border/30 rounded-2xl shadow-sm">
                   <CardContent className="p-6">
                     <ul className="space-y-4">
                       {jobDetails.requirements?.split('\n').map((item, index) => (
@@ -89,7 +94,7 @@ export default async function JobDetailsPage() {
               </TabsContent>
 
               <TabsContent value="benefits" className="pt-6">
-                <Card className="bg-background/60 border border-border/30 rounded-xl">
+                <Card className="bg-card/60 border border-border/30 rounded-2xl shadow-sm">
                   {/* <CardContent className="p-6">
                     <ul className="space-y-4">
                       {jobDetails.benefits?.map((item, index) => (
@@ -107,7 +112,7 @@ export default async function JobDetailsPage() {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            <Card className="bg-background/60 border border-border/30 rounded-xl">
+            <Card className="bg-card/60 border border-border/30 rounded-2xl shadow-sm">
               <CardContent className="p-6 space-y-4">
                 <h3 className="text-lg font-semibold text-foreground">Job Details</h3>
                 <div className="text-sm space-y-3">
@@ -126,19 +131,19 @@ export default async function JobDetailsPage() {
                 </div>
 
                 <div className="pt-6 space-y-3">
-                  <Button className="w-full">Apply Now</Button>
-                  <Button variant="outline" className="w-full">Save Job</Button>
+                  <Button className="w-full rounded-full">Apply Now</Button>
+                  <Button variant="outline" className="w-full rounded-full">Save Job</Button>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-muted/30 border border-primary/10 rounded-xl shadow-sm">
+            <Card className="bg-accent/20 border border-primary/10 rounded-2xl shadow-sm">
               <CardContent className="p-6 space-y-4">
                 <h3 className="text-base font-semibold text-foreground">Not ready to apply?</h3>
                 <p className="text-sm text-muted-foreground">
                   Join our talent community to stay updated on future opportunities.
                 </p>
-                <Button variant="outline" className="w-full">Join Talent Community</Button>
+                <Button variant="outline" className="w-full rounded-full">Join Talent Community</Button>
               </CardContent>
             </Card>
           </div>

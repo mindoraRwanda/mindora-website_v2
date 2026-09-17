@@ -132,9 +132,9 @@ export default function HallOfFamePage() {
     <div className="space-y-8 p-6">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-purple-600">Hall of Fame</h1>
+        <h1 className="text-3xl font-bold text-brand-600">Hall of Fame</h1>
         <button
-          className="flex items-center gap-2 bg-purple-600 text-white px-5 py-2 rounded-md hover:bg-purple-700"
+          className="flex items-center gap-2 bg-brand-600 text-white px-5 py-2 rounded-md hover:bg-brand-700"
           onClick={() =>
             setForm({ id: 0, name: '', role: '', image: '' })
           }
@@ -153,11 +153,11 @@ export default function HallOfFamePage() {
               alt={entry.name}
               className="w-24 h-24 rounded-full mx-auto object-cover"
             />
-            <h2 className="mt-4 text-xl font-semibold text-gray-800">{entry.name}</h2>
-            <p className="text-gray-600">{entry.role}</p>
+            <h2 className="mt-4 text-xl font-semibold text-stone-800">{entry.name}</h2>
+            <p className="text-stone-600">{entry.role}</p>
             <div className="mt-4 space-x-4">
               <button onClick={() => setForm(entry)}>
-                <Pencil className="inline w-5 h-5 text-purple-600 hover:scale-110 transition-transform" />
+                <Pencil className="inline w-5 h-5 text-brand-600 hover:scale-110 transition-transform" />
               </button>
               <button onClick={() => handleDelete(entry.id)}>
                 <Trash2 className="inline w-5 h-5 text-red-500 hover:scale-110 transition-transform" />
@@ -173,39 +173,39 @@ export default function HallOfFamePage() {
           <div className="bg-white p-6 rounded-xl shadow-xl w-full max-w-md space-y-4 relative">
             <button
               onClick={() => setForm(null)}
-              className="absolute top-3 right-3 text-gray-500 hover:text-black"
+              className="absolute top-3 right-3 text-stone-500 hover:text-black"
             >
               <X className="w-5 h-5" />
             </button>
-            <h2 className="text-2xl font-bold text-purple-600 mb-2">
+            <h2 className="text-2xl font-bold text-brand-600 mb-2">
               {form.id ? 'Edit Entry' : 'Add Entry'}
             </h2>
             <form onSubmit={handleCreateOrUpdate} className="space-y-4">
               <div>
-                <label className="block text-gray-700 font-medium">Name</label>
+                <label className="block text-stone-700 font-medium">Name</label>
                 <input
                   type="text"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-600 outline-none"
+                  className="w-full p-2 border border-stone-300 rounded-md focus:ring-2 focus:ring-brand-600 outline-none"
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium">Role</label>
+                <label className="block text-stone-700 font-medium">Role</label>
                 <input
                   type="text"
                   value={form.role}
                   onChange={(e) => setForm({ ...form, role: e.target.value })}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-600 outline-none"
+                  className="w-full p-2 border border-stone-300 rounded-md focus:ring-2 focus:ring-brand-600 outline-none"
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium">Image</label>
+                <label className="block text-stone-700 font-medium">Image</label>
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="bg-purple-600 text-white px-3 py-1 rounded-md hover:bg-purple-700"
+                    className="bg-brand-600 text-white px-3 py-1 rounded-md hover:bg-brand-700"
                   >
                     <Upload className="w-4 h-4 inline mr-1" />
                     Upload
@@ -228,7 +228,7 @@ export default function HallOfFamePage() {
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className="bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700"
+                  className="bg-brand-600 text-white px-4 py-2 rounded-md hover:bg-brand-700"
                   disabled={loading}
                 >
                   {form.id ? 'Update' : 'Create'}

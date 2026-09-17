@@ -22,15 +22,15 @@ export default function ContactPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-purple-600">Contact Messages</h1>
+        <h1 className="text-3xl font-bold text-brand-600">Contact Messages</h1>
       </div>
 
       <div className="space-y-4">
         {messages.map((msg) => (
           <div key={msg.id} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <h2 className="text-xl font-semibold text-gray-800">{msg.name}</h2>
-            <p className="text-gray-600">{msg.email}</p>
-            <p className="text-gray-600 mt-2">{msg.content}</p>
+            <h2 className="text-xl font-semibold text-stone-800">{msg.name}</h2>
+            <p className="text-stone-600">{msg.email}</p>
+            <p className="text-stone-600 mt-2">{msg.content}</p>
             <div className="mt-4">
               <button
                 onClick={() => handleDelete(msg.id)}
@@ -42,7 +42,7 @@ export default function ContactPage() {
           </div>
         ))}
         {messages.length === 0 && (
-          <p className="text-gray-600 text-center">No messages yet.</p>
+          <p className="text-stone-600 text-center">No messages yet.</p>
         )}
       </div>
     </div>
