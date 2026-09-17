@@ -1,24 +1,25 @@
 import Link from "next/link";
-import { Facebook, Twitter, Instagram, Linkedin, Heart } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import SignalMark from "@/components/SignalMark";
 
 export default function Footer() {
   return (
-    <footer className="w-full mt-auto border-t border-border bg-secondary/40 dark:bg-secondary/20 px-6 py-12 md:px-16 lg:px-24">
+    <footer className="w-full mt-auto bg-ink px-6 py-16 text-paper md:px-16 lg:px-24">
       <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
         {/* Logo and Description */}
         <div className="space-y-4">
-          <h2 className="flex items-center gap-2 text-2xl font-bold text-brand-600 dark:text-brand-400">
+          <h2 className="flex items-center gap-3 font-display text-xl font-bold tracking-wide">
+            <SignalMark className="h-6 w-6 text-brand-500" />
             MINDORA Health
-            <Heart className="h-5 w-5 fill-calm-500 text-calm-500" />
           </h2>
-          <p className="text-sm leading-relaxed text-muted-foreground">
+          <p className="text-sm leading-relaxed text-paper/60">
             At Mindora, we believe that mental health is a key part of living a fulfilled life. We are driven by the mission to provide accessible, AI-powered solutions that help individuals take control of their mental well-being before challenges arise.
           </p>
         </div>
 
         {/* Navigation Links */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-foreground">Quick Links</h3>
+          <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-paper/50">Quick Links</h3>
           <ul className="space-y-2">
             {["Home", "About Us", "Services", "News", "Contact Us"].map(
               (link, index) => (
@@ -32,19 +33,19 @@ export default function Footer() {
 
         {/* Newsletter Subscription */}
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-foreground">Subscribe</h3>
-          <p className="text-sm text-muted-foreground">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-paper/50">Subscribe</h3>
+          <p className="text-sm text-paper/60">
             Stay updated with our latest news and updates. Subscribe to our newsletter!
           </p>
           <form className="flex items-center gap-2">
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full rounded-full border border-input bg-background px-4 py-2 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              className="w-full rounded-sm border border-paper/20 bg-transparent px-4 py-2 text-sm text-paper placeholder-paper/40 focus:outline-none focus:ring-2 focus:ring-brand-500"
             />
             <button
               type="submit"
-              className="shrink-0 rounded-full bg-brand-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-brand-700"
+              className="shrink-0 rounded-sm bg-brand-600 px-4 py-2 text-sm font-display font-bold uppercase tracking-wide text-paper transition hover:bg-brand-700"
             >
               Subscribe
             </button>
@@ -53,7 +54,7 @@ export default function Footer() {
       </div>
 
       {/* Social Media and Copyright */}
-      <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 md:flex-row">
+      <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-paper/10 pt-8 md:flex-row">
         {/* Social Media Links */}
         <div className="flex space-x-4">
           <SocialIcon href="https://facebook.com" label="Facebook" icon={<Facebook className="h-4 w-4" />} />
@@ -63,7 +64,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright Notice */}
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-paper/50">
           &copy; {new Date().getFullYear()} MINDORA Africa. All Rights Reserved.
         </p>
       </div>
@@ -77,7 +78,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
     <li>
       <Link
         href={href}
-        className="text-sm text-muted-foreground transition hover:text-brand-600 dark:hover:text-brand-400"
+        className="text-sm text-paper/60 transition hover:text-brand-400"
       >
         {children}
       </Link>
@@ -101,7 +102,7 @@ function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex h-10 w-10 items-center justify-center rounded-full bg-background text-muted-foreground shadow-sm transition hover:bg-brand-600 hover:text-white"
+      className="flex h-10 w-10 items-center justify-center rounded-sm border border-paper/15 text-paper/70 transition hover:border-brand-500 hover:bg-brand-600 hover:text-paper"
     >
       {icon}
     </a>

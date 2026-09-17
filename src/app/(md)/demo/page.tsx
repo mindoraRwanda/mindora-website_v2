@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Mail, Building2, MessageSquare, User, Sparkles } from "lucide-react";
+import { Mail, Building2, MessageSquare, User } from "lucide-react";
+import SignalMark from "@/components/SignalMark";
 
 export default function DemoRequestPage() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -39,35 +40,39 @@ export default function DemoRequestPage() {
 
   return (
     <div className={`relative min-h-screen flex items-center justify-center px-4 py-12 overflow-hidden
-      ${isDarkMode
-        ? "bg-gradient-to-br from-stone-900 via-brand-950 to-stone-900"
-        : "bg-gradient-to-br from-brand-100 via-calm-100 to-brand-200"}`}>
+      ${isDarkMode ? "bg-ink" : "bg-background"}`}>
 
-      {/* Gentle floating background shapes */}
+      {/* Signal diagonal color blocks (flat, no blur) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute w-96 h-96 -top-48 -left-48 bg-brand-300 dark:bg-brand-700 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-30 animate-float-slow"/>
-        <div className="absolute w-96 h-96 -bottom-48 -right-48 bg-calm-300 dark:bg-calm-700 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-30 animate-float"/>
+        <div
+          className="absolute -top-32 -left-32 h-80 w-80 bg-brand-600"
+          style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 70%)" }}
+        />
+        <div
+          className="absolute -bottom-32 -right-32 h-80 w-80 bg-brand-800"
+          style={{ clipPath: "polygon(30% 0, 100% 0, 100% 100%, 0 100%)" }}
+        />
       </div>
 
-      <div className={`relative w-full max-w-3xl p-8 rounded-2xl shadow-md backdrop-blur-sm border
+      <div className={`relative z-10 w-full max-w-3xl p-8 rounded-md border
         ${isDarkMode
-          ? "bg-stone-800/90 text-stone-100 border-stone-700/50"
-          : "bg-card/90 text-stone-900 border-border/50"}`}>
+          ? "bg-ink text-paper border-paper/15"
+          : "bg-card text-foreground border-border"}`}>
 
-        {/* Header with animation */}
+        {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center space-x-2 mb-2">
-            <Sparkles className="w-8 h-8 text-brand-500 animate-breathe" />
-            <h2 className="text-4xl font-bold">
+          <div className="inline-flex items-center justify-center space-x-3 mb-2">
+            <SignalMark className={`h-8 w-8 ${isDarkMode ? "text-brand-400" : "text-brand-600"}`} />
+            <h2 className="text-4xl">
               Request a Demo
             </h2>
           </div>
           <div className="relative">
-            <h3 className="text-xl font-semibold text-brand-500 mb-4">
+            <h3 className={`text-xl mb-4 ${isDarkMode ? "text-brand-400" : "text-brand-600"}`}>
               Mindora Health
             </h3>
           </div>
-          <p className={`text-sm ${isDarkMode ? "text-stone-400" : "text-stone-600"}`}>
+          <p className={`text-sm ${isDarkMode ? "text-paper/60" : "text-muted-foreground"}`}>
             Experience the future of healthcare management
           </p>
         </div>
@@ -81,16 +86,16 @@ export default function DemoRequestPage() {
                 Full Name
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400" />
+                <User className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${isDarkMode ? "text-paper/40" : "text-muted-foreground"}`} />
                 <input
                   type="text"
                   id="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-all duration-200
+                  className={`w-full pl-12 pr-4 py-3 rounded-md border transition-colors duration-200
                     ${isDarkMode
-                      ? "bg-stone-700/50 border-stone-600 text-stone-100"
-                      : "bg-stone-50 border-stone-200"}
+                      ? "bg-ink/60 border-paper/20 text-paper placeholder:text-paper/40"
+                      : "bg-background border-input text-foreground"}
                     focus:ring-2 focus:ring-brand-400 focus:border-transparent`}
                   placeholder="John Doe"
                   required
@@ -104,16 +109,16 @@ export default function DemoRequestPage() {
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400" />
+                <Mail className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${isDarkMode ? "text-paper/40" : "text-muted-foreground"}`} />
                 <input
                   type="email"
                   id="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-all duration-200
+                  className={`w-full pl-12 pr-4 py-3 rounded-md border transition-colors duration-200
                     ${isDarkMode
-                      ? "bg-stone-700/50 border-stone-600 text-stone-100"
-                      : "bg-stone-50 border-stone-200"}
+                      ? "bg-ink/60 border-paper/20 text-paper placeholder:text-paper/40"
+                      : "bg-background border-input text-foreground"}
                     focus:ring-2 focus:ring-brand-400 focus:border-transparent`}
                   placeholder="johndoe@example.com"
                   required
@@ -128,16 +133,16 @@ export default function DemoRequestPage() {
               Organization Name
             </label>
             <div className="relative">
-              <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-stone-400" />
+              <Building2 className={`absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 ${isDarkMode ? "text-paper/40" : "text-muted-foreground"}`} />
               <input
                 type="text"
                 id="organization"
                 value={formData.organization}
                 onChange={handleChange}
-                className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-all duration-200
+                className={`w-full pl-12 pr-4 py-3 rounded-md border transition-colors duration-200
                   ${isDarkMode
-                    ? "bg-stone-700/50 border-stone-600 text-stone-100"
-                    : "bg-stone-50 border-stone-200"}
+                    ? "bg-ink/60 border-paper/20 text-paper placeholder:text-paper/40"
+                    : "bg-background border-input text-foreground"}
                   focus:ring-2 focus:ring-brand-400 focus:border-transparent`}
                 placeholder="Mindora Inc."
                 required
@@ -151,16 +156,16 @@ export default function DemoRequestPage() {
               Additional Message (Optional)
             </label>
             <div className="relative">
-              <MessageSquare className="absolute left-3 top-3 w-5 h-5 text-stone-400" />
+              <MessageSquare className={`absolute left-3 top-3 w-5 h-5 ${isDarkMode ? "text-paper/40" : "text-muted-foreground"}`} />
               <textarea
                 id="message"
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-all duration-200
+                className={`w-full pl-12 pr-4 py-3 rounded-md border transition-colors duration-200
                   ${isDarkMode
-                    ? "bg-stone-700/50 border-stone-600 text-stone-100"
-                    : "bg-stone-50 border-stone-200"}
+                    ? "bg-ink/60 border-paper/20 text-paper placeholder:text-paper/40"
+                    : "bg-background border-input text-foreground"}
                   focus:ring-2 focus:ring-brand-400 focus:border-transparent`}
                 placeholder="Tell us more about your needs..."
               />
@@ -172,12 +177,12 @@ export default function DemoRequestPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`relative w-full px-6 py-3 text-lg font-medium rounded-xl
-                transition-all duration-200 transform hover:scale-[1.02]
+              className={`relative w-full px-6 py-3 text-lg font-display uppercase tracking-wide rounded-md
+                transition-colors duration-200
                 ${isDarkMode
                   ? "bg-brand-600 hover:bg-brand-700"
                   : "bg-brand-500 hover:bg-brand-600"}
-                text-white shadow-sm hover:shadow-md
+                text-white
                 disabled:opacity-70 disabled:cursor-not-allowed`}
             >
               {isSubmitting ? (

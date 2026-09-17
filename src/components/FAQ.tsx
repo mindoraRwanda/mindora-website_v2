@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ChevronDown } from "lucide-react";
+import SignalMark from "@/components/SignalMark";
 
 interface FAQ {
   question: string;
@@ -41,26 +42,24 @@ export default function FAQ() {
   const [openFAQ, setOpenFAQ] = React.useState<number | null>(null);
 
   return (
-    <section className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+    <section className="py-20 md:py-28">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <SignalMark className="mx-auto mb-6 h-8 w-8 text-brand-500" />
           <h2 className="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
           <p className="text-lg text-muted-foreground">
             Find quick answers to common questions about our services
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="mx-auto max-w-3xl border-t border-border">
           {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="bg-card border border-border/60 rounded-2xl shadow-sm transition-shadow duration-300 hover:shadow-md"
-            >
+            <div key={index} className="border-b border-border">
               <button
                 onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
-                className="w-full text-left p-6 flex justify-between items-center gap-4"
+                className="w-full text-left py-6 flex justify-between items-center gap-4"
               >
-                <span className="font-medium">{faq.question}</span>
+                <span className="font-display font-bold">{faq.question}</span>
                 <ChevronDown
                   className={`w-5 h-5 shrink-0 text-brand-500 transition-transform duration-300 ${
                     openFAQ === index ? "transform rotate-180" : ""
@@ -68,8 +67,8 @@ export default function FAQ() {
                 />
               </button>
               {openFAQ === index && (
-                <div className="px-6 pb-6">
-                  <div className="text-sm text-brand-600 dark:text-brand-400 mb-2">
+                <div className="pb-6">
+                  <div className="text-xs font-display uppercase tracking-wide text-brand-600 dark:text-brand-400 mb-2">
                     {faq.category}
                   </div>
                   <p className="text-muted-foreground">{faq.answer}</p>

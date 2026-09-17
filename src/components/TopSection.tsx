@@ -1,6 +1,6 @@
 "use client";
 
-
+import SignalMark from "@/components/SignalMark";
 
 interface TopSectionProps {
   backgroundImage: string;
@@ -14,29 +14,27 @@ export default function TopSection({
   description,
 }: TopSectionProps) {
   return (
-    <div className="relative w-full h-[55vh] md:h-[65vh] lg:h-[70vh] overflow-hidden rounded-b-[2.5rem]">
-      {/* Background Image */}
+    <div className="relative w-full overflow-hidden bg-ink">
+      {/* Diagonal duotone photo block, visible from tablet up */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-        }}
+        className="absolute inset-y-0 right-0 hidden w-[46%] overflow-hidden md:block"
+        style={{ clipPath: "polygon(14% 0, 100% 0, 100% 100%, 0 100%)" }}
       >
-        {/* Calming brand-toned overlay instead of harsh black */}
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-950/80 via-brand-900/55 to-brand-950/85" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-brand-600/30 via-transparent to-calm-500/25" />
+        <div
+          className="h-full w-full bg-cover bg-center grayscale contrast-125"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        />
+        <div className="absolute inset-0 bg-brand-600 mix-blend-color" />
+        <div className="absolute inset-0 bg-ink/20 mix-blend-multiply" />
       </div>
 
-      {/* Soft floating shapes */}
-      <div className="absolute -top-10 left-10 w-56 h-56 bg-calm-400/30 rounded-full blur-3xl animate-float-slow" />
-      <div className="absolute bottom-0 right-10 w-72 h-72 bg-brand-400/30 rounded-full blur-3xl animate-float" />
-
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-6">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight drop-shadow-lg">
+      <div className="relative z-10 mx-auto flex min-h-[46vh] w-full max-w-7xl flex-col justify-center px-6 py-20 md:min-h-[52vh] md:px-12 lg:px-20">
+        <SignalMark className="mb-8 h-8 w-8 text-brand-500" />
+        <h1 className="max-w-2xl text-4xl font-bold leading-[1.05] text-paper md:text-6xl">
           {title}
         </h1>
-        <p className="mt-4 text-lg md:text-xl lg:text-2xl max-w-2xl text-white/90 drop-shadow-md">
+        <p className="mt-6 max-w-xl text-lg text-paper/70 md:text-xl">
           {description}
         </p>
       </div>

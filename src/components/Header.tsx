@@ -6,7 +6,8 @@ import Link from "next/link";
 import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { useState, useEffect } from "react";
 import { ModeToggle } from "@/components/ModeToggle";
-import { Menu, X, ChevronDown, Sparkles } from 'lucide-react';
+import SignalMark from "@/components/SignalMark";
+import { Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,10 +35,10 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${
         isScrolled
-          ? "backdrop-blur-lg bg-background/80 shadow-sm border-b border-border/60 h-16"
-          : "bg-transparent h-20"
+          ? "bg-ink/95 shadow-sm h-16"
+          : "bg-ink/35 h-20"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
@@ -46,7 +47,7 @@ export default function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden relative"
+              className="lg:hidden relative text-paper hover:bg-paper/10 hover:text-paper"
             >
               {isMobileOpen ? (
                 <X className="h-6 w-6 transition-transform duration-200" />
@@ -55,7 +56,7 @@ export default function Header() {
               )}
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-80">
+          <SheetContent side="left" className="w-80 bg-ink border-ink-700 text-paper">
             <div className="mt-8 flex flex-col space-y-6">
               {navigationItems.map((item) => (
                 <MobileNavLink
@@ -66,7 +67,7 @@ export default function Header() {
                   {item.label}
                 </MobileNavLink>
               ))}
-              <Button asChild className="w-full rounded-full bg-brand-600 hover:bg-brand-700 text-white">
+              <Button asChild className="w-full rounded-sm bg-brand-600 hover:bg-brand-700 text-paper uppercase tracking-wide text-sm font-display">
                 <Link href="https://app.mindora.rw/">
                   Access the App
                 </Link>
@@ -75,21 +76,14 @@ export default function Header() {
           </SheetContent>
         </Sheet>
 
-      
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-brand-600 to-calm-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200" />
-            <div className="relative font-bold text-2xl bg-gradient-to-r from-brand-600 to-calm-600 text-transparent bg-clip-text">
-              MINDORA
-              <span className="absolute -top-1 -right-1">
-                <Sparkles className="h-4 w-4 text-yellow-400 animate-pulse" />
-              </span>
-            </div>
-          </div>
-          <span className="text-sm font-medium text-stone-600 dark:text-stone-300">Health</span>
+
+        <Link href="/" className="flex items-center gap-3">
+          <SignalMark className="h-6 w-6 text-brand-500" />
+          <span className="font-display text-xl font-bold tracking-wide text-paper">MINDORA</span>
+          <span className="hidden text-xs uppercase tracking-[0.2em] text-paper/50 sm:inline">Health</span>
         </Link>
 
-        
+
         <NavigationMenu className="hidden lg:flex">
           <NavigationMenuList className="flex space-x-1">
             {navigationItems.map((item) => (
@@ -111,11 +105,7 @@ export default function Header() {
           <Button
             asChild
             variant="default"
-            className={`hidden md:inline-flex rounded-full bg-gradient-to-r from-brand-600 to-calm-600
-              hover:from-brand-700 hover:to-calm-700 text-white transform transition-all
-              duration-300 hover:scale-105 shadow-md hover:shadow-lg shadow-brand-600/20 ${
-              isScrolled ? "py-2" : "py-3"
-            }`}
+            className="hidden md:inline-flex rounded-sm bg-brand-600 hover:bg-brand-700 text-paper font-display font-bold uppercase tracking-wide text-xs px-5"
           >
             <Link href="https://app.mindora.rw/">
               Access the App
@@ -128,8 +118,8 @@ export default function Header() {
   );
 }
 
-function MobileNavLink({ href, children, onClick }: { 
-  href: string; 
+function MobileNavLink({ href, children, onClick }: {
+  href: string;
   children: React.ReactNode;
   onClick: () => void;
 }) {
@@ -137,26 +127,24 @@ function MobileNavLink({ href, children, onClick }: {
     <Link
       href={href}
       onClick={onClick}
-      className="flex items-center space-x-2 text-lg font-medium text-stone-700 dark:text-stone-200 
-        hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-200 
+      className="flex items-center space-x-2 text-lg font-medium text-paper/80
+        hover:text-brand-400 transition-colors duration-200
         group relative py-2"
     >
-      <span className="absolute left-0 w-0 h-0.5 bg-brand-600 group-hover:w-full transition-all duration-300" />
+      <span className="absolute left-0 w-0 h-0.5 bg-brand-500 group-hover:w-full transition-all duration-300" />
       {children}
-      <ChevronDown className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 
-        group-hover:translate-x-0 transition-all duration-300" />
     </Link>
   );
 }
 
-function DesktopNavLink({ 
-  href, 
-  children, 
+function DesktopNavLink({
+  href,
+  children,
   isActive,
   onMouseEnter,
-  onMouseLeave 
-}: { 
-  href: string; 
+  onMouseLeave
+}: {
+  href: string;
   children: React.ReactNode;
   isActive: boolean;
   onMouseEnter: () => void;
@@ -166,21 +154,20 @@ function DesktopNavLink({
     <NavigationMenuLink asChild>
       <Link
         href={href}
-        className={`relative group px-4 py-2 rounded-full transition-all duration-300
-          ${isActive 
-            ? 'text-brand-600 dark:text-brand-400' 
-            : 'text-stone-700 dark:text-stone-200'
+        className={`relative group px-4 py-2 rounded-sm transition-all duration-300 text-sm
+          ${isActive
+            ? 'text-brand-400'
+            : 'text-paper/75'
           }`}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       >
         <span className="relative z-10">{children}</span>
-        <span className={`absolute inset-0 bg-brand-100 dark:bg-brand-900/40 
-          rounded-full scale-0 group-hover:scale-100 transition-transform 
-          duration-300 ease-out ${isActive ? 'scale-100' : ''}`} 
+        <span className={`absolute inset-0 bg-brand-500/15
+          rounded-sm scale-0 group-hover:scale-100 transition-transform
+          duration-300 ease-out ${isActive ? 'scale-100' : ''}`}
         />
       </Link>
     </NavigationMenuLink>
   );
 }
-

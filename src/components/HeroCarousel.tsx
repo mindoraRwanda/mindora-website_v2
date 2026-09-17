@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Link from "next/link";
+import SignalMark from "@/components/SignalMark";
 
 interface Slide {
   image: string;
@@ -41,7 +42,7 @@ export default function HeroCarousel() {
   ];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-stone-900">
+    <div className="relative w-full h-screen overflow-hidden bg-ink">
       <Swiper
         modules={[Autoplay, Navigation, Pagination]}
         autoplay={{ delay: 5000, disableOnInteraction: false }}
@@ -51,16 +52,32 @@ export default function HeroCarousel() {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div
-              className="relative w-full h-full bg-cover bg-center"
-              style={{ backgroundImage: `url('${slide.image}')` }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-950/85 via-stone-950/30 to-brand-950/20" />
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
-                <h1 className="text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md">{slide.heading}</h1>
-                <p className="text-lg lg:text-xl text-white/90 mt-4 lg:mt-6 max-w-3xl leading-relaxed">{slide.subheading}</p>
-                <Link href={slide.href} className="mt-8 bg-brand-600 hover:bg-brand-500 text-white py-3 px-8 rounded-full shadow-lg shadow-brand-900/30 transition-all duration-300 hover:scale-105 hover:shadow-xl">
-                    {slide.buttonText}
+            <div className="relative w-full h-full bg-ink">
+              {/* Duotone photo: grayscale + brand color-blend, no soft gradient overlay */}
+              <div
+                className="absolute inset-0 bg-cover bg-center grayscale"
+                style={{ backgroundImage: `url('${slide.image}')` }}
+              />
+              <div className="absolute inset-0 bg-brand-600 mix-blend-color" />
+              <div className="absolute inset-0 bg-ink/40" />
+
+              {/* Diagonal ink color-block panel carrying the copy */}
+              <div
+                className="absolute inset-y-0 left-0 w-full bg-ink md:w-[64%]"
+                style={{ clipPath: "polygon(0 0, 100% 0, 78% 100%, 0% 100%)" }}
+              />
+
+              <div className="relative z-10 flex h-full flex-col justify-center px-6 md:w-[64%] md:px-16 lg:px-20">
+                <SignalMark className="mb-6 h-8 w-8 text-brand-400" />
+                <h1 className="max-w-2xl text-5xl text-paper lg:text-6xl">{slide.heading}</h1>
+                <p className="mt-4 max-w-xl text-lg leading-relaxed text-paper/75 lg:mt-6 lg:text-xl">
+                  {slide.subheading}
+                </p>
+                <Link
+                  href={slide.href}
+                  className="mt-8 inline-flex w-fit items-center gap-2 rounded-md bg-brand-600 px-8 py-3 font-display text-sm uppercase tracking-wide text-paper transition-colors duration-200 hover:bg-brand-500"
+                >
+                  {slide.buttonText}
                 </Link>
               </div>
             </div>

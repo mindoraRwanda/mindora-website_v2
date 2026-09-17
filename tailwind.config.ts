@@ -9,7 +9,18 @@ export default {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ['var(--font-work-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+  			display: ['var(--font-space-grotesk)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+  		},
   		colors: {
+  			ink: {
+  				DEFAULT: '#15181C',
+  				900: '#0E1013',
+  				800: '#15181C',
+  				700: '#1E2227',
+  			},
+  			paper: '#F4EFE6',
   			brand: {
   				50: '#F6F4FE',
   				100: '#EEEAFD',
