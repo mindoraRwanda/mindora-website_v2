@@ -1,8 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import TopSection from '@/components/TopSection';
 import TeamSection from '@/components/team/TeamSection';
-import { ArrowRight, Heart, Lightbulb, Users, Star, ChevronRight, MessageCircle, Link } from 'lucide-react';
+import { ArrowRight, Heart, Lightbulb, Users, Star, ChevronRight, MessageCircle } from 'lucide-react';
 
 interface Value {
   icon: React.ReactNode;
@@ -83,7 +84,7 @@ export default function About() {
         </div>
       </section>
 
-      <TeamSection />
+      {/*<TeamSection />*/}
 
       {/* Values Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
@@ -163,11 +164,13 @@ export default function About() {
               Get in touch with us today and discover how we can help you take charge of your mental well-being.
             </p>
             <Button
+              asChild
               className="bg-white text-purple-600 hover:bg-purple-50 text-lg py-6 px-8 rounded-xl transform transition-transform hover:scale-105"
-            > <Link href="/contact">
-              Contact Us
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
+            >
+              <Link href="/contact">
+                Contact Us
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
             </Button>
           </div>
         </div>

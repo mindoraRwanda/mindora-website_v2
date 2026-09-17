@@ -67,7 +67,7 @@ export default function Header() {
                 </MobileNavLink>
               ))}
               <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-                <Link href="https://mindora-app.netlify.app/">
+                <Link href="https://app.mindora.rw/">
                 Access  the App
                 </Link>
               </Button>
