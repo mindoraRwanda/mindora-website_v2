@@ -1,89 +1,29 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import SignalMark from "@/components/SignalMark";
 
 export default function LoadingPage() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setIsDarkMode(darkMode);
-  }, []);
-
-  const bars = [0, 1, 2, 3, 4];
-
   return (
     <>
       <style>{`
-        @keyframes breath {
-          0%, 100% { transform: scaleY(0.25); }
-          50% { transform: scaleY(1); }
+        @keyframes signal-ring {
+          0% { transform: scale(0.6); opacity: 0.6; }
+          100% { transform: scale(2.2); opacity: 0; }
         }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes scalePulse {
-          0%, 100% { transform: scale(0.9); }
-          50% { transform: scale(1.1); }
-        }
-        .animate-breath {
-          animation: breath 4s ease-in-out infinite;
-        }
-        .animate-fadeIn {
-          animation: fadeIn 1s ease-in-out forwards;
-        }
-        .animate-scalePulse {
-          animation: scalePulse 10s ease-in-out infinite;
+        .signal-ring {
+          animation: signal-ring 2.2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
         }
       `}</style>
 
-      <div className={`flex items-center justify-center h-screen ${isDarkMode ? 'bg-stone-900' : 'bg-white'}`}>
-        <div className="relative flex flex-col items-center space-y-6">
-          {/* Loader */}
-          <div className="flex justify-center space-x-2">
-            {bars.map((i) => (
-              <div
-                key={i}
-                className={`w-4 h-16 rounded origin-bottom animate-breath ${
-                  isDarkMode ? 'bg-gradient-to-t from-brand-400 to-brand-300' : 'bg-gradient-to-t from-brand-600 to-brand-500'
-                }`}
-                style={{ animationDelay: `${i * 0.4}s` }}
-              />
-            ))}
-          </div>
+      <div className="flex h-screen flex-col items-center justify-center gap-8 bg-ink">
+        <div className="relative flex h-24 w-24 items-center justify-center">
+          <span className="signal-ring absolute h-16 w-16 rounded-full border border-brand-500" style={{ animationDelay: "0s" }} />
+          <span className="signal-ring absolute h-16 w-16 rounded-full border border-brand-500" style={{ animationDelay: "0.7s" }} />
+          <span className="signal-ring absolute h-16 w-16 rounded-full border border-brand-500" style={{ animationDelay: "1.4s" }} />
+          <SignalMark className="relative h-10 w-10 text-brand-500" />
+        </div>
 
-          {/* Text */}
-          <p className={`text-lg md:text-xl font-semibold text-center animate-fadeIn ${isDarkMode ? 'text-stone-100' : 'text-stone-800'}`}>
-            We are preparing your space...
-          </p>
-        </div>
-        <div className="absolute inset-0 z-[-1] overflow-hidden">
-          <div
-            className={`absolute top-0 left-0 w-64 h-64 rounded-full blur-[100px] ${
-              isDarkMode ? 'bg-brand-800/20' : 'bg-brand-200/30'
-            } animate-scalePulse`}
-            style={{ animationDuration: '8s' }}
-          />
-          <div
-            className={`absolute top-0 right-0 w-80 h-80 rounded-full blur-[120px] ${
-              isDarkMode ? 'bg-brand-700/25' : 'bg-brand-300/35'
-            } animate-scalePulse`}
-            style={{ animationDuration: '10s' }}
-          />
-          <div
-            className={`absolute bottom-0 left-0 w-72 h-72 rounded-full blur-[110px] ${
-              isDarkMode ? 'bg-brand-900/15' : 'bg-brand-100/25'
-            } animate-scalePulse`}
-            style={{ animationDuration: '12s' }}
-          />
-          <div
-            className={`absolute bottom-0 right-0 w-56 h-56 rounded-full blur-[90px] ${
-              isDarkMode ? 'bg-brand-600/30' : 'bg-brand-400/40'
-            } animate-scalePulse`}
-            style={{ animationDuration: '9s' }}
-          />
-        </div>
+        <p className="font-display text-sm uppercase tracking-[0.2em] text-paper/70">
+          We are preparing your space...
+        </p>
       </div>
     </>
   );
