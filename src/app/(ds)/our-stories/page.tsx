@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Pencil, Trash2, Plus, X, Upload, Image as ImageIcon, Search, Tag } from 'lucide-react';
+import { Pencil, Trash2, Plus, X, Upload, Image as ImageIcon, Search } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import {
   getArticles,
@@ -20,6 +20,25 @@ import {
 
 const CLOUDINARY_CLOUD_NAME = 'dnbyb192d';
 const CLOUDINARY_UPLOAD_PRESET = 'mindora-images';
+
+const ARTICLE_CATEGORIES: ArticleData['category'][] = [
+  'Innovation',
+  'Industry Insights',
+  'Impact',
+  'Company News',
+  'Research',
+  'Events',
+];
+
+const EVENT_TYPES: EventData['eventType'][] = [
+  'Webinar',
+  'Conference',
+  'Workshop',
+  'Summit',
+  'Meetup',
+  'Virtual Event',
+  'In-Person',
+];
 
 export default function ArticlesAndEventsDashboard() {
   const [activeTab, setActiveTab] = useState<'articles' | 'events'>('articles');
@@ -148,7 +167,7 @@ export default function ArticlesAndEventsDashboard() {
     try {
       let imageUrl = form.imageUrl;
       if (imageFile) imageUrl = await uploadImage(imageFile);
-      const slug = form.slug || form.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      const slug = form.slug || form.title?.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') || '';
 
       if (activeTab === 'articles') {
         const articleData: ArticleData = {
@@ -157,7 +176,7 @@ export default function ArticlesAndEventsDashboard() {
           description: form.description || '',
           content: form.content || '',
           imageUrl: imageUrl || '',
-          category: (form as ArticleData).category || '',
+          category: (form as ArticleData).category || ('' as ArticleData['category']),
           isFeatured: form.isFeatured || false,
           isPublished: form.isPublished || false,
           tags: selectedTagIds,
@@ -180,7 +199,7 @@ export default function ArticlesAndEventsDashboard() {
           imageUrl: imageUrl || undefined,
           startDate: (form as EventData).startDate || new Date(),
           endDate: (form as EventData).endDate || undefined,
-          eventType: (form as EventData).eventType || '',
+          eventType: (form as EventData).eventType || ('' as EventData['eventType']),
           location: (form as EventData).location || undefined,
           venue: (form as EventData).venue || undefined,
           isVirtual: (form as EventData).isVirtual || false,
@@ -247,7 +266,11 @@ export default function ArticlesAndEventsDashboard() {
     if (item) {
       setForm(item);
       setImagePreview(item.imageUrl || null);
-      if ('tags' in item) setSelectedTagIds(item.tags?.map(tag => tag.id) || []);
+      if ('tags' in item) {
+        setSelectedTagIds(
+          item.tags?.map(tag => (typeof tag === 'number' ? tag : tag.id!)) || []
+        );
+      }
     } else if (activeTab === 'articles') {
       setForm({
         title: '',
@@ -255,7 +278,7 @@ export default function ArticlesAndEventsDashboard() {
         description: '',
         content: '',
         imageUrl: '',
-        category: '',
+        category: '' as ArticleData['category'],
         isPublished: false,
         isFeatured: false,
         tags: []
@@ -268,7 +291,7 @@ export default function ArticlesAndEventsDashboard() {
         slug: '',
         description: '',
         startDate: new Date(),
-        eventType: '',
+        eventType: '' as EventData['eventType'],
         isPublished: false,
         isFeatured: false,
       });
@@ -445,7 +468,7 @@ export default function ArticlesAndEventsDashboard() {
                   <div className="mt-auto flex items-center justify-between">
                     {'tags' in item && item.tags && (
                       <div className="flex flex-wrap gap-1">
-                        {item.tags.slice(0, 2).map((tag: any) => (
+                        {(item.tags as TagData[]).slice(0, 2).map((tag) => (
                           <span key={tag.id} className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded">
                             {tag.name}
                           </span>
@@ -571,13 +594,17 @@ export default function ArticlesAndEventsDashboard() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     {activeTab === 'articles' ? 'Category*' : 'Event Type*'}
                   </label>
-                  <input
-                    type="text"
+                  <select
                     value={activeTab === 'articles' ? (form as ArticleData).category || '' : (form as EventData).eventType || ''}
                     onChange={(e) => setForm({ ...form, [activeTab === 'articles' ? 'category' : 'eventType']: e.target.value })}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     required
-                  />
+                  >
+                    <option value="" disabled>Select {activeTab === 'articles' ? 'a category' : 'an event type'}</option>
+                    {(activeTab === 'articles' ? ARTICLE_CATEGORIES : EVENT_TYPES).map((option) => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
                 </div>
                 
                 {activeTab === 'articles' && (
@@ -628,7 +655,7 @@ export default function ArticlesAndEventsDashboard() {
                     <label className="block text-sm font-medium text-gray-700 mb-1">End Date</label>
                     <input
                       type="datetime-local"
-                      value={(form as EventData).endDate ? new Date((form as EventData).endDate).toISOString().slice(0, 16) : ''}
+                      value={(form as EventData).endDate ? new Date((form as EventData).endDate!).toISOString().slice(0, 16) : ''}
                       onChange={(e) => setForm({ ...form, endDate: e.target.value ? new Date(e.target.value) : undefined })}
                       className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     />

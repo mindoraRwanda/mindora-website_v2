@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { getServices, getStories } from "./action";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Services() {
   // Fetch services and success stories from the database
   const [services, stories] = await Promise.all([getServices(), getStories()]);

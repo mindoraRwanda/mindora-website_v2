@@ -2,10 +2,13 @@
 'use server';
 
 import { db } from '@/db';
-import { article, event, tag, articleToTag, subscriber, media } from '@/db/schema';
-import { eq, desc, and, like, inArray, sql } from 'drizzle-orm';
+import { article, event, tag, articleToTag, subscriber, media, articleCategoryEnum, eventTypeEnum } from '@/db/schema';
+import { eq, desc, and, inArray, sql } from 'drizzle-orm';
 
 // Article Types
+export type ArticleCategory = (typeof articleCategoryEnum.enumValues)[number];
+export type EventType = (typeof eventTypeEnum.enumValues)[number];
+
 export interface ArticleData {
   id?: number;
   title: string;
@@ -13,17 +16,17 @@ export interface ArticleData {
   description: string;
   content: string;
   imageUrl: string;
-  thumbnailUrl?: string;
-  category: string;
-  isFeatured?: boolean;
-  readTime?: string;
-  author?: string;
-  authorImageUrl?: string;
-  publishedAt?: Date;
-  metaTitle?: string;
-  metaDescription?: string;
-  isPublished?: boolean;
-  tags?: number[];
+  thumbnailUrl?: string | null;
+  category: ArticleCategory;
+  isFeatured?: boolean | null;
+  readTime?: string | null;
+  author?: string | null;
+  authorImageUrl?: string | null;
+  publishedAt?: Date | null;
+  metaTitle?: string | null;
+  metaDescription?: string | null;
+  isPublished?: boolean | null;
+  tags?: number[] | TagData[];
 }
 
 // Event Types
@@ -32,18 +35,18 @@ export interface EventData {
   title: string;
   slug: string;
   description: string;
-  content?: string;
-  imageUrl?: string;
+  content?: string | null;
+  imageUrl?: string | null;
   startDate: Date;
-  endDate?: Date;
-  eventType: string;
-  location?: string;
-  venue?: string;
-  isVirtual?: boolean;
-  registrationUrl?: string;
-  speakers?: any;
-  isFeatured?: boolean;
-  isPublished?: boolean;
+  endDate?: Date | null;
+  eventType: EventType;
+  location?: string | null;
+  venue?: string | null;
+  isVirtual?: boolean | null;
+  registrationUrl?: string | null;
+  speakers?: unknown;
+  isFeatured?: boolean | null;
+  isPublished?: boolean | null;
 }
 
 // Tag Types
@@ -57,20 +60,20 @@ export interface TagData {
 export interface MediaData {
   id?: number;
   title: string;
-  description?: string;
+  description?: string | null;
   type: string;
   url: string;
-  articleId?: number;
-  eventId?: number;
+  articleId?: number | null;
+  eventId?: number | null;
 }
 
 // Subscriber Types
 export interface SubscriberData {
   id?: number;
   email: string;
-  name?: string;
-  isActive?: boolean;
-  preferences?: any;
+  name?: string | null;
+  isActive?: boolean | null;
+  preferences?: unknown;
 }
 
 // =================== ARTICLE ACTIONS ===================
@@ -84,9 +87,9 @@ export async function getArticles({
   offset = 0,
   search = '',
   tagIds = []
-}: { 
-  category?: string | null, 
-  featured?: boolean | null, 
+}: {
+  category?: ArticleCategory | null,
+  featured?: boolean | null,
   published?: boolean | null,
   limit?: number,
   offset?: number,
@@ -94,8 +97,8 @@ export async function getArticles({
   tagIds?: number[]
 } = {}) {
   try {
-    let query = db.select().from(article).orderBy(desc(article.publishedAt));
-    
+    let query = db.select().from(article).orderBy(desc(article.publishedAt)).$dynamic();
+
     // Apply filters if provided
     const conditions = [];
     if (category) conditions.push(eq(article.category, category));
@@ -106,10 +109,10 @@ export async function getArticles({
         sql`(${article.title} ILIKE ${`%${search}%`} OR ${article.description} ILIKE ${`%${search}%`})`
       );
     }
-    
+
     // Apply all conditions if any
     if (conditions.length > 0) {
-      query = (query as any).where(and(...conditions));//@ts-ignore-line
+      query = query.where(and(...conditions));
     }
     
     // Apply tag filtering if provided
@@ -225,7 +228,7 @@ export async function createArticle(data: ArticleData) {
       content: data.content,
       imageUrl: data.imageUrl,
       thumbnailUrl: data.thumbnailUrl || null,
-      category: data.category as any, // Cast to enum type
+      category: data.category,
       isFeatured: data.isFeatured || false,
       readTime: data.readTime || null,
       author: data.author || null,
@@ -238,10 +241,10 @@ export async function createArticle(data: ArticleData) {
     
     // Add tags if provided
     if (data.tags && data.tags.length > 0) {
-      await Promise.all(data.tags.map(tagId => 
+      await Promise.all(data.tags.map(t =>
         db.insert(articleToTag).values({
           articleId: newArticle.id,
-          tagId
+          tagId: typeof t === 'number' ? t : t.id!
         })
       ));
     }
@@ -284,7 +287,7 @@ export async function updateArticle(id: number, data: ArticleData) {
         content: data.content,
         imageUrl: data.imageUrl,
         thumbnailUrl: data.thumbnailUrl || null,
-        category: data.category as any, // Cast to enum type
+        category: data.category,
         isFeatured: data.isFeatured || false,
         readTime: data.readTime || null,
         author: data.author || null,
@@ -309,10 +312,10 @@ export async function updateArticle(id: number, data: ArticleData) {
       
       // Add new tags
       if (data.tags.length > 0) {
-        await Promise.all(data.tags.map(tagId => 
+        await Promise.all(data.tags.map(t =>
           db.insert(articleToTag).values({
             articleId: id,
-            tagId
+            tagId: typeof t === 'number' ? t : t.id!
           })
         ));
       }
@@ -400,9 +403,9 @@ export async function getEvents({
   limit = 100,
   offset = 0,
   search = ''
-}: { 
-  eventType?: string | null, 
-  featured?: boolean | null, 
+}: {
+  eventType?: EventType | null,
+  featured?: boolean | null,
   published?: boolean | null,
   future?: boolean | null,
   past?: boolean | null,
@@ -411,7 +414,7 @@ export async function getEvents({
   search?: string
 } = {}) {
   try {
-    let query = db.select().from(event).orderBy(desc(event.startDate));
+    let query = db.select().from(event).orderBy(desc(event.startDate)).$dynamic();
     
     // Apply filters if provided
     const conditions = [];
@@ -506,7 +509,7 @@ export async function createEvent(data: EventData) {
       imageUrl: data.imageUrl || null,
       startDate: data.startDate,
       endDate: data.endDate || null,
-      eventType: data.eventType as any, // Cast to enum type
+      eventType: data.eventType,
       location: data.location || null,
       venue: data.venue || null,
       isVirtual: data.isVirtual || false,
@@ -550,7 +553,7 @@ export async function updateEvent(id: number, data: EventData) {
         imageUrl: data.imageUrl || null,
         startDate: data.startDate,
         endDate: data.endDate || null,
-        eventType: data.eventType as any, // Cast to enum type
+        eventType: data.eventType,
         location: data.location || null,
         venue: data.venue || null,
         isVirtual: data.isVirtual || false,
@@ -738,7 +741,7 @@ export async function getSubscribers({
   search?: string
 } = {}) {
   try {
-    let query = db.select().from(subscriber).orderBy(desc(subscriber.subscriptionDate));
+    let query = db.select().from(subscriber).orderBy(desc(subscriber.subscriptionDate)).$dynamic();
     
     // Apply filters
     const conditions = [];
@@ -863,7 +866,7 @@ export async function getMediaItems({
   offset?: number
 } = {}) {
   try {
-    let query = db.select().from(media).orderBy(desc(media.createdAt));
+    let query = db.select().from(media).orderBy(desc(media.createdAt)).$dynamic();
     
     // Apply filters
     const conditions = [];

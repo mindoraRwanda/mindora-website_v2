@@ -5,7 +5,9 @@ import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getJobs } from "./action";
 
-export default async function JobDetailsPage() { 
+export const dynamic = 'force-dynamic';
+
+export default async function JobDetailsPage() {
   const jobs = await getJobs();
   const jobDetails = jobs[0];
 

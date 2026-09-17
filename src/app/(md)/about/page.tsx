@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import TopSection from '@/components/TopSection';
-import TeamSection from '@/components/team/TeamSection';
 import { ArrowRight, Heart, Lightbulb, Users, Star, ChevronRight, MessageCircle } from 'lucide-react';
 
 interface Value {
